@@ -1,16 +1,15 @@
 <template>
-  <landing-pages-list/>
+  <reportlist/>
 </template>
 
 <script>
-  import LandingPagesList  from '../../components/LandingPages/LandingPagesList'
+  import reportlist  from '../../components/Report/reportlist'
   const root = {root: true}
 
   export default {
-    components: {LandingPagesList},
+    components: {reportlist},
     fetch ({store}) {
-        store.dispatch('brands/load', {}, root)
-        store.dispatch('landingPages/load', {}, root)
+        store.dispatch('reports/load', {}, root)
     }
   }
 </script>

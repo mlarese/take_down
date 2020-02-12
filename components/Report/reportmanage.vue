@@ -1,13 +1,29 @@
+<!--eslint-disable-->
 <template>
-    $END$
+    <v-flex container pa-0>
+        <v-card>
+            <userform/>
+        </v-card>
+    </v-flex>
 </template>
 
 <script>
+    import reportform from './reportform'
+    import {mapState, mapActions} from 'vuex'
+
     export default {
-        name: "reportmanage"
+        components: {
+            reportform
+        },
+        computed: {
+            ...mapState('reports', ['$record', 'record'])
+        },
+        methods: {
+            ...mapActions('reports', ['save'])
+        }
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

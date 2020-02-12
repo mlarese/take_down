@@ -7,27 +7,19 @@ import _has from 'lodash/has'
  *
  */
 const menuItems = {
-    campaigns: {to: 'campaigns', label: 'Campaigns'},
-    leads: {to: 'leads', label: 'Leads'},
-    msisdnsearch: {to: 'msisdnsearch', label: 'MSISDN Search'},
-    whitelist: {to: 'whitelist', label: 'Whitelist'},
-    landingpages: {to: 'landingPages', label: 'Landing Pages'},
-    settings: {to: 'settings/brands', label: 'Settings'}
+    user: {to: 'user', label: 'Users'},
+    report: {to: 'report', label: 'Reports'}
 }
 
 
 const menus = {
   Admin: [
-    menuItems.campaigns,
-    menuItems.leads,
-    menuItems.msisdnsearch,
-    menuItems.whitelist,
-    menuItems.landingpages,
-    menuItems.settings
+    menuItems.user,
+    menuItems.report,
   ],
   'Third Party Agency': [
-    menuItems.campaigns,
-    menuItems.leads
+    menuItems.user,
+    menuItems.report
   ],
   guest: [
 
@@ -36,7 +28,7 @@ const menus = {
 
 export const state = () => ({
   locale: 'it',
-  title: 'SMS dashboard',
+  title: 'Take Down',
   debugMode: true,
   ui: {currentMenuItem: 0},
   languages: [
@@ -46,12 +38,8 @@ export const state = () => ({
   ],
   menus,
   menuItems: [
-    {to: 'role', label: 'Roles'},
-    {to: 'user', label: 'Users'},
-    {to: 'usersrole', label: 'Users Roles'},
-    {to: 'usersbrandschannel', label: 'Users Brands Channels'},
-    {to: 'landingpage', label: 'Landing Pages'},
-    {to: 'brandlandingpage', label: 'Brand Landing Page'},
+    {to: 'report', label: 'Reports'},
+    {to: 'user', label: 'Users'}
 
   ]
 })

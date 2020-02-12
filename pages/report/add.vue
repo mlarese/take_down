@@ -1,19 +1,19 @@
 <!--eslint-disable-->
 <template>
-    <LandingPageForms title="New Landing Page" />
+    <reportform title="New Report" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import LandingPageForms from '../../components/LandingPages/LandingPageForms'
+  import reportform from '../../components/Report/reportform'
   import guid from 'uuid/v1'
   export default {
     components: {
-        LandingPageForms
+        reportform
     },
     fetch({store}) {
-        store.commit('landingPages/setRecord',{portout_flag:'N', guid: guid()},{root: true})
-        store.commit('landingPages/setAddMode',null,{root: true})
+        store.commit('reports/setRecord',{portout_flag:'N', guid: guid()},{root: true})
+        store.commit('reports/setAddMode',null,{root: true})
     }
   }
 </script>

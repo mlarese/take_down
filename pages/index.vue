@@ -6,7 +6,7 @@
 <script>
     export default {
         created () {
-            this.$router.replace('/campaigns')
+            this.$router.replace('/users')
         }
     }
 </script>

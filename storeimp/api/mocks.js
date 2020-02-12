@@ -1,13 +1,8 @@
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 import users from '../fixtures/users.json'
-import roles from '../fixtures/roles.json'
-import brand from '../fixtures/brand.json'
-import badwords from '../fixtures/badwords'
-import clicks from '../fixtures/clicks.json'
-import usersRoles from '../fixtures/usersRoles.json'
-import usersBrandsChannels from '../fixtures/usersBrandsChannels.json'
-import landingPages from '../fixtures/landingPages.json'
+import reports from '../fixtures/reports.json'
+
 
 
 const mock = new MockAdapter(axios, {delayResponse: 300})
@@ -20,7 +15,7 @@ mock
 
   .onGet('/brandLandingPages').reply(() => [200, brandLandingPages])
   .onGet('/users').reply(() => [200, users])
-  .onGet('/clicks').reply(() => [200, clicks])
+  .onGet('/reports').reply(() => [200, reports])
   .onGet('/brand').reply(() => [200, brand])
   .onGet('/badwords').reply(() => [200, badwords])
   .onGet('/channels').reply(() => [200, channels])

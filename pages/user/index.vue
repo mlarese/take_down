@@ -1,16 +1,15 @@
 <template>
-  <landing-pages-list/>
+  <Userlist/>
 </template>
 
 <script>
-  import LandingPagesList  from '../../components/LandingPages/LandingPagesList'
+  import userlist  from '../../components/User/userlist'
   const root = {root: true}
 
   export default {
-    components: {LandingPagesList},
+    components: {userlist},
     fetch ({store}) {
-        store.dispatch('brands/load', {}, root)
-        store.dispatch('landingPages/load', {}, root)
+        store.dispatch('users/load', {}, root)
     }
   }
 </script>

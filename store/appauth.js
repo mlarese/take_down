@@ -1,6 +1,6 @@
 export const state = () => ({
   user: 'admin',
-  role: 'admin',
+  report: 'admin',
   signingIn: false,
   loggedIn: false,
   counter: 0
@@ -25,7 +25,7 @@ export const actions = {
       })
   },
   checkProfile ({commit, state, dispatch}) {
-    return dispatch('api/get', {url: '/profile'}, {root: true})
+    return dispatch('api/get', {url: '/user'}, {root: true})
       .then(res => {
         commit('setUser', res.data.user)
         commit('setRole', res.data.role)
@@ -37,7 +37,7 @@ export const actions = {
       })
   },
   loadProfile ({commit, state, dispatch}) {
-    return dispatch('api/get', {url: '/profile'}, {root: true})
+    return dispatch('api/get', {url: '/user'}, {root: true})
       .then(res => {
         commit('setUser', res.data.user)
         commit('setRole', res.data.role)

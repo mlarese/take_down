@@ -1,19 +1,19 @@
 <!--eslint-disable-->
 <template>
-    <LandingPageForms title="Edit Landing Page" />
+    <Reportform title="Edit Report" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import LandingPageForms from '../../components/LandingPages/LandingPageForms'
+  import reportform from '../../components/Report/reportform'
   export default {
     components: {
-      LandingPageForms
+        reportform
     },
     async fetch({store, params}) {
-      store.commit('landingPages/setRecord',{},{root: true})
-      store.commit('landingPages/setEditMode',null,{root: true})
-      await store.dispatch('landingPages/load', {id: params.id}, {root: true})
+      store.commit('reports/setRecord',{},{root: true})
+      store.commit('reports/setEditMode',null,{root: true})
+      await store.dispatch('reports/load', {id: params.id}, {root: true})
     }
   }
 </script>
