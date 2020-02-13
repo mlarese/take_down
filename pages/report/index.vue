@@ -1,13 +1,13 @@
 <template>
-  <reportlist/>
+  <report-list/>
 </template>
 
 <script>
-  import reportlist  from '../../components/Report/reportlist'
+  import reportList  from '../../components/Report/reportList'
   const root = {root: true}
 
   export default {
-    components: {reportlist},
+    components: {reportList},
     fetch ({store}) {
         store.dispatch('reports/load', {}, root)
     }

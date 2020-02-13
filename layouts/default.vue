@@ -57,7 +57,7 @@
   export default {
     head () {
       return {
-        title: 'SMS Dashboard',
+        title: 'Take Down',
       }
     },
     computed: {

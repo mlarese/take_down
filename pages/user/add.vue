@@ -1,15 +1,15 @@
 <!--eslint-disable-->
 <template>
-    <userform title="New User" />
+    <user-form title="New User" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import userform from '../../components/User/userform'
+  import userForm from '../../components/User/userForm'
   import guid from 'uuid/v1'
   export default {
     components: {
-        userform
+        userForm
     },
     fetch({store}) {
         store.commit('users/setRecord',{portout_flag:'N', guid: guid()},{root: true})

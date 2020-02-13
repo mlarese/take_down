@@ -1,14 +1,14 @@
 <!--eslint-disable-->
 <template>
-    <userform title="Edit User" />
+    <user-form title="Edit User" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import userform from "../../components/User/userform"
+  import userForm from "../../components/User/userForm"
   export default {
     components: {
-        userform
+        userForm
     },
     async fetch({store, params}) {
       store.commit('users/setRecord',{},{root: true})

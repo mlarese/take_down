@@ -2,24 +2,24 @@
 <template>
     <v-flex container pa-0>
         <v-card>
-            <userform/>
+            <report-form/>
         </v-card>
     </v-flex>
 </template>
 
 <script>
-    import userform from './userform'
+    import reportForm from './reportForm'
     import {mapState, mapActions} from 'vuex'
 
     export default {
         components: {
-            userform
+            reportForm
         },
         computed: {
-            ...mapState('users', ['$record', 'record'])
+            ...mapState('reports', ['$record', 'record'])
         },
         methods: {
-            ...mapActions('users', ['save'])
+            ...mapActions('reports', ['save'])
         }
     }
 </script>

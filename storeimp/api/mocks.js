@@ -16,13 +16,7 @@ mock
   .onGet('/brandLandingPages').reply(() => [200, brandLandingPages])
   .onGet('/users').reply(() => [200, users])
   .onGet('/reports').reply(() => [200, reports])
-  .onGet('/brand').reply(() => [200, brand])
-  .onGet('/badwords').reply(() => [200, badwords])
-  .onGet('/channels').reply(() => [200, channels])
-  .onGet('/roles').reply(() => [200, roles])
-  .onGet('/usersRoles').reply(() => [200, usersRoles])
-  .onGet('/landingPages').reply(() => [200, landingPages])
-  .onGet('/usersBrandsChannels').reply(() => [200, usersBrandsChannels])
+
 
 
   .onGet('/logout').reply(() => [200, {user: null, role: 'admin', loggedIn: false}])
