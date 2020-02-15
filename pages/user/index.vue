@@ -1,13 +1,13 @@
 <template>
-  <Userlist/>
+  <user-list/>
 </template>
 
 <script>
-  import userlist  from '../../components/User/userList'
+  import userList  from '../../components/User/userList'
   const root = {root: true}
 
   export default {
-    components: {userlist},
+    components: {userList},
     fetch ({store}) {
         store.dispatch('users/load', {}, root)
     }

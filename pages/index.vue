@@ -6,7 +6,7 @@
 <script>
     export default {
         created () {
-            this.$router.replace('/users')
+            this.$router.replace('/user')
         }
     }
 </script>

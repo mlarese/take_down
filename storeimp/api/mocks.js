@@ -13,8 +13,7 @@ mock
   .onGet('/profile').reply(() => [200, user])
   .onGet('/principal').reply(() => [200, user])
 
-  .onGet('/brandLandingPages').reply(() => [200, brandLandingPages])
-  .onGet('/users').reply(() => [200, users])
+  .onGet('/api/users').reply(() => [200, users])
   .onGet('/reports').reply(() => [200, reports])
 
 

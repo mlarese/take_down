@@ -3,7 +3,7 @@
     <v-app>
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar  dark tabs class="elevation-1 app-toolbar ma-0"  v-if="$auth.loggedIn">
+        <v-toolbar  dark tabs class="elevation-1 app-toolbar ma-0" >
 
             <v-layout slots="extension" rows wrap class="pl-0">
 
@@ -16,24 +16,24 @@
                 <v-flex xs8>
 
                     <v-tabs
-                        class="mt-1"
+                            class="mt-1"
 
-                        v-model="ui.currentMenuItem"
-                        slider-color="yellow"
-                        show-arrows
-                >
-                    <v-tabs-slider class="mb-2" color="yellow"></v-tabs-slider>
-                    <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
-                        {{ $vuetify.t(item.label) }}
-                    </v-tab>
-                </v-tabs>
+                            v-model="ui.currentMenuItem"
+                            slider-color="yellow"
+                            show-arrows
+                    >
+                        <v-tabs-slider class="mb-2" color="yellow"></v-tabs-slider>
+                        <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
+                            {{ $vuetify.t(item.label) }}
+                        </v-tab>
+                    </v-tabs>
 
                 </v-flex>
 
 
                 <v-flex class="text-xs-right" xs2>
 
-                    <v-btn flat @click="onLogOut" class="py-2 pl-2 pr-0" :fab="$vuetify.breakpoint.xsOnly" :small="$vuetify.breakpoint.xsOnly">
+                    <v-btn flat @click="" class="py-2 pl-2 pr-0" :fab="$vuetify.breakpoint.xsOnly" :small="$vuetify.breakpoint.xsOnly">
                         <v-tooltip left>
                             <span slot="activator">
                                 {{userName}}
@@ -45,37 +45,35 @@
                 </v-flex>
             </v-layout>
         </v-toolbar>
-            <v-container fluid  class="px-1">
-                <nuxt />
-            </v-container>
+        <v-container fluid  class="px-1">
+            <nuxt />
+        </v-container>
+
+
+
 
     </v-app>
 </template>
 
 <script>
-  import {mapState, mapGetters} from 'vuex'
-  export default {
-    head () {
-      return {
-        title: 'Take Down',
-      }
-    },
-    computed: {
-      ...mapState('app', ['title', 'ui']),
-      ...mapState('api', ['notification']),
-      ...mapGetters('app', ['menuItems', 'role', 'userName'])
-    },
-    watch: {
-      'notification.id'(val) {
-        this.$notify(this.notification)
-      }
-    },
-    methods: {
-      onLogOut () {
-        this.$auth.logout()
-      }
+    import {mapState, mapGetters} from 'vuex'
+    export default {
+        head () {
+            return {
+                title: 'Take Down',
+            }
+        },
+        computed: {
+            ...mapState('app', ['title', 'ui']),
+            ...mapState('api', ['notification']),
+            ...mapGetters('app', ['menuItems', 'role', 'userName'])
+        },
+        watch: {
+            'notification.id'(val) {
+                this.$notify(this.notification)
+            }
+        }
     }
-  }
 
 </script>
 
@@ -177,10 +175,13 @@
         font-size: 11px !important;
         line-height:10px;
         position: relative;
-        top: px;
+        top: -2px;
         left:5px;
     }
 
+    .mx-input {
+        height: 31px !important;
+    }
     .v-datatable__progress th.column{
         background: transparent;
     }
@@ -205,5 +206,13 @@
 
     .v-chip .v-chip__content{
         height:24px;
+    }
+    .v-text-field input {
+        padding: 3px 0 8px;
+    }
+    .hide-dropdown-icon .v-input__icon {display:none}
+
+    .v-input--checkbox .v-input__slot {
+        border:0;
     }
 </style>

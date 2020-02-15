@@ -1,13 +1,115 @@
+<!--eslint-disable-->
 <template>
-  <div>fgcvyf</div>
-</template>
+    <GridContainer title="Users">
+        <CardPanel slot="container-top">
+            <div class="">
+            </div>
+        </CardPanel>
 
+
+
+        <v-data-table
+                :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
+                :loading="isAjax" fixed
+                :items="userList"
+                :headers="headers"
+                class="elevation-0 fixed-header"
+                slot="body-center">
+            <template slot="items" slot-scope="{item}">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.surname }}</td>
+                <td>{{ item.role }}</td>
+                <td>{{ item.company }}</td>
+                <td>{{ item.partita_iva }}</td>
+                <td>{{ item.country | dmy}}</td>
+                <td>{{ item.address | dmy}}</td>
+                <td>{{ item.city}}</td>
+                <td>{{ item.zip_code }}</td>
+                <td>{{ item.cap }}</td>
+                <td>{{ item.phone_number}}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.web }}</td>
+                <td>{{ item.status }}</td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                </td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                </td>
+            </template>
+            <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
+                {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
+            </template>
+
+        </v-data-table>
+
+    </GridContainer>
+</template>
 <script>
+    import {mapState, mapActions, mapGetters} from 'vuex'
+    import GridButton from '../General/GridButton'
+    import GridContainer from '../General/GridContainer'
+    import CardPanel from "../General/CardPanel"
+    import ButtonNew from "../General/ButtonNew"
+    import DatePicker from 'vue2-datepicker'
     export default {
-        name: "Userlist"
+        components: {ButtonNew, CardPanel, GridButton, GridContainer, DatePicker},
+        data () {
+
+            const headers = [
+                { text: this.$vuetify.t('ID'), value: 'id' },
+                { text: this.$vuetify.t('Name'), value: 'name' },
+                { text: this.$vuetify.t('Surname'), value: 'surname' },
+                { text: this.$vuetify.t('Role'), value: 'role' },
+                { text: this.$vuetify.t('Company'), value: 'company' },
+                { text: this.$vuetify.t('Partiva IVA'), value: 'partita_iva' },
+                { text: this.$vuetify.t('Country'), value: 'country' },
+                { text: this.$vuetify.t('Address'), value: 'address' },
+                { text: this.$vuetify.t('City'), value: 'city' },
+                { text: this.$vuetify.t('Zip Code'), value: 'zip_code' },
+                { text: this.$vuetify.t('CAP'), value: 'cap' },
+                { text: this.$vuetify.t('Phone Number'), value: 'phone_number' },
+                { text: this.$vuetify.t(' Email'), value: 'email' },
+                { text: this.$vuetify.t('Web'), value: 'web' },
+                { text: this.$vuetify.t('Status'), value: 'status' },
+                { text: 'Edit', value: 'action', sortable: false },
+                { text: 'Delete', value: 'action', sortable: false }
+            ]
+            return {
+                sms_mo_date: null,
+                click_date: null,
+                gridFilter: '',
+                headers
+            }
+        },
+        computed: {
+            ...mapState('users', {'userList': 'list'}),
+            ...mapState('api', {'isAjax': 'isAjax'}),
+        },
+        created () {
+            this.resetSearch()
+        },
+        methods: {
+            ...mapActions('users', ['resetSearch', 'search']),
+
+            doSearch () {
+                this.search()
+            },
+            doResetSearch () {
+                this.resetSearch()
+
+            },
+            onDelete (id) {
+                if(!confirm('Do you confirm the row deletion ?')) return
+                this.delete(id)
+                    .then(() => {
+                        this.load({})
+                    })
+            },
+            onEdit (id) {
+                this.$router.push(`/users/${id}`)
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

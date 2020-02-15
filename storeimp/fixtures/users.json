@@ -1,6 +1,6 @@
 [
-  { "user_id": 1, "company_name": "Nutshell S.r.l.", "username": "Nutshell", "password": "Admin77"},
-  { "user_id": 2, "company_name": "Brandsup S.r.l", "username": "Brandsup", "password": "Agency2019!"},
-  { "user_id": 3, "company_name": "EvolutionPeople S.r.l", "username": "Evolution", "password": "Agency2019!"}
+  { "id": 1, "name": "Nutshell S.r.l.", "surname": "Talley", "role": "Agent", "company": "PROWASTE", "city": "ACCOVILLE", "address": "Nichols Avenue", "email": "dillahudson@gmail.com", "cap": "32100", "phone_number": "+393435352424", "website": "http://www.takedownsite.com", "status": 1},
+  { "id": 2, "name": "Brandsup S.r.l", "surname": "Boyd", "role": "Importer"},
+  { "id": 3, "name": "Amanda S.r.l", "surname": "Cummings", "role": "Organization!"}
 ]
 
