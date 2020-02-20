@@ -1,6 +1,6 @@
 [
-  { "id": 1, "name": "Nutshell S.r.l.", "surname": "Talley", "role": "Agent", "company": "PROWASTE", "city": "ACCOVILLE", "address": "Nichols Avenue", "email": "dillahudson@gmail.com", "cap": "32100", "phone_number": "+393435352424", "website": "http://www.takedownsite.com", "status": 1},
-  { "id": 2, "name": "Brandsup S.r.l", "surname": "Boyd", "role": "Importer"},
-  { "id": 3, "name": "Amanda S.r.l", "surname": "Cummings", "role": "Organization!"}
+  { "id": 1, "name": "Usher", "surname": "Talley", "role": "Agent", "company": "PROWASTE", "city": "ACCOVILLE","country": "ITALY", "address": "Nichols Avenue", "email": "dillahudson@gmail.com", "zip_code": "32100", "phone_number": "+393435352424", "web": "http://www.takedownsite.com", "status": 1},
+  { "id": 2, "name": "Britney", "surname": "Boyd", "role": "Importer"},
+  { "id": 3, "name": "Amanda", "surname": "Cummings", "role": "Organization!"}
 ]
 

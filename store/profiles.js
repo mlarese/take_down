@@ -93,20 +93,20 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/reports/${id}`
+        const url = `/profiles/${id}`
         return dispatch('api/put', {url, data}, root)
             .then(() => {
                 commit('setAddMode')
             })
     },
     insert ({dispatch, commit}, {data}) {
-        const url = `/reports`
+        const url = `/api/profiles`
         return dispatch('api/post', {url, data}, root)
     },
     search ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
-        return dispatch('api/post', {url: `/api/campaigns_search`, data}, root)
+        return dispatch('api/post', {url: `/api/profiles`, data}, root)
             .then(res => {
                 commit('setList', res.data)
                 commit('setPagination')
@@ -117,7 +117,7 @@ export const actions = {
     reporting ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
-        return dispatch('api/post', {url: `/reports`, data}, root)
+        return dispatch('api/post', {url: `/profiles`, data}, root)
             .then(res => {
                 commit('setList', res.data)
                 commit('setPagination')
@@ -125,11 +125,23 @@ export const actions = {
                 return res
             })
     },
+    saves ({dispatch, commit, state, getters}, item) {
+        return dispatch('update', {data:item, id:item.id})
+            .then(r => {
+                commit('setViewMode', {item, active:true})
+
+            })
+
+    },
+    deletes ({dispatch, commit, state}, id) {
+        const url = `/api/profiles/${id}`
+        return dispatch('api/delete', {url}, root)
+    },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
 
         if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/reports`, data}, root)
+            return dispatch('api/post', {url: `/api/profiles`, data}, root)
                 .then(r => {
                     commit('addRecord', data)
                     commit('set$Record', {})
@@ -149,7 +161,7 @@ export const actions = {
         }
     },
     add ({dispatch, commit}, {data}) {
-        const url = `/reports`
+        const url = `/profiles`
         return dispatch('api/post', {url, data}, root)
     },
     edit({commit}, item) {
@@ -164,30 +176,36 @@ export const actions = {
         commit('setList', [])
     },
     load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.list.length > 0) {
+        if (!force && state.loaded) {
             return
         }
-
-        return dispatch('api/get', {url: `/api/reports`, options, debug: false}, root)
-            .then(res => {
-                commit('setList', res.data)
-                return res
-            })
-
+        if (id === null) {
+            return dispatch('api/get', {url: `/api/profiles`, options, debug: false}, root)
+                .then(res => {
+                    commit('setList', res.data)
+                    return res
+                })
+        } else {
+            return dispatch('api/get', {url: `/api/profiles/{id}`, options}, root)
+                .then(res => {
+                    commit('setRecord', res.data)
+                    return res
+                })
+        }
     },
     loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
         if (!force && state.loaded) {
             return
         }
         if (id === null) {
-            return dispatch('api/post', {url: `/api/reports`, options, debug: false}, root)
+            return dispatch('api/post', {url: `/api/profiles`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
                     commit('setPagination')
                     return res
                 })
         } else {
-            return dispatch('api/get', {url: `/api/reports/{id}`, options}, root)
+            return dispatch('api/get', {url: `/api/profiles/{id}`, options}, root)
                 .then(res => {
                     commit('setRecord', res)
                     return res
@@ -197,7 +215,6 @@ export const actions = {
 }
 
 export const getters = {
-    agesListById: state => _keyBy (state.agesList, 'value'),
     isEditMode: state => state.mode === 'edit',
     isAddMode: state => state.mode === 'add'
 }

@@ -2,6 +2,8 @@ import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 import users from '../fixtures/users.json'
 import reports from '../fixtures/reports.json'
+import profiles from '../fixtures/profiles.json'
+import profileReports from '../fixtures/profileReports.json'
 
 
 
@@ -14,7 +16,11 @@ mock
   .onGet('/principal').reply(() => [200, user])
 
   .onGet('/api/users').reply(() => [200, users])
-  .onGet('/reports').reply(() => [200, reports])
+  .onGet('/api/reports').reply(() => [200, reports])
+  .onGet('/api/profiles').reply(() => [200, profiles])
+  .onGet('/api/profileReports').reply(() => [200, profileReports])
+  .onPost('/api/profiles').reply(() => [200, profiles])
+  .onPost('/api/profiles/${id}').reply(() => [200, profiles])
 
 
 

@@ -93,14 +93,14 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/reports/${id}`
+        const url = `/profileReports/${id}`
         return dispatch('api/put', {url, data}, root)
             .then(() => {
                 commit('setAddMode')
             })
     },
     insert ({dispatch, commit}, {data}) {
-        const url = `/reports`
+        const url = `/profileReports`
         return dispatch('api/post', {url, data}, root)
     },
     search ({dispatch, commit, state}) {
@@ -117,7 +117,7 @@ export const actions = {
     reporting ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
-        return dispatch('api/post', {url: `/reports`, data}, root)
+        return dispatch('api/post', {url: `/profileReports`, data}, root)
             .then(res => {
                 commit('setList', res.data)
                 commit('setPagination')
@@ -129,7 +129,7 @@ export const actions = {
         let data = state.$record
 
         if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/reports`, data}, root)
+            return dispatch('api/post', {url: `/api/profileReports`, data}, root)
                 .then(r => {
                     commit('addRecord', data)
                     commit('set$Record', {})
@@ -149,7 +149,7 @@ export const actions = {
         }
     },
     add ({dispatch, commit}, {data}) {
-        const url = `/reports`
+        const url = `/profileReports`
         return dispatch('api/post', {url, data}, root)
     },
     edit({commit}, item) {
@@ -168,7 +168,7 @@ export const actions = {
             return
         }
 
-        return dispatch('api/get', {url: `/api/reports`, options, debug: false}, root)
+        return dispatch('api/get', {url: `/api/profileReports`, options, debug: false}, root)
             .then(res => {
                 commit('setList', res.data)
                 return res
@@ -180,14 +180,14 @@ export const actions = {
             return
         }
         if (id === null) {
-            return dispatch('api/post', {url: `/api/reports`, options, debug: false}, root)
+            return dispatch('api/post', {url: `/api/profileReports`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
                     commit('setPagination')
                     return res
                 })
         } else {
-            return dispatch('api/get', {url: `/api/reports/{id}`, options}, root)
+            return dispatch('api/get', {url: `/api/profileReports/{id}`, options}, root)
                 .then(res => {
                     commit('setRecord', res)
                     return res
