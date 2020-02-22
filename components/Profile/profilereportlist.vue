@@ -7,6 +7,7 @@
                    absolute
                    bottom
                    right
+                   @click="onAdd"
                    >{{$vuetify.t('Add Report')}}
             </v-btn>
 
@@ -99,6 +100,11 @@
                         this.load({})
                     })
             },
+            onAdd () {
+                this.save()
+                    .then(r => this.$router.go(-1))
+            },
+            ...mapActions('profileReports', ['add', 'save']),
         }
     }
 </script>

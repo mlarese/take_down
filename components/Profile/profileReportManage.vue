@@ -2,24 +2,24 @@
 <template>
     <v-flex container pa-0>
         <v-card>
-            <report-form/>
+            <campaign-forms/>
         </v-card>
     </v-flex>
 </template>
 
 <script>
-    import reportForm from '../Profile/profileReportForm'
+    import profileReportForm from './profileReportForm'
     import {mapState, mapActions} from 'vuex'
 
     export default {
         components: {
-            reportForm
+            profileReportForm
         },
         computed: {
-            ...mapState('reports', ['$record', 'record'])
+            ...mapState('profileReports', ['$record', 'record'])
         },
         methods: {
-            ...mapActions('reports', ['save'])
+            ...mapActions('profileReports', ['save'])
         }
     }
 </script>
