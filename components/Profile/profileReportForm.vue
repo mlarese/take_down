@@ -2,9 +2,11 @@
 <template>
     <FormPanel v-bind="$attrs" >
         <div slot="header-right">
-            <v-btn outline color="indigo"   @click="$router.go(-1)" >
+            <v-btn  color="info"   @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
+        </div><div slot="header-left">
+            <span>Report form</span>
         </div>
         <v-form ref="form" lazy-validation>
             <v-layout row wrap>
@@ -24,7 +26,13 @@
                         @edit-image="editImage"
                         @data-change="dataChange"
                         :data-images="images"
+                        dragText="Drag File"
+                        browseText="Browse Text"
                         label="images"
+                        primaryText="Image Insert"
+                        popupText="This is image is been uploaded from your pc"
+                        maxImage="4"
+                        markIsPrimaryText="select image"
                 ></vue-upload-multiple-image></v-flex>
                 <v-flex xs12 sm6 md6><v-autocomplete color="green" label="User Agent"></v-autocomplete></v-flex>
 
