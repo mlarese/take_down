@@ -1,26 +1,6 @@
 <!--eslint-disable-->
 <template>
     <v-container fluid>
-        <v-card class="elevation-0 pa-3"  style="border:1px solid #dddddd">
-            <!--<v-toolbar class="elevation-0">
-                <v-toolbar-side-icon></v-toolbar-side-icon>
-                <v-toolbar-title class="display-5" style="font-size:32px !important;">{{ $vuetify.t('My Profile') }}</v-toolbar-title>
-                <v-btn color="primary"
-                        dark
-                        small
-                        absolute
-                        bottom
-                        right
-                        fab><v-icon>add</v-icon>
-                </v-btn>
-            </v-toolbar>-->
-            <v-toolbar dense class="elevation-0 pl-0 mb-3"  color="white" style="font-size:36px !important;border-bottom: 1px solid #dddddd !important">
-                <span name="header-left">
-                    <v-toolbar-title class="display-5" style="font-size:32px !important;">{{ $vuetify.t('My Profile') }}</v-toolbar-title>
-                </span>
-
-                <v-spacer/>
-            </v-toolbar>
 
             <br>
             <v-flex xs12 sm12 align-center justify-center layout text-xs-center>
@@ -51,6 +31,7 @@
                                     :label="$vuetify.t('Name')"
                                     v-model="item.name"
                                     readonly
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -59,7 +40,7 @@
                                     :label="$vuetify.t('Surname')"
                                     v-model="item.surname"
                                     readonly
-
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -69,6 +50,7 @@
                                     :label="$vuetify.t('Role')"
                                     v-model="item.role"
                                     :items="['Agent', 'Importer', 'Exporter','Shop','Distributor','Customer']"
+                                    color="green"
                             ></v-select>
                         </v-flex>
 
@@ -77,6 +59,7 @@
                                     :label="$vuetify.t('Company')"
                                     v-model="item.company"
                                     readonly
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -85,6 +68,7 @@
                                     :label="$vuetify.t('Company VAT number')"
                                     v-model="item.company_vat_number"
                                     readonly
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -93,6 +77,7 @@
                                     :label="$vuetify.t('Country')"
                                     v-model="item.country"
                                     readonly
+                                    color="green"
                             ></v-autocomplete>
                         </v-flex>
 
@@ -100,6 +85,7 @@
                             <v-text-field
                                     :label="$vuetify.t('Address')"
                                     v-model="item.address"
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -108,6 +94,7 @@
                                     :label="$vuetify.t('City')"
                                     v-model="item.city"
                                     readonly
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6>
@@ -115,6 +102,7 @@
                                     :label="$vuetify.t('Zip Code')"
                                     v-model="item.zip_code"
                                     readonly
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -122,6 +110,7 @@
                             <v-text-field
                                     :label="$vuetify.t('CAP')"
                                     v-model="item.cap"
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -129,6 +118,7 @@
                             <v-text-field
                                     :label="$vuetify.t('Phone Number')"
                                     v-model="item.phone_number"
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6>
@@ -136,6 +126,7 @@
                                     type="email"
                                     :label="$vuetify.t('Email')"
                                     v-model="item.email"
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -143,6 +134,7 @@
                             <v-text-field
                                     :label="$vuetify.t('Web')"
                                     v-model="item.web"
+                                    color="green"
                             ></v-text-field>
                         </v-flex>
 
@@ -158,7 +150,6 @@
 
                 </v-container>
             </v-form>
-        </v-card>
 
     </v-container>
 </template>

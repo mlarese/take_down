@@ -19,8 +19,6 @@
 <script>
     import {mapState} from 'vuex'
     import GridContainer from '../components/General/GridContainer'
-
-
     export default {
         components: {GridContainer},
         data () {
@@ -29,7 +27,7 @@
             }
         },
         computed: {
-            ...mapState('profileApp', ['profileTab', 'ui'])
+            ...mapState('app', ['ui'])
         },
         methods: {
             onClick () {

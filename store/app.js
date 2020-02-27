@@ -7,19 +7,24 @@ import _has from 'lodash/has'
  *
  */
 const menuItems = {
+    home: {to: '', label: 'Home'},
     user: {to: 'user', label: 'Users'},
-    report: {to: 'report', label: 'Reports'}
+    report: {to: 'report', label: 'Reports'},
+    profile: {to: 'profile', label: 'Profile'},
+    profilereport: {to: 'profilereport', label: 'Profile Reports'}
 }
 
 
 const menus = {
   admin: [
+    menuItems.home,
     menuItems.user,
     menuItems.report,
   ],
-  'users': [
-    menuItems.user,
-    menuItems.report
+  'user': [
+    menuItems.home,
+    menuItems.profile,
+    menuItems.profilereport
   ],
   guest: [
 
@@ -30,7 +35,7 @@ export const state = () => ({
   locale: 'it',
   title: 'Take Down',
   debugMode: true,
-  ui: {currentMenuItem: 0},
+  ui: {currentMenuItem: 0, currentTab: 0},
   languages: [
     {id: 'it', label: 'ITA'},
     {id: 'en', label: 'ENG'},

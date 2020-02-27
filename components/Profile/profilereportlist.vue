@@ -7,7 +7,7 @@
                    absolute
                    bottom
                    right
-                   @click="onAdd"
+                   @click.native="onAdd"
                    >{{$vuetify.t('Add Report')}}
             </v-btn>
 
@@ -101,8 +101,7 @@
                     })
             },
             onAdd () {
-                this.save()
-                    .then(r => this.$router.go(-1))
+                this.$router.push('/profilereport/add')
             },
             ...mapActions('profileReports', ['add', 'save']),
         }

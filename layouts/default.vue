@@ -9,7 +9,6 @@
 
                 <v-flex xs2 class="pl-0">
                     <a class="default-navbar-brand" href="/">
-                        <img src="gtg_logo.png" alt="logo" width="85">
                     </a>
 
                 </v-flex>

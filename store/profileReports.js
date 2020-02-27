@@ -93,7 +93,7 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/profileReports/${id}`
+        const url = `/api/profile_reports/${id}`
         return dispatch('api/put', {url, data}, root)
             .then(() => {
                 commit('setAddMode')
@@ -103,21 +103,10 @@ export const actions = {
         const url = `/profileReports`
         return dispatch('api/post', {url, data}, root)
     },
-    search ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/api/campaigns_search`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
     reporting ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
-        return dispatch('api/post', {url: `/profileReports`, data}, root)
+        return dispatch('api/post', {url: `/api/profile_reports`, data}, root)
             .then(res => {
                 commit('setList', res.data)
                 commit('setPagination')
@@ -129,7 +118,7 @@ export const actions = {
         let data = state.$record
 
         if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/profileReports`, data}, root)
+            return dispatch('api/post', {url: `/api/profile_reports`, data}, root)
                 .then(r => {
                     commit('addRecord', data)
                     commit('set$Record', {})
