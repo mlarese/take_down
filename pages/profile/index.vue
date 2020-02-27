@@ -9,9 +9,8 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex'
+    import {mapState} from 'vuex'
     import profile from "../../components/Profile/profile"
-    const root = {root: true}
 
     export default {
         name: "Index",
@@ -22,7 +21,7 @@
         },
 
         fetch({store}) {
-            console.log('fetchs')
+            console.log('fetch')
 
             store.dispatch('profiles/load',{}, {root: true})
         }
