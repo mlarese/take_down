@@ -4,9 +4,10 @@
   </v-layout>
 </template>
 <script>
+
     export default {
         created () {
-            this.$router.replace('/')
+            this.$router.replace('/home')
         }
     }
 </script>
