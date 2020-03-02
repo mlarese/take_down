@@ -73,12 +73,12 @@
                         </v-flex>
 
                         <v-flex xs12 sm6>
-                            <v-autocomplete
+                            <v-text-field
                                     :label="$vuetify.t('Country')"
                                     v-model="item.country"
                                     readonly
                                     color="green"
-                            ></v-autocomplete>
+                            ></v-text-field>
                         </v-flex>
 
                         <v-flex xs12 sm6>
