@@ -41,12 +41,7 @@ export const state = () => ({
     {id: 'en', label: 'ENG'},
     {id: 'de', label: 'DEU'}
   ],
-  menus,
-  menuItems: [
-    {to: 'report', label: 'Reports'},
-    {to: 'user', label: 'Users'}
-
-  ]
+  menus
 })
 
 export const mutations = {

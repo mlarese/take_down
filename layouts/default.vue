@@ -9,6 +9,7 @@
 
                 <v-flex xs2 class="pl-0">
                     <a class="default-navbar-brand" href="/">
+                        <img src="logo.png" style="width:80px;padding:3px;" alt="">
                     </a>
 
                 </v-flex>
@@ -18,10 +19,10 @@
                             class="mt-1"
 
                             v-model="ui.currentMenuItem"
-                            slider-color="yellow"
+                            slider-color="blue"
                             show-arrows
                     >
-                        <v-tabs-slider class="mb-2" color="yellow"></v-tabs-slider>
+                        <v-tabs-slider class="mb-2" color="blue"></v-tabs-slider>
                         <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
                             {{ $vuetify.t(item.label) }}
                         </v-tab>
@@ -214,4 +215,13 @@
     .v-input--checkbox .v-input__slot {
         border:0;
     }
+    .theme--dark.v-toolbar {
+        background-color: white;
+        color: dimgrey;
+    }
+
+    .theme--dark.v-tabs__bar .v-tabs__div {
+        color: black;
+    }
+
 </style>
