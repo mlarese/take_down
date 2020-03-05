@@ -1,10 +1,12 @@
+<!--eslint-disable-->
 <template>
-    $END$
+    <div>$END$</div>
+
 </template>
 
 <script>
     export default {
-        name: "test"
+        name: "Test"
     }
 </script>
 
