@@ -13,11 +13,6 @@
 
                 <v-flex xs12 sm12 md12>
                     <v-text-field dense  hide-details :label="$vuetify.t('Brand Name')"
-                                    color="green"
-                                    :items="brandsList"
-                                    item-text="brand_name"
-                                    item-value="id"
-                                    clearable
                                     v-model="$record.brand_name" />
                 </v-flex>
             </v-layout>

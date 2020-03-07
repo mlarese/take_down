@@ -90,6 +90,8 @@
         },
         computed: {
             ...mapState('profileReports', {'reportList': 'list'}),
+            ...mapState('brands', {'brandsList': 'list'}),
+            ...mapState('brands', ['$record']),
             ...mapState('api', {'isAjax': 'isAjax'}),
         },
         methods: {
