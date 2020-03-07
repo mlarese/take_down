@@ -2,7 +2,7 @@
 <template>
     <FormPanel v-bind="$attrs" >
         <div slot="header-right">
-            <v-btn  color="info"   @click="$router.go(-1)" >
+            <v-btn class="elevation-1" color="info"   @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div><div slot="header-left">
@@ -11,10 +11,13 @@
         <v-form ref="form" lazy-validation>
             <v-layout row wrap>
                 <v-flex xs12 sm6 md6>
-                <v-autocomplete
-                        color="green"
-                        label="Brand Select"
-                ></v-autocomplete>
+                    <v-autocomplete dense  hide-details :label="$vuetify.t('Brand Name')"
+                                    color="green"
+                                    :items="brandsList"
+                                    item-text="brand_name"
+                                    item-value="id"
+                                    clearable
+                                    v-model="$record.brand_name" />
                 </v-flex>
                 <v-flex xs12 sm6 md6><v-text-field label="Link Web" hide-details color="green" v-model="$record.web" type="text" /></v-flex>
                 <v-flex xs12 sm6 md6> <v-text-field label="Title of Report" color="green" hide-details v-model="$record.title" type="text" /></v-flex>

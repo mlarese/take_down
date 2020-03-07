@@ -11,8 +11,10 @@
         BrandForm
     },
     fetch({store}) {
+        store.dispatch('brands/load', {}, {root: true})
         store.commit('brands/setRecord',{root: true})
         store.commit('brands/setAddMode',null,{root: true})
+
     }
   }
 </script>

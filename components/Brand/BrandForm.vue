@@ -12,7 +12,7 @@
             <v-layout  >
 
                 <v-flex xs12 sm12 md12>
-                    <v-autocomplete dense  hide-details :label="$vuetify.t('Brand Name')"
+                    <v-text-field dense  hide-details :label="$vuetify.t('Brand Name')"
                                     color="green"
                                     :items="brandsList"
                                     item-text="brand_name"
