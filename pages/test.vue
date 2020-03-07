@@ -1,12 +1,14 @@
 <!--eslint-disable-->
 <template>
-    <div>$END$</div>
+    <div><login/></div>
 
 </template>
 
 <script>
+    import login from '../components/login'
     export default {
-        name: "Test"
+        name: "Test",
+        components: {login}
     }
 </script>
 

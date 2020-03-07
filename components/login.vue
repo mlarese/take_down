@@ -4,27 +4,32 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm7 md3>
                 <v-card class="elevation-10">
-                    <v-tabs color="transparent" dark slider-color="black">
-                        <v-tab style="background-color: rgba(0,0,0,0.5); width: 100%">Login</v-tab>
-                        <v-tab style="background-color: rgba(0,0,0,0.5); width: 100%">Register</v-tab>
+                    <v-tabs color="light-blue lighten-1" dark slider-color="green">
+                        <v-tab style="width: 100%">Login</v-tab>
+                        <v-tab style="width: 100%">Register</v-tab>
                         <v-tab-item>
                             <v-card >
                                 <v-card-text>
                                     <v-form method="post" action="#" @submit="checkLogin" novalidate="true">
-                                        <div style="text-align: center">Welcome back <span>{{userName}}</span></div>
-                                        <v-text-field ref="name" v-model="email" :rules="[rules.email]" label="Email address" color="deep-purple" type="email"></v-text-field>
-                                        <v-text-field v-model="password" :rules="[rules.password, rules.length(8)]" color="deep-purple" counter="8" label="Password" type="password"></v-text-field>
-                                        <v-layout align-center class="justify-center"><a href="#" class="forgot-pass">Forgot password?</a></v-layout>
+                                        <div class="title" style="text-align: center">Welcome back</div>
+                                        <br>
+                                        <v-text-field prepend-icon="person" ref="name" v-model="email" :rules="[rules.email]" label="Email address" color="deep-purple" type="email"></v-text-field>
+                                        <v-text-field  prepend-icon="lock" v-model="password" :rules="[rules.password, rules.length(8)]" color="deep-purple" counter="8" label="Password" type="password"></v-text-field>
+                                        <re-c-a-p-t-c-h-a/>
+                                        <br>
+                                        <div><v-layout align-center class="justify-center"><a href="#" class="forgot-pass">Forgot password?</a></v-layout></div>
                                     </v-form>
+
                                 </v-card-text>
-                                <v-card-actions><v-spacer></v-spacer><v-btn color="primary">Sign In</v-btn></v-card-actions>
+                                <v-card-actions><v-spacer></v-spacer><v-btn color="primary" :disabled="!isValid" >Sign In</v-btn></v-card-actions>
                             </v-card>
                         </v-tab-item>
                         <v-tab-item>
                             <v-card flat>
                                 <v-card-text>
                                     <v-form method="post" action="#" @submit="checkForm" novalidate="true">
-                                        <div style="text-align: center">New here? Register</div>
+                                        <div class="title" style="text-align: center">New here? Register</div>
+                                        <br>
                                         <v-text-field append-icon="" v-model="name" :rules="[rules.name]" label="Name" required></v-text-field>
                                         <v-text-field append-icon="" v-model="surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
                                         <v-text-field append-icon="" v-model="role" :rules="[rules.role]" label="Role" counter="25" required></v-text-field>
@@ -38,10 +43,12 @@
                                         <v-text-field append-icon="" v-model="phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
                                         <v-text-field append-icon="" v-model="email" :rules="[rules.email]" label="Email" required></v-text-field>
                                         <v-text-field append-icon="" label="Web"></v-text-field>
+                                        <re-c-a-p-t-c-h-a/>
+                                        <br>
 
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="primary">Sign Up</v-btn>
+                                            <v-btn color="primary" :disabled="!isValid" >Sign Up</v-btn>
                                         </v-card-actions>
                                     </v-form>
                                 </v-card-text>
@@ -56,11 +63,11 @@
 
 <script>
     import {mapState, mapActions, mapGetters} from 'vuex'
-    import {notifyError} from 'storeimp/api/actions'
     import {getSchema} from 'assets/helpers'
-
+    import reCAPTCHA from './General/reCAPTCHA'
     export default {
         name: "Login",
+        components: {reCAPTCHA},
         data() {
             return {
                 title: 'Take Down',
@@ -102,7 +109,13 @@
                 computed: {
                     ...mapState('app', ['title', 'ui']),
                     ...mapState('api', ['notification']),
-                    ...mapGetters('app', ['menuItems', 'role', 'userName'])
+                    ...mapGetters('app', ['menuItems', 'role', 'userName']),
+                    isValid () {
+                        if(!this.$record.email) return false
+                        if(!this.$record.password) return false
+                        if(!this.$record.cap) return false
+                        return true
+                    }
                 },
                 methods: {
                     ...mapActions('appauth', ['passwordReset']),
@@ -132,14 +145,12 @@
                                 this.loading = false
                                 return this.$router.push(this.redirectRoute)
                             })
-                            .catch(e => {
-                                this.loading = false
-                                this.error = e + ''
-                                this.$store.commit('api/notification', notifyError(e, this.$t), {root: true})
-                            })
+
                     }
                 }
             }
+        }
+    }
 </script>
 
 <style scoped>
