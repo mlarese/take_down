@@ -3,6 +3,7 @@ import axios from 'axios'
 import users from '../fixtures/users.json'
 import reports from '../fixtures/reports.json'
 import profiles from '../fixtures/profiles.json'
+import brands from '../fixtures/brands.json'
 import profileReports from '../fixtures/profileReports.json'
 
 
@@ -14,11 +15,13 @@ mock
   .onGet('/api/auth/user').reply(() => [200, user])
   .onGet('/profile').reply(() => [200, user])
   .onGet('/principal').reply(() => [200, user])
+  .onGet('/brands').reply(() => [200, brands])
 
   .onGet('/api/users').reply(() => [200, users])
   .onGet('/api/reports').reply(() => [200, reports])
   .onGet('/api/profiles').reply(() => [200, profiles])
   .onGet('/api/profile_reports').reply(() => [200, profileReports])
+  .onPost('/api/brands').reply(() => [200, brands])
   .onPost('/api/profile_reports').reply(() => [200, profileReports])
   .onPost('/api/profiles').reply(() => [200, profiles])
   .onPost('/api/profiles/${id}').reply(() => [200, profiles])
