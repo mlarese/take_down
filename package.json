@@ -25,6 +25,7 @@
     "numeral": "^2.0.6",
     "nuxt": "^2.0.0",
     "uuid": "^3.4.0",
+    "vue-cookieconsent-component": "^1.2.0",
     "vue-ctk-date-time-picker": "^2.4.0",
     "vue-filter-number-format": "^2.0.0",
     "vue-hoc": "^0.4.7",

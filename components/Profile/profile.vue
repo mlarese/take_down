@@ -2,14 +2,6 @@
 <template>
     <v-container fluid>
 
-            <br>
-            <v-flex xs12 sm12 align-center justify-center layout text-xs-center>
-                <v-avatar
-                        :size="120"
-                        color="grey lighten-4">
-                    <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-                </v-avatar>
-            </v-flex>
             <v-flex xs12 sm12 align-center justify-center text-xs-center><span class="title">{{ item.name}} {{ item.surname}}</span>
             </v-flex>
             <v-flex

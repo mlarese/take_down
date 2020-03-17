@@ -48,6 +48,7 @@
                 </v-flex>
             </v-layout>
         </v-form>
+        <cookie-consent/>
     </FormPanel>
 </template>
 
@@ -55,13 +56,13 @@
     import {mapState, mapActions} from 'vuex'
     import FormPanel from '../General/FormPanel'
     import GridButton from '../General/GridButton'
-    import FileUpload from 'vue-upload-component'
+    import CookieConsent from '../General/CookieConsent'
     import VueUploadMultipleImage from 'vue-upload-multiple-image'
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     export default {
         components: {
-            FormPanel, GridButton,FileUpload,VueUploadMultipleImage,VueCtkDateTimePicker
+            FormPanel, GridButton,VueUploadMultipleImage,VueCtkDateTimePicker,CookieConsent
         },
         data() {
             return {
@@ -71,6 +72,7 @@
         },
         computed: {
             ...mapState('profileReports', ['$record']),
+            ...mapState('brands', {'brandsList': 'list'}),
             isValid () {
               if(!this.$record.ip_address) return false
             //  if(!this.$record.conversion_grace_period) return false
