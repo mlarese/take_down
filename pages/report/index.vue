@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import reportList  from '../../components/Report/reportList'
+  import reportList  from '../../components/Report/ReportList'
   const root = {root: true}
 
   export default {

@@ -1,14 +1,15 @@
 <!--eslint-disable-->
 <template>
+
     <FormPanel v-bind="$attrs" >
-        <div slot="header-right">
+        <div slot="header-right" >
             <v-btn class="elevation-1" color="info"   @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div><div slot="header-left">
             <span>{{$vuetify.t('Report Form')}}</span>
         </div>
-        <v-form ref="form" lazy-validation>
+        <v-form ref="form" lazy-validation >
             <v-layout row wrap>
                 <v-flex xs12 sm6 md6>
                     <v-autocomplete dense  hide-details :label="$vuetify.t('Brand Name')"
@@ -42,18 +43,19 @@
 
             <v-layout row wrap>
                 <v-flex xs2 offset-xs5>
-                    <v-btn  style="width:100%"  color="primary"  @click="onAdd" :disabled="!isValid">
+                    <v-btn  style="width:100%"  color="primary"  @click="onAdd">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>
             </v-layout>
         </v-form>
-        <cookie-consent/>
+
     </FormPanel>
+
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex'
+    import {mapState, mapActions, mapGetters} from 'vuex'
     import FormPanel from '../General/FormPanel'
     import GridButton from '../General/GridButton'
     import CookieConsent from '../General/CookieConsent'
@@ -66,19 +68,14 @@
         },
         data() {
             return {
-                images: [],
-                date: null
+                images: []
             }
         },
         computed: {
             ...mapState('profileReports', ['$record']),
             ...mapState('brands', {'brandsList': 'list'}),
-            isValid () {
-              if(!this.$record.ip_address) return false
-            //  if(!this.$record.conversion_grace_period) return false
-              return true
-            }
-        },
+            ...mapGetters('app', ['isAdmin'])
+            },
         methods: {
             onAdd() {
                 this.save()

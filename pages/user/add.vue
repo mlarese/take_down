@@ -5,7 +5,7 @@
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import userForm from '../../components/User/userForm'
+  import userForm from '../../components/User/UserForm'
   import guid from 'uuid/v1'
   export default {
     components: {

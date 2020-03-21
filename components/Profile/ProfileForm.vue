@@ -1,6 +1,14 @@
 <!--eslint-disable-->
 <template>
-    <v-container fluid>
+    <FormPanel v-bind="$attrs" >
+        <div slot="header-right">
+            <v-btn class="elevation-1" color="info"   @click="$router.go(-1)" >
+                {{$vuetify.t('Back')}}
+            </v-btn>
+        </div>
+        <div slot="header-left">
+        <span>{{$vuetify.t('Profile Form')}}</span>
+         </div>
             <v-flex xs12 sm12 align-center justify-center text-xs-center>
                 <span class="title">
                 {{ item.name}} {{ item.surname}}
@@ -16,8 +24,7 @@
             ><span>{{item.email}}</span>
             </v-flex>
             <br>
-            <v-form>
-                <v-container fluid>
+            <v-form ref="form" lazy-validation>
                     <v-layout row wrap>
 
                         <v-flex xs12 sm6>
@@ -141,17 +148,17 @@
 
                         <v-btn color="success"  @click="insert(item)">Save Details</v-btn>
                     </v-card-actions>
-
-                </v-container>
             </v-form>
 
-    </v-container>
+        </FormPanel>
 </template>
 
 <script>
     import {mapState, mapGetters, mapActions} from 'vuex'
+    import FormPanel from '../General/FormPanel'
     export default {
-        name: "Profile",
+        name: "ProfileForm",
+        components: {FormPanel},
         props: {
             item: {type: Object, default: () => {}}
         },

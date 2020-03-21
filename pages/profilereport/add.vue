@@ -1,18 +1,19 @@
 <!--eslint-disable-->
 <template>
-    <profile-report-form title="New Report" />
+    <div>
+        <profile-report-form title="New Report"/>
+    </div>
+
 </template>
 
 <script>
-  import {mapActions, mapState, mapGetters} from 'vuex'
-  import profileReportForm from '../../components/Profile/profileReportForm'
-  import guid from 'uuid/v1'
+  import ProfileReportForm from '../../components/Profile/ProfileReportForm'
   export default {
     components: {
-        profileReportForm
+        ProfileReportForm
     },
     fetch({store}) {
-        store.commit('profileReports/setRecord',{portout_flag:'N', guid: guid()},{root: true})
+        store.commit('profileReports/setRecord',{},{root: true})
         store.commit('profileReports/setAddMode',null,{root: true})
     }
   }

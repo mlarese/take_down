@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import userList  from '../../components/User/userList'
+  import userList  from '../../components/User/UserList'
   const root = {root: true}
 
   export default {

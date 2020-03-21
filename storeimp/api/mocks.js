@@ -13,7 +13,7 @@ const success = {success: true}
 
 mock
   .onGet('/api/auth/user').reply(() => [200, user])
-  .onGet('/profile').reply(() => [200, user])
+  .onGet('/profiles').reply(() => [200, profiles])
   .onGet('/principal').reply(() => [200, user])
   .onGet('/brands').reply(() => [200, brands])
 

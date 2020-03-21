@@ -103,17 +103,7 @@ export const actions = {
         const url = `/profileReports`
         return dispatch('api/post', {url, data}, root)
     },
-    reporting ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/api/profile_reports`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
+
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
 
@@ -157,7 +147,7 @@ export const actions = {
             return
         }
 
-        return dispatch('api/get', {url: `/api/profileReports`, options, debug: false}, root)
+        return dispatch('api/get', {url: `/api/profile_reports`, options, debug: false}, root)
             .then(res => {
                 commit('setList', res.data)
                 return res

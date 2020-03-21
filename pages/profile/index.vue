@@ -1,7 +1,7 @@
 <template>
   <div>
     <template>
-      <profile
+      <ProfileForm
         v-for="(profiles, index) in list"
         :item="profiles"
         :index="index"
@@ -12,11 +12,11 @@
 
 <script>
     import {mapState} from 'vuex'
-    import profile from "../../components/Profile/profile"
+    import ProfileForm from "../../components/Profile/ProfileForm"
 
     export default {
         name: "Index",
-        components: {profile},
+        components: {ProfileForm},
         computed: {
             ...mapState('profiles', ['list']),
 
