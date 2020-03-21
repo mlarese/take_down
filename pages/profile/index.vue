@@ -1,10 +1,12 @@
 <template>
   <div>
-    <profile
-      v-for="(profiles, index) in list"
-      :item="profiles"
-      :index="index"
-      :key="index"/>
+    <template>
+      <profile
+        v-for="(profiles, index) in list"
+        :item="profiles"
+        :index="index"
+        :key="index"/>
+    </template>
   </div>
 </template>
 
