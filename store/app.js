@@ -11,7 +11,7 @@ const menuItems = {
     user: {to: 'user', label: 'Users'},
     report: {to: 'report', label: 'Reports'},
     profile: {to: 'profile', label: 'Profile'},
-    profilereport: {to: 'profilereport', label: 'Profile Reports'}
+    profilereport: {to: 'profilereport', label: 'Reports'}
 }
 
 

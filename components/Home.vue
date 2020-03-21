@@ -1,6 +1,7 @@
+<!--eslint-disable-->
 <template>
   <v-container fluid>
-    ....
+
   </v-container>
 </template>
 

@@ -37,7 +37,8 @@
     "vue-upload-multiple-image": "^1.1.4",
     "vue2-datepicker": "^3.3.0",
     "vuetify": "^1.5.22",
-    "vuetify-stylus-fixed-table-header": "^1.1.1"
+    "vuetify-stylus-fixed-table-header": "^1.1.1",
+    "vuex-bound": "^1.2.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",

@@ -1,8 +1,10 @@
 <!--eslint-disable-->
 <template>
     <v-container fluid>
-
-            <v-flex xs12 sm12 align-center justify-center text-xs-center><span class="title">{{ item.name}} {{ item.surname}}</span>
+            <v-flex xs12 sm12 align-center justify-center text-xs-center>
+                <span class="title">
+                {{ item.name}} {{ item.surname}}
+                </span>
             </v-flex>
             <v-flex
                     xs12

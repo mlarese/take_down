@@ -1,28 +1,28 @@
 <template>
   <!--eslint-disable-->
-    <v-app>
+    <v-app class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar  dark tabs class="elevation-1 app-toolbar ma-0" >
+        <v-toolbar height="110" dark tabs class="elevation-1 app-toolbar ma-0" >
 
             <v-layout slots="extension" rows wrap class="pl-0">
 
                 <v-flex xs2 class="pl-0">
                     <a class="default-navbar-brand" href="/">
-                        <img src="logo.png" style="width:80px;padding:3px;" alt="">
+                        <img src="logo.png" style="padding:3px;" alt="">
                     </a>
 
                 </v-flex>
                 <v-flex xs8>
 
                     <v-tabs
-                            class="mt-1"
+                            class="mt-5 ml-5"
 
                             v-model="ui.currentMenuItem"
                             slider-color="blue"
                             show-arrows
                     >
-                        <v-tabs-slider class="mb-2" color="blue"></v-tabs-slider>
+                        <v-tabs-slider class="" color="blue"></v-tabs-slider>
                         <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
                             {{ $vuetify.t(item.label) }}
                         </v-tab>
@@ -45,11 +45,10 @@
                 </v-flex>
             </v-layout>
         </v-toolbar>
-        <v-container fluid  class="px-1">
+
+        <v-container fluid  class="px-2 mt-3 py-0">
             <nuxt />
         </v-container>
-
-
 
 
     </v-app>
@@ -57,6 +56,7 @@
 
 <script>
     import {mapState, mapGetters} from 'vuex'
+
     export default {
         head () {
             return {
@@ -222,6 +222,10 @@
 
     .theme--dark.v-tabs__bar .v-tabs__div {
         color: black;
+    }
+
+    .background {
+        background-image: url(https://www.griffeshield.com/wp-content/uploads/2019/04/banner-v2.jpg) !important;
     }
 
 </style>
