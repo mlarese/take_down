@@ -2,7 +2,7 @@
 <template>
     <FormPanel v-bind="$attrs" >
         <div slot="header-right">
-            <v-btn class="elevation-1" color="info"   @click="$router.go(-1)" >
+            <v-btn class="elevation-0" color="info"   @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div>

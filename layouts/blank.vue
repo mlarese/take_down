@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-  <v-app id="inspire" class="grey lighten-2" >
+  <v-app dark id="inspire" class="grey lighten-2">
     <notifications position="top right" style="margin-top:50px"/>
     <v-content>
       <v-container fluid fill-height>
