@@ -1,6 +1,6 @@
 <template>
   <!--eslint-disable-->
-    <v-app class="background pa-0" >
+    <v-app dark class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
         <v-toolbar height="110" dark tabs class="elevation-1 app-toolbar ma-0" >
