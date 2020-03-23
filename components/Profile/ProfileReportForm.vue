@@ -23,7 +23,7 @@
                 <v-flex xs12 sm6 md6><v-text-field label="Link Web" hide-details color="green" v-model="$record.web" type="text" /></v-flex>
                 <v-flex xs12 sm6 md6> <v-text-field label="Title of Report" color="green" hide-details v-model="$record.title" type="text" /></v-flex>
                 <v-flex xs12 sm6 md6><v-text-field label="IP Address" color="green" hide-details type="number" v-model="$record.ip_address"/></v-flex>
-                <v-flex xs12 sm12 md12><v-textarea auto-grow box color="green" label="Bio" v-model="$record.description"></v-textarea></v-flex>
+                <v-flex xs12 sm12 md12><v-textarea  box color="green" label="Description" v-model="$record.description"></v-textarea></v-flex>
                 <v-flex xs12 sm12 md12><vue-upload-multiple-image
                         :data-images="images"
                         dragText="Drag File"
