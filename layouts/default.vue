@@ -16,11 +16,10 @@
                 <v-flex xs8>
 
                     <v-tabs
-                            class="mt-1"
+                            class="mt-4"
 
                             v-model="ui.currentMenuItem"
-                            slider-color="green"
-                            show-arrows
+                            slider-color="red"
                     >
                         <v-tabs-slider class="mb-2" color="blue"></v-tabs-slider>
                         <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
