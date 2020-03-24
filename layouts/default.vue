@@ -22,7 +22,7 @@
                             slider-color="green"
                             show-arrows
                     >
-                        <v-tabs-slider class="mb-2" color="green"></v-tabs-slider>
+                        <v-tabs-slider class="mb-2" color="blue"></v-tabs-slider>
                         <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
                             {{ $vuetify.t(item.label) }}
                         </v-tab>
@@ -122,6 +122,9 @@
     }
     .v-tabs__div, .v-btn{
         text-transform: none !important;
+    }
+    .v-tabs__slider {
+        color: blue;
     }
 
 
