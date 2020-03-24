@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <v-btn color="success" class="elevation-0">
+    <v-btn color="info" class="elevation-0">
         {{$vuetify.t(title)}}
     </v-btn>
 </template>

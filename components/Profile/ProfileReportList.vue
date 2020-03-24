@@ -5,7 +5,7 @@
         </div>
 
         <div slot="header-right" class="pb-2">
-            <ButtonNew title="Add Report" @click.native="onAdd"/>
+            <ButtonNew color="info"  title="Add Report" @click.native="onAdd"/>
         </div>
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"

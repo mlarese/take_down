@@ -1,11 +1,9 @@
 <!--eslint-disable-->
 <template>
-    <v-container fluid class="ma-0 pa-0">
-        <v-toolbar dense class="elevation-0 pl-0 mb-0"  color="info" style="font-size:30px !important; ">
-            <slot name="header-left" >
-                <v-toolbar-title style="font-size:30px !important;">
-                    {{ $vuetify.t(title) }}
-                </v-toolbar-title>
+    <div class="grid-container ma-0">
+        <v-toolbar dense class="elevation-0 mb-0"   style="font-size:30px !important;border-bottom: 1px solid #dddddd !important">
+            <slot name="header-left">
+                <v-toolbar-title class="display-5 mb-5" style="font-size:32px !important;">{{ $vuetify.t(title) }}</v-toolbar-title>
             </slot>
 
             <v-spacer/>
@@ -19,7 +17,7 @@
             </slot>
             </v-container>
         </v-card>
-    </v-container>
+    </div>
 </template>
 <script>
   export default {

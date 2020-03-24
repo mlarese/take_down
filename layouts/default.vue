@@ -86,7 +86,7 @@
     }
 
     table.v-table thead tr {
-        height: 35px;
+        height: 30px;
     }
 
     .v-text-field > .v-input__control > .v-input__slot:before {
@@ -102,7 +102,7 @@
         text-align: center !important;
         font-weight: bold !important;
         color:#333 !important;
-        font-size:12px !important;
+        font-size:20px !important;
     }
     .theme--light.v-table thead tr:first-child{
         border: 0;
@@ -126,7 +126,7 @@
 
 
     .v-text-field {
-        margin-top: 6px;
+        margin-top: 10px;
         padding-top: 0px;
         border-radius: 20px;
     }
@@ -186,14 +186,14 @@
     }
 
     .v-select__slot{
-        height:30px;
+        height:25px;
     }
 
     .v-chip .v-chip__content{
         height:24px;
     }
     .v-text-field input {
-        padding: 3px 0 8px;
+        padding: 10px 10px 10px;
     }
     .hide-dropdown-icon .v-input__icon {display:none}
 
