@@ -2,8 +2,8 @@
 <template>
     <FormPanel v-bind="$attrs" >
         <div slot="header-right">
-            <v-btn class="elevation-0" color="info"   @click="$router.go(-1)" >
-                {{$vuetify.t('Back')}}
+            <v-btn class="elevation-0" color="info"   @click="editView" >
+                {{$vuetify.t('Edit Profile')}}
             </v-btn>
         </div>
         <div slot="header-left">
@@ -29,6 +29,7 @@
 
                         <v-flex xs12 sm6>
                             <v-text-field
+                                    dark
                                     :label="$vuetify.t('Name')"
                                     v-model="item.name"
                                     readonly

@@ -1,25 +1,18 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Reports">
-        <CardPanel slot="container-top">
-            <v-btn color="primary"
-                   class="mb-4 "
-                   absolute
-                   bottom
-                   right
-                   @click.native="onAdd"
-                   >{{$vuetify.t('Add Report')}}
-            </v-btn>
+        <div slot="container-top">
+        </div>
 
-        </CardPanel>
-
-
-
+        <div slot="header-right" class="pb-2">
+            <ButtonNew title="Add Report" @click.native="onAdd"/>
+        </div>
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
                 :items="reportList"
                 :headers="headers"
+                :dark="true"
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">

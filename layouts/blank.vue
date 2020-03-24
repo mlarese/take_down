@@ -1,13 +1,13 @@
 <!--eslint-disable-->
 <template>
-  <v-app dark id="inspire" class="grey lighten-2">
-    <notifications position="top right" style="margin-top:50px"/>
-    <v-content>
-      <v-container fluid fill-height>
-        <nuxt />
-      </v-container>
-    </v-content>
-  </v-app>
+    <v-app id="inspire" class="grey lighten-2" >
+        <notifications position="top right" style="margin-top:50px"/>
+        <v-content>
+            <v-container fluid fill-height>
+                <nuxt />
+            </v-container>
+        </v-content>
+    </v-app>
 </template>
 
 <script>

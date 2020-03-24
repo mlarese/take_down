@@ -3,26 +3,26 @@
     <v-app dark class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar height="110" dark tabs class="elevation-1 app-toolbar ma-0" >
+        <v-toolbar  dark tabs class="elevation-1 app-toolbar ma-0">
 
             <v-layout slots="extension" rows wrap class="pl-0">
 
                 <v-flex xs2 class="pl-0">
                     <a class="default-navbar-brand" href="/">
-                        <img src="logo.png" style="padding:3px;" alt="">
+                        <img src="logo.png" alt="logo" width="85">
                     </a>
 
                 </v-flex>
                 <v-flex xs8>
 
                     <v-tabs
-                            class="mt-5 ml-5"
+                            class="mt-1"
 
                             v-model="ui.currentMenuItem"
-                            slider-color="blue"
+                            slider-color="green"
                             show-arrows
                     >
-                        <v-tabs-slider class="" color="blue"></v-tabs-slider>
+                        <v-tabs-slider class="mb-2" color="green"></v-tabs-slider>
                         <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
                             {{ $vuetify.t(item.label) }}
                         </v-tab>
@@ -46,13 +46,14 @@
             </v-layout>
         </v-toolbar>
 
-        <v-container fluid  class="px-2 mt-3 py-0">
+        <v-container fluid  class="px-1">
             <nuxt />
         </v-container>
 
 
     </v-app>
 </template>
+
 
 <script>
     import {mapState, mapGetters} from 'vuex'
@@ -79,21 +80,9 @@
 
 <style>
     .v-input__slot {
-        border: 1px solid #d1d1d1;
+        border: 1px solid ;
         border-radius:4px;
         padding-left: 4px;
-    }
-
-    .v-table tr{
-        background-color: white;
-    }
-
-    .v-table td{
-        border: 1px #dddddd solid;
-        color:#333 !important;
-        font-size:12px !important;
-        text-align: center;
-        cursor: default;
     }
 
     table.v-table thead tr {
@@ -103,14 +92,12 @@
     .v-text-field > .v-input__control > .v-input__slot:before {
         border-style: solid;
         border-width: 0 0 0 0;
+        border-radius: 20px;
     }
 
-    .v-table tbody tr:nth-of-type(odd) {
-        background-color: #f9f9f9;
-    }
     .v-table th.column {
         background: antiquewhite;
-        border: 1px #dddddd solid;
+        border: 1px  solid;
         cursor: default;
         text-align: center !important;
         font-weight: bold !important;
@@ -137,13 +124,11 @@
         text-transform: none !important;
     }
 
-    .v-input__slot{
-        background: white;
-    }
 
     .v-text-field {
         margin-top: 6px;
         padding-top: 0px;
+        border-radius: 20px;
     }
 
     .mx-datepicker-range, .mx-datepicker {
@@ -215,13 +200,9 @@
     .v-input--checkbox .v-input__slot {
         border:0;
     }
-    .theme--dark.v-toolbar {
-        background-color: white;
-        color: dimgrey;
-    }
 
     .theme--dark.v-tabs__bar .v-tabs__div {
-        color: black;
+        color: white;
     }
 
     .background {

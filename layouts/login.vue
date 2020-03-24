@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
-  <v-app id="inspire" class="transparent">
-    <notifications position="top right" style="margin-top:50px"/>
+  <v-app  id="inspire" class="transparent">
+    <notifications position="top left" style="margin-top:50px"/>
     <v-content class="back-city">
       <v-container fluid fill-height class="transparent">
         <nuxt />

@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <user-form title="Edit User" />
+    <user-form />
 </template>
 
 <script>

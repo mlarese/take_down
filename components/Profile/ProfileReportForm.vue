@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
 
-    <FormPanel v-bind="$attrs" >
+    <FormPanel v-bind="$attrs" class="ma-0 pa-0">
         <div slot="header-right" >
             <v-btn class="elevation-0" color="info"   @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
@@ -24,8 +24,11 @@
                 <v-flex xs12 sm6 md6> <v-text-field label="Title of Report" color="green" hide-details v-model="$record.title" type="text" /></v-flex>
                 <v-flex xs12 sm6 md6><v-text-field label="IP Address" color="green" hide-details type="number" v-model="$record.ip_address"/></v-flex>
                 <v-flex xs12 sm12 md12><v-textarea  box color="green" label="Description" v-model="$record.description"></v-textarea></v-flex>
-                <v-flex xs12 sm12 md12><vue-upload-multiple-image
+                <v-flex xs12 sm12 md12>
+                    <span class="dark" id="my-strictly-unique-vue-upload-multiple-image">
+                    <vue-upload-multiple-image
                         :data-images="images"
+                        dark
                         dragText="Drag File"
                         browseText="Browse Text"
                         label="images"
@@ -34,10 +37,10 @@
                         :maxImage="4"
                         markIsPrimaryText="select image"
                         v-model="$record.report_picture"
-                ></vue-upload-multiple-image></v-flex>
+                ></vue-upload-multiple-image></span></v-flex>
                 <v-flex xs12 sm6 md6><v-autocomplete color="green" label="User Agent" :item="profilereportlist" v-model="$record.user_agent"></v-autocomplete></v-flex>
                 <v-flex xs12 sm6 md6>
-                <VueCtkDateTimePicker   v-model="$record.date" height="500px" />
+                <VueCtkDateTimePicker dark  v-model="$record.date" height="500px" />
                 </v-flex>
             </v-layout>
 
@@ -87,5 +90,13 @@
 </script>
 
 <style scoped>
+    #my-strictly-unique-vue-upload-multiple-image {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: black;
+        margin-top: 60px;
+    }
 
 </style>

@@ -1,9 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <div>
         <profile-report-form title="New Report"/>
-    </div>
-
 </template>
 
 <script>

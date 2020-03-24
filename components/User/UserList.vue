@@ -1,10 +1,10 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Users">
-        <CardPanel slot="container-top">
+       <!-- <CardPanel slot="container-top">
             <div class="">
             </div>
-        </CardPanel>
+        </CardPanel>-->
 
 
 

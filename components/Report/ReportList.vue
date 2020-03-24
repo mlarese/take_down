@@ -1,12 +1,6 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Reports">
-        <CardPanel slot="container-top">
-            <div class="">
-            </div>
-        </CardPanel>
-
-
 
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
