@@ -1,92 +1,59 @@
-[
-  {
-    "reports_id": "5e493c79016c032487b21974",
-    "report_id": 0,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Gecko",
-    "username": "Angela Stewart",
-    "email": "angelastewart@sealoud.com",
-    "phone": "+1 (857) 558-2978",
-    "location": "631 Stillwell Place, Independence, Kentucky, 5388",
-    "ip_address": "146:43:423:100",
-    "description": "Do incididunt quis nulla non sit sunt. Mollit adipisicing sit irure laborum eu deserunt veniam adipisicing adipisicing quis officia deserunt magna excepteur. Labore ad nulla veniam tempor enim nostrud veniam laborum aute.\r\n",
-    "date": "2016-08-12T01:03:39 -02:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  },
-  {
-    "reports_id": "5e493c792af7612cb30c8b75",
-    "report_id": 1,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Linux",
-    "username": "Stout Jordan",
-    "email": "stoutjordan@sealoud.com",
-    "phone": "+1 (941) 580-2316",
-    "location": "783 Poly Place, Guilford, Alaska, 3850",
-    "ip_address": "146:43:423:100",
-    "description": "Non ipsum velit fugiat ut ex anim adipisicing duis laboris occaecat amet est. Et est ea ipsum deserunt. Occaecat laborum do ex voluptate amet duis elit deserunt est fugiat ipsum.\r\n",
-    "date": "2014-03-16T08:24:17 -01:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  },
-  {
-    "reports_id": "5e493c79591fc469ca7e6a19",
-    "report_id": 2,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Linux",
-    "username": "Lizzie Carrillo",
-    "email": "lizziecarrillo@sealoud.com",
-    "phone": "+1 (837) 479-2598",
-    "location": "869 Will Place, Umapine, Utah, 9041",
-    "ip_address": "146:43:423:100",
-    "description": "Fugiat officia aliquip deserunt Lorem irure esse. Elit Lorem ullamco commodo do est aliqua officia duis sit ipsum ad. Dolor mollit dolore esse est pariatur aliquip eiusmod id exercitation anim. Exercitation labore nisi dolor Lorem adipisicing esse cillum ex. Dolore est aute ad exercitation elit. Eiusmod non dolore ut veniam et eu id. Lorem id incididunt non elit est voluptate consequat ut culpa et irure ullamco.\r\n",
-    "date": "2018-06-10T08:34:29 -02:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  },
-  {
-    "reports_id": "5e493c799a74fb4d8caf9fa2",
-    "report_id": 3,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Mozilla",
-    "username": "Thompson Orr",
-    "email": "thompsonorr@sealoud.com",
-    "phone": "+1 (944) 487-3359",
-    "location": "778 Revere Place, Ironton, Texas, 7795",
-    "ip_address": "146:43:423:100",
-    "description": "Deserunt in ullamco non tempor ad adipisicing nostrud voluptate et duis qui. Ex ad exercitation aliqua nostrud elit laboris commodo aliqua commodo. Irure eiusmod laboris nisi deserunt irure quis. Exercitation in minim eu cupidatat dolore sint adipisicing esse exercitation eu dolor aliqua sint. Ullamco nisi officia nulla do et quis ullamco in amet nostrud deserunt occaecat. Aute sunt cupidatat pariatur ea voluptate proident consequat irure labore pariatur est est. Reprehenderit magna exercitation magna aute cillum velit.\r\n",
-    "date": "2017-03-13T09:18:25 -01:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  },
-  {
-    "reports_id": "5e493c79257448ce7bc2e62f",
-    "report_id": 4,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Firefox",
-    "username": "Kristine Sweeney",
-    "email": "kristinesweeney@sealoud.com",
-    "phone": "+1 (868) 579-2368",
-    "location": "220 Gerry Street, Kerby, Wisconsin, 3822",
-    "ip_address": "146:43:423:100",
-    "description": "Dolore nostrud nulla Lorem ullamco aute qui amet et. Sunt id nostrud amet nostrud eu. Minim tempor ad cillum tempor consequat cillum culpa excepteur elit. Elit est veniam fugiat est enim. Lorem aute duis sunt pariatur voluptate voluptate ex exercitation laboris proident eiusmod nostrud nostrud. Aute veniam incididunt aliquip veniam ut veniam cupidatat eiusmod qui laborum.\r\n",
-    "date": "2017-10-03T07:17:30 -02:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  },
-  {
-    "reports_id": "5e493c79b8239723445b0e57",
-    "report_id": 5,
-    "report_picture": "http://placehold.it/32x32",
-    "user_agent": "Linux",
-    "username": "Foster Rowe",
-    "email": "fosterrowe@sealoud.com",
-    "phone": "+1 (828) 481-2180",
-    "location": "474 Bliss Terrace, Chamberino, Montana, 8041",
-    "ip_address": "146:43:423:100",
-    "description": "Excepteur deserunt aute laboris laborum deserunt. Adipisicing do reprehenderit excepteur duis esse nostrud nisi minim fugiat adipisicing fugiat occaecat cillum. Esse ex cillum do laborum enim ut eiusmod veniam proident ea eiusmod. Occaecat est ullamco dolor pariatur cillum in magna in id. Tempor aliquip ad consequat occaecat eu consequat esse cupidatat. Nostrud veniam velit sit ipsum ea aute excepteur duis ea officia. Ut do fugiat Lorem laborum qui est tempor aliqua ut nisi amet sit tempor sit.\r\n",
-    "date": "2017-08-31T09:29:15 -02:00",
-    "web": "https://www.miodomini.net",
-    "description2": "function(a,b){return d({count:a||1,units:$.trim(b)||\"sentences\"})}"
-  }
+[{
+
+  "submission_internal_progressive_primary_key": 1,
+
+  "submission_short_uuid": "string",
+
+  "submission_date": "2020-01-24T16:12:15+01:00",
+
+  "submission_ip": "95.176.92.118",
+
+  "submission_HTTP_USER_AGENT": "string",
+
+  "user_id": 4,
+  "username": "courage",
+  "surname": "larese",
+
+  "submission_url": "https:\\/\\/www.ebay.com",
+
+  "submission_status": "inserito",
+
+  "submission_status_change_datetime": "2020-01-24T16:12:15+01:00",
+
+  "submission_country": "Italy",
+
+  "submission_city": "Padova",
+
+  "submission_region": "PD",
+
+  "submission_zipcode": 30014,
+
+  "submission_address": "Via Garibaldi 14",
+
+  "submission_geo_location_latitude": 45.49167,
+
+  "submission_geo_location_longitude": 45.49167,
+
+  "submission_brand": "Ferrari",
+
+  "submission_title": "Title",
+
+  "submission_description": "Description",
+
+  "pictures": [
+
+    {
+
+      "submission_picture_url": "\\/storage\\/05561ae8f311a22661071b8f1ed94d93.jpg",
+
+      "submission_picture_original_file_name": "file_name_blabla.jpg",
+
+      "submission_picture_exiftool": "ExifTool Version Number"
+
+    }
+
+  ]
+
+}
+
 ]

@@ -10,7 +10,7 @@
             <slot name="header-right"></slot>
         </v-toolbar>
 
-        <v-card slot="container-top" class="elevation-0 pa-1" style="border:1px solid ;border-bottom:0 !important">
+        <v-card slot="container-top" class="elevation-0 pa-1" style="border:0px solid;background-color: black ;border-bottom:0 !important">
             <v-container fluid grid-list-md>
             <slot>
 

@@ -1,31 +1,20 @@
 <template>
   <div>
     <template>
-      <ProfileForm
-        v-for="(profiles, index) in list"
-        :item="profiles"
-        :index="index"
-        :key="index"/>
+      <ProfileForm/>
     </template>
   </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex'
     import ProfileForm from "../../components/Profile/ProfileForm"
+    const root = {root: true}
 
     export default {
-        name: "Index",
+        name: "Profile",
         components: {ProfileForm},
-        computed: {
-            ...mapState('profiles', ['list']),
-
-        },
-
-        fetch({store}) {
-            console.log('fetch')
-
-            store.dispatch('profiles/load',{}, {root: true})
+        fetch ({store}) {
+            store.dispatch('profiles/load', {}, root)
         }
     }
 </script>

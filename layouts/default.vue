@@ -79,9 +79,10 @@
 
 <style>
     .v-input__slot {
-        border: 1px solid ;
-        border-radius:4px;
+        border: 0px solid ;
+        border-radius:10px;
         padding-left: 4px;
+        background-color: grey;
     }
 
     table.v-table thead tr {
@@ -200,7 +201,7 @@
     .hide-dropdown-icon .v-input__icon {display:none}
 
     .v-input--checkbox .v-input__slot {
-        border:0;
+        border:0px;
     }
 
     .theme--dark.v-tabs__bar .v-tabs__div {
