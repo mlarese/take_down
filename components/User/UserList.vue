@@ -16,7 +16,7 @@
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.id }}</td>
+                <!--<td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.surname }}</td>
                 <td>{{ item.role }}</td>
@@ -28,8 +28,29 @@
                 <td>{{ item.zip_code }}</td>
                 <td>{{ item.phone_number}}</td>
                 <td>{{ item.email }}</td>
+                <td>{{ item.web }}</td>-->
+                <td>{{ item.name }}</td>
+                <td>{{ item.surname }}</td>
+                <td>{{ item.role }}</td>
+                <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>
-                <td ><v-checkbox class="ml-3 pt-3" v-model="item.status"  primary></v-checkbox></td>
+                <td>{{ item.subscription_ip }}</td>
+                <td>{{ item.HTTP_USER_AGENT }}</td>
+                <td>{{ item.cell_phone }}</td>
+                <td>{{ item.working_at_company }}</td>
+                <td>{{ item.working_at_company_VAT }}</td>
+                <td>{{ item.country }}</td>
+                <td>{{ item.city }}</td>
+                <td>{{ item.region }}</td>
+                <td>{{ item.zipcode }}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.number_of_submissions }}</td>
+                <td>{{ item.number_of_submissions_accepted }}</td>
+                <td>{{ item.number_of_submissions_rejected }}</td>
+                <td>{{ item.last_datetime_pwd_resetted }}</td>
+                <td>{{ item.subscription_datetime }}</td>
+                <td>{{ item.email_verified }}</td>
+                <!--<td ><v-checkbox class="ml-3 pt-3" v-model="item.status"  primary></v-checkbox></td>
                 <!--<td width="1" class="pa-1">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
                 </td>
@@ -57,20 +78,27 @@
         data () {
 
             const headers = [
-                { text: this.$vuetify.t('ID'), value: 'id' },
                 { text: this.$vuetify.t('Name'), value: 'name' },
                 { text: this.$vuetify.t('Surname'), value: 'surname' },
                 { text: this.$vuetify.t('Role'), value: 'role' },
-                { text: this.$vuetify.t('Company'), value: 'company' },
-                { text: this.$vuetify.t('Partiva IVA'), value: 'partita_iva' },
+                { text: this.$vuetify.t('Web Address'), value: 'web' },
+                { text: this.$vuetify.t('Email'), value: 'email' },
+                { text: this.$vuetify.t('Subscription IP'), value: 'subscription_ip' },
+                { text: this.$vuetify.t('HTTP USER AGENT'), value: 'HTTP_USER_AGENT' },
+                { text: this.$vuetify.t('Phone Number'), value: 'cell_phone' },
+                { text: this.$vuetify.t('Company'), value: 'working_at_company' },
+                { text: this.$vuetify.t('Company VAT'), value: 'working_at_company_VAT' },
                 { text: this.$vuetify.t('Country'), value: 'country' },
-                { text: this.$vuetify.t('Address'), value: 'address' },
                 { text: this.$vuetify.t('City'), value: 'city' },
-                { text: this.$vuetify.t('Zip Code'), value: 'zip_code' },
-                { text: this.$vuetify.t('Phone Number'), value: 'phone_number' },
-                { text: this.$vuetify.t(' Email'), value: 'email' },
-                { text: this.$vuetify.t('Web'), value: 'web' },
-                { text: this.$vuetify.t('Status'), value: 'status' },
+                { text: this.$vuetify.t('Region'), value: 'region' },
+                { text: this.$vuetify.t('Zip/Code'), value: 'zipcode' },
+                { text: this.$vuetify.t('Address'), value: 'address' },
+                { text: this.$vuetify.t('Number of Subm'), value: 'number_of_submissions' },
+                { text: this.$vuetify.t('Number of Subm Accepted'), value: 'number_of_submissions_accepted' },
+                { text: this.$vuetify.t('Number Of Subm Rejected'), value: 'number_of_submissions_rejected' },
+                { text: this.$vuetify.t('Last Date Password Resetted'), value: 'last_datetime_pwd_resetted' },
+                { text: this.$vuetify.t('Subscription Date'), value: 'subscription_datetime' },
+                { text: this.$vuetify.t('Email Verified'), value: 'email_verified' }
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }
             ]
