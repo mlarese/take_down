@@ -2,7 +2,7 @@
 <template>
     <div class="grid-container ma-0">
 
-        <v-toolbar dense class="elevation-0  mb-0"   style="font-size:36px !important;border-bottom: 1px solid #dddddd !important">
+        <v-toolbar dense class="elevation-0  mb-0"   style="font-size:36px !important;border-bottom: 2px solid #dddddd !important">
             <slot name="header-left">
                 <v-toolbar-title class="display-5 ml-0" style="font-size:32px !important;">{{ $vuetify.t(title) }}</v-toolbar-title>
             </slot>
@@ -14,13 +14,13 @@
 
         <slot name="container-top"></slot>
 
-        <v-card class="elevation-0 pa-3"  style="border:1px solid #dddddd">
+        <!--<v-card class="elevation-0 pa-3"  style="border:1px solid #dddddd"></v-card>-->
 
             <slot name="body-top"></slot>
             <slot name="body-center"></slot>
             <slot name="body-bottom"></slot>
 
-        </v-card>
+
     </div>
 
 </template>

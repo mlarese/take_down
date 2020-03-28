@@ -40,7 +40,7 @@
 
   "submission_description": "Description",
 
-  "pictures": [
+  "pictures":
 
     {
 
@@ -52,7 +52,7 @@
 
     }
 
-  ]
+
 
 }
 

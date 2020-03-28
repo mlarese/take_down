@@ -16,23 +16,28 @@
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.report_id }}</td>
-                <td>{{ item.date }}</td>
-                <td>{{ item.report_brand }}</td>
                 <td>{{ item.username }}</td>
-                <td>{{ item.web }}</td>
-                <td>{{ item.report_title }}</td>
-                <td><v-tooltip left v-if="item.description">
-                    <span class="pa-3" slot="activator">{{ item.description |  truncate(20,'...') }}</span>
-                    {{ item.description }}</v-tooltip>
+                <td>{{ item.surname }}</td>
+                <td>{{ item.submission_title }}</td>
+                <td>{{ item.submission_brand }}</td>
+                <td>{{ item.submission_HTTP_USER_AGENT }}</td>
+                <td>{{ item.submission_url }}</td>
+                <td>{{ item.submission_country }}</td>
+                <td>{{ item.submission_address }}</td>
+                <td>{{ item.submission_city }}</td>
+                <td>{{ item.submission_region }}</td>
+                <td>{{ item.submission_zipcode }}</td>
+                <td>{{ item.submission_ip }}</td>
+                <td>{{ item.submission_geo_location_latitude }}</td>
+                <td>{{ item.submission_geo_location_longitude }}</td>
+                <td><v-tooltip left v-if="item.submission_description">
+                    <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
+                    {{ item.submission_description }}</v-tooltip>
                 </td>
-                <td>{{ item.report_picture }}</td>
-                <td><v-tooltip right v-if="item.location">
-                    <span class="pa-3" slot="activator">{{ item.location |  truncate(15,'...') }}</span>
-                    {{ item.location }}</v-tooltip>
-                </td>
-                <td>{{ item.ip_address }}</td>
-                <td>{{ item.user_agent }}</td>
+                <td>{{ item.pictures }}</td>
+                <td>{{ item.submission_status }}</td>
+                <td>{{ item.submission_status_change_datetime }}</td>
+                <td>{{ item.submission_date }}</td>
 
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
@@ -55,17 +60,25 @@
         data () {
 
             const headers = [
-                { text: this.$vuetify.t('Report ID'), value: 'report_id' },
-                { text: this.$vuetify.t('Creation Date'), value: 'date' },
-                { text: this.$vuetify.t('Brand Report'), value: 'report_brand' },
                 { text: this.$vuetify.t('Username'), value: 'username' },
-                { text: this.$vuetify.t('Web Link'), value: 'web' },
-                { text: this.$vuetify.t('Report Title'), value: 'report_title' },
-                { text: this.$vuetify.t('Description'), value: 'description' },
-                { text: this.$vuetify.t('Picture Report'), value: 'report_picture' },
-                { text: this.$vuetify.t('Location'), value: 'location' },
-                { text: this.$vuetify.t('IP Address'), value: 'ip_address' },
-                { text: this.$vuetify.t('HTTP USER AGENT'), value: 'phone_number' },
+                { text: this.$vuetify.t('Surname'), value: 'surname' },
+                { text: this.$vuetify.t('Submission'), value: 'submission_title' },
+                { text: this.$vuetify.t('Submission Brand'), value: 'submission_brand' },
+                { text: this.$vuetify.t('HTTP USER AGENT'), value: 'submission_HTTP_USER_AGENT' },
+                { text: this.$vuetify.t('URL'), value: 'submission_url' },
+                { text: this.$vuetify.t('Country'), value: 'submission_country' },
+                { text: this.$vuetify.t('Address'), value: 'submission_address' },
+                { text: this.$vuetify.t('Region'), value: 'submission_region' },
+                { text: this.$vuetify.t('City'), value: 'submission_city' },
+                { text: this.$vuetify.t('Zip/Code'), value: 'submission_zipcode' },
+                { text: this.$vuetify.t('Submission IP'), value: 'submission_ip' },
+                { text: this.$vuetify.t('Geo Location Latitude'), value: 'submission_geo_location_latitude' },
+                { text: this.$vuetify.t('Geo Location Longitude'), value: 'submission_geo_location_longitude' },
+                { text: this.$vuetify.t('Description'), value: 'submission_description' },
+                { text: this.$vuetify.t('Picture'), value: 'pictures' },
+                { text: this.$vuetify.t('Status'), value: 'submission_status' },
+                { text: this.$vuetify.t('Status Date Modified'), value: 'submission_status_change_datetime' },
+                { text: this.$vuetify.t('Submission'), value: 'submission_date' },
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }
             ]
@@ -78,7 +91,6 @@
         },
         computed: {
             ...mapState('profileReports', {'reportList': 'list'}),
-            ...mapState('brands', {'brandsList': 'list'}),
             ...mapState('brands', ['$record']),
             ...mapState('api', {'isAjax': 'isAjax'}),
         },

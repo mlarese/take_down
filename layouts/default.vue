@@ -82,7 +82,7 @@
         border: 0px solid ;
         border-radius:10px;
         padding-left: 4px;
-        background-color: grey;
+        background-color: #757575;
     }
 
     table.v-table thead tr {
