@@ -80,7 +80,7 @@
                                         v-model="$record.submission_url" />
                     </v-flex>
 
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm6 class="custom-select">
                         <v-select
                                 :label="$vuetify.t('Submission Status')"
                                 v-model="$record.submission_status"
@@ -270,6 +270,14 @@
     .mp {
         margin-top: 10px;
         padding-top: 4px;
+    }
+    .custom-select {
+        position: relative;
+        width: 100%;
+        text-align: left;
+        outline: none;
+        height: 47px;
+        line-height: 47px;
     }
 
 </style>

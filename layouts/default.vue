@@ -182,7 +182,7 @@
     }
 
     .v-select__slot{
-        height:25px;
+        height:32px;
     }
 
     .v-chip .v-chip__content{
