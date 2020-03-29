@@ -1,19 +1,18 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Reports">
-        <div slot="container-top">
-        </div>
-
-        <div slot="header-right" class="pb-2">
-            <ButtonNew color="info"  title="Add Report" @click.native="onAdd"/>
+        <div slot="header-right" class="">
+            <ButtonNew color="info"  title="New" @click.native="onAdd"/>
         </div>
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
                 :items="reportList"
                 :headers="headers"
-                :dark="true"
-                class="elevation-0 fixed-header"
+                hide-details
+                dark
+                hide-actions
+                class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
                 <td>{{ item.username }}</td>
@@ -34,10 +33,9 @@
                     <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
                     {{ item.submission_description }}</v-tooltip>
                 </td>
-                <td>{{ item.pictures }}</td>
                 <td>{{ item.submission_status }}</td>
-                <td>{{ item.submission_status_change_datetime }}</td>
-                <td>{{ item.submission_date }}</td>
+                <td>{{ item.submission_status_change_datetime | dmy }}</td>
+                <td>{{ item.submission_date  | dmy }}</td>
 
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
@@ -75,7 +73,6 @@
                 { text: this.$vuetify.t('Geo Location Latitude'), value: 'submission_geo_location_latitude' },
                 { text: this.$vuetify.t('Geo Location Longitude'), value: 'submission_geo_location_longitude' },
                 { text: this.$vuetify.t('Description'), value: 'submission_description' },
-                { text: this.$vuetify.t('Picture'), value: 'pictures' },
                 { text: this.$vuetify.t('Status'), value: 'submission_status' },
                 { text: this.$vuetify.t('Status Date Modified'), value: 'submission_status_change_datetime' },
                 { text: this.$vuetify.t('Submission'), value: 'submission_date' },

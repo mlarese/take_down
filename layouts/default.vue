@@ -3,7 +3,7 @@
     <v-app dark class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar height="80" dark tabs class="elevation-1 app-toolbar ma-0" fixed >
+        <v-toolbar height="80" dark tabs class="elevation-1 app-toolbar" fixed >
 
             <v-layout slots="extension" rows wrap class="pl-0">
 
@@ -42,14 +42,8 @@
             </v-layout>
         </v-toolbar>
 
-        <v-container fluid>
-            <v-card style="margin-top:180px; class="pa-3" raised>
-
-                    <div class="mt-5"><nuxt /></div>
-
-
-            </v-card>
-
+        <v-container class="mt-7 mb-5">
+            <nuxt />
         </v-container>
 
         <v-footer app></v-footer>
@@ -83,29 +77,27 @@
 <style>
     .v-input__slot {
         border: 0px solid ;
-        border-radius:10px;
-        padding-left: 4px;
-        background-color: #757575;
+        border-radius:4px;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        background-color: #393939;
     }
 
     table.v-table thead tr {
-        height: 30px;
+        height: 36px;
     }
 
     .v-text-field > .v-input__control > .v-input__slot:before {
         border-style: solid;
         border-width: 0 0 0 0;
-        border-radius: 20px;
+        border-radius: 4px;
     }
 
     .v-table th.column {
-        background: antiquewhite;
-        border: 1px  solid;
         cursor: default;
         text-align: center !important;
         font-weight: bold !important;
-        color:#333 !important;
-        font-size:20px !important;
     }
     .theme--light.v-table thead tr:first-child{
         border: 0;
@@ -134,7 +126,7 @@
     .v-text-field {
         margin-top: 10px;
         padding-top: 0px;
-        border-radius: 20px;
+        border-radius: 4px;
     }
 
     .mx-datepicker-range, .mx-datepicker {
@@ -154,9 +146,7 @@
     .theme--light.v-label {
         color: rgba(0,0,0,1);
     }
-    table.v-table thead td:not(:nth-child(1)), table.v-table tbody td:not(:nth-child(1)), table.v-table thead th:not(:nth-child(1)), table.v-table tbody th:not(:nth-child(1)), table.v-table thead td:first-child, table.v-table tbody td:first-child, table.v-table thead th:first-child, table.v-table tbody th:first-child {
-        padding: 0 4px 0 4px;
-    }
+
 
     .v-tooltip__content{
         max-width:400px;
@@ -216,4 +206,8 @@
     }
 
     .v-card {}
+
+    .v-toolbar {
+        border-radius: 8px 8px 0px 0px;
+    }
 </style>

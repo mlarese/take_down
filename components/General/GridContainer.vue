@@ -2,9 +2,11 @@
 <template>
     <div class="grid-container ma-0">
 
-        <v-toolbar dense class="elevation-0  mb-0"   style="font-size:36px !important;border-bottom: 2px solid #dddddd !important">
+        <v-toolbar dense class="elevation-0  mb-0 pl-4"   style="border-bottom: 2px solid #dddddd !important">
             <slot name="header-left">
-                <v-toolbar-title class="display-5 ml-0" style="font-size:32px !important;">{{ $vuetify.t(title) }}</v-toolbar-title>
+                <v-toolbar-title class="display-5">
+                    {{ $vuetify.t(title) }}
+                </v-toolbar-title>
             </slot>
 
             <v-spacer/>

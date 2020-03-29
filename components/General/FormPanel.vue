@@ -1,9 +1,12 @@
 <!--eslint-disable-->
 <template>
     <div class=" grid-list-xl">
-        <v-toolbar dense class="elevation-4 mb-0"   style="font-size:30px !important;border-bottom: 2px solid #dddddd !important">
+        <v-toolbar dense class="elevation-4 mb-0 pl-4"   style="border-bottom: 2px solid #dddddd !important">
+
             <slot name="header-left">
-                <v-toolbar-title class="display-5 elevation-5" style="font-size:32px !important;">{{ $vuetify.t(title) }}</v-toolbar-title>
+                <v-toolbar-title class="display-5">
+                    {{ $vuetify.t(title) }}
+                </v-toolbar-title>
             </slot>
 
             <v-spacer/>
