@@ -17,94 +17,11 @@
                     text-xs-center
             ><span>{{$record.email}}</span>
             </v-flex>
-            <br>
-            <v-form ref="form" lazy-validation>
+         </v-layout>
+            <v-form ref="form" class="mt-2" lazy-validation>
 
-                <v-layout>
-                    <v-flex xs12 sm6>
-                        <v-text-field
-                                dark
-                                :label="$vuetify.t('Subscription Date')"
-                                v-model="$record.subscription_datetime"
-                                readonly
-                                color="null"
-
-                        ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs12 sm6>
-                        <v-text-field
-                                :label="$vuetify.t('Subscription IP')"
-                                v-model="$record.subscription_ip"
-                                readonly
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
-                <v-layout>
-                    <v-flex xs12 sm12>
-                        <v-text-field
-                                dark
-                                :label="$vuetify.t('HTTP USER AGENT')"
-                                v-model="$record.HTTP_USER_AGENT"
-                                readonly
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs6 sm3 style="border: 0px">
-                        <v-switch
-
-                                color="green"
-                                v-model="$record.email_verified"
-                                :label="$vuetify.t('Email Verified')"
-                        ></v-switch>
-                    </v-flex>
-
-                    <v-flex xs6 sm3>
-                        <v-switch
-                                color="green"
-                                v-model="$record.is_user_enabled"
-                                :label="$vuetify.t('User Enabled')"
-                        ></v-switch>
-                    </v-flex>
-                </v-layout>
-                <v-layout>
-                    <v-flex xs4 sm4>
-                        <v-text-field
-                                dark
-                                type="number"
-                                :label="$vuetify.t('Number of Submissions')"
-                                v-model="$record.number_of_submissions"
-                                disabled
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs4 sm4>
-                        <v-text-field
-                                dark
-                                type="number"
-                                :label="$vuetify.t('Number of Submissions Accepted')"
-                                v-model="$record.number_of_submissions_accepted"
-                                disabled
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs4 sm4>
-                        <v-text-field
-                                dark
-                                :label="$vuetify.t('Subscription Date')"
-                                v-model="$record.number_of_submissions_rejected"
-                                disabled
-                                color="null"
-                                type="number"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
-                <v-layout>
-                    <v-flex xs12 sm6>
+                <v-layout rows wrap>
+                    <v-flex xs6 sm6>
                         <v-text-field
                                 dark
                                 :label="$vuetify.t('Name')"
@@ -113,7 +30,7 @@
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm6>
+                    <v-flex xs6 sm6>
                         <v-text-field
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
@@ -123,8 +40,8 @@
                     </v-flex>
                 </v-layout>
 
-                <v-layout>
-                <v-flex xs12 sm6>
+                <v-layout rows wrap>
+                <v-flex xs6 sm6>
                     <v-select
                             :disabled="!isAdmin"
                             :label="$vuetify.t('Role')"
@@ -134,7 +51,7 @@
                     ></v-select>
                 </v-flex>
 
-                <v-flex xs12 sm6>
+                <v-flex xs6 sm6>
                     <v-text-field
                             type="email"
                             :label="$vuetify.t('Email')"
@@ -143,8 +60,8 @@
                     ></v-text-field>
                 </v-flex>
                 </v-layout>
-                <v-layout>
-                <v-flex xs12 sm6>
+                <v-layout rows wrap>
+                <v-flex xs6 sm6>
                     <v-text-field
                             :label="$vuetify.t('Web')"
                             v-model="$record.web"
@@ -153,7 +70,7 @@
                     ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm6>
+                <v-flex xs6 sm6>
                     <v-text-field
                             :label="$vuetify.t('Phone Number')"
                             v-model="$record.cell_phone"
@@ -163,8 +80,8 @@
                     ></v-text-field>
                 </v-flex>
                 </v-layout>
-                <v-layout>
-                <v-flex xs12 sm6>
+                <v-layout rows wrap>
+                <v-flex xs6 sm6>
                     <v-text-field
                             :label="$vuetify.t('Company')"
                             v-model="$record.working_at_company"
@@ -172,7 +89,7 @@
                     ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm6>
+                <v-flex xs6 sm6>
                     <v-text-field
                             :label="$vuetify.t('Company VAT')"
                             v-model="$record.working_at_company_VAT"
@@ -181,7 +98,7 @@
                     ></v-text-field>
                 </v-flex>
                 </v-layout>
-                <v-layout>
+                <v-layout rows wrap>
                 <v-flex xs4 sm4>
                     <v-text-field
                             :label="$vuetify.t('Country')"
@@ -208,44 +125,124 @@
                     ></v-text-field>
                 </v-flex>
                 </v-layout>
-                <v-layout>
-                    <v-flex xs12 sm6>
+                <v-layout rows wrap>
+                    <v-flex xs6 sm6>
                         <v-text-field
                                 type="number"
-                                :label="$vuetify.t('ZIPCODE')"
+                                :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.zipcode"
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-                <v-flex xs12 sm6>
+                <v-flex xs6 sm6>
                     <v-text-field
-                            :label="$vuetify.t('address')"
+                            :label="$vuetify.t('Address')"
                             v-model="$record.address"
                             color="null"
                     ></v-text-field>
                 </v-flex>
                 </v-layout>
-                <v-layout>
-                    <v-flex xs12 sm6>
-                    <v-text-field
-                            :label="$vuetify.t('Lat Date Pwd Resetted')"
-                            v-model="$record.last_datetime_pwd_resetted"
-                            color="null"
-                    ></v-text-field>
-                </v-flex>
-                </v-layout>
+                <v-layout rows wrap>
+                    <v-flex xs6 sm6>
+                        <v-text-field
+                                dark
+                                :label="$vuetify.t('Subscription Date')"
+                                v-model="$record.subscription_datetime"
+                                readonly
+                                color="null"
 
+                        ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs6 sm6>
+                        <v-text-field
+                                :label="$vuetify.t('Subscription IP')"
+                                v-model="$record.subscription_ip"
+                                readonly
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <v-layout rows wrap>
+                    <v-flex xs12 sm6>
+                        <v-text-field
+                                dark
+                                :label="$vuetify.t('HTTP USER AGENT')"
+                                v-model="$record.HTTP_USER_AGENT"
+                                readonly
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs6 sm3 style=" ">
+                        <v-switch
+
+                                color="green"
+                                v-model="$record.email_verified"
+                                :label="$vuetify.t('Email Verified')"
+                        ></v-switch>
+                    </v-flex>
+
+                    <v-flex xs6 sm3>
+                        <v-switch
+                                color="green"
+                                v-model="$record.is_user_enabled"
+                                :label="$vuetify.t('User Enabled')"
+                        ></v-switch>
+                    </v-flex>
+
+                </v-layout>
+                <v-layout rows wrap>
+                    <v-flex xs6 sm3>
+                        <v-text-field
+                                dark
+                                type="number"
+                                :label="$vuetify.t('Number of Submissions')"
+                                v-model="$record.number_of_submissions"
+                                disabled
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs6 sm3>
+                        <v-text-field
+                                dark
+                                type="number"
+                                :label="$vuetify.t('Number of Submissions Accepted')"
+                                v-model="$record.number_of_submissions_accepted"
+                                disabled
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs6 sm3>
+                        <v-text-field
+                                dark
+                                :label="$vuetify.t('Subscription Date')"
+                                v-model="$record.number_of_submissions_rejected"
+                                disabled
+                                color="null"
+                                type="number"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs6 sm3>
+                        <v-text-field
+                                :label="$vuetify.t('Password Resetted')"
+                                v-model="$record.last_datetime_pwd_resetted"
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
                     <v-spacer/>
                     <v-divider class="mt-5"></v-divider>
                     <v-card-actions>
-                        <v-btn flat @click="deletes">Delete Profile</v-btn>
+                        <v-btn medium color="blue-grey darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
                         <v-spacer></v-spacer>
 
-                        <v-btn flat @click="save">Save Profile</v-btn>
+                        <v-btn medium color="blue-grey darken-3" class="elevation-0" @click="save">Save Profile</v-btn>
                     </v-card-actions>
 
             </v-form>
-         </v-layout>
         </FormPanel>
 </template>
 
@@ -276,5 +273,8 @@
 </script>
 
 <style scoped>
-
+    .v-input--selection-controls {
+        margin-top: 10px;
+        padding-top: 4px;
+    }
 </style>

@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
     <div class=" grid-list-xl">
-        <v-toolbar dense class="elevation-4 mb-0 pl-4"   style="border-bottom: 2px solid #dddddd !important">
+        <v-toolbar dense class="elevation-4 mb-0 pl-4"   style="border-bottom: 1px solid #dddddd !important">
 
             <slot name="header-left">
                 <v-toolbar-title class="display-5">

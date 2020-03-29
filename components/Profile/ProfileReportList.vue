@@ -15,8 +15,7 @@
                 class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.username }}</td>
-                <td>{{ item.surname }}</td>
+                <td>{{ item.username }} {{ item.surname }}</td>
                 <td>{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
                 <td>{{ item.submission_HTTP_USER_AGENT }}</td>
@@ -59,7 +58,6 @@
 
             const headers = [
                 { text: this.$vuetify.t('Username'), value: 'username' },
-                { text: this.$vuetify.t('Surname'), value: 'surname' },
                 { text: this.$vuetify.t('Submission'), value: 'submission_title' },
                 { text: this.$vuetify.t('Submission Brand'), value: 'submission_brand' },
                 { text: this.$vuetify.t('HTTP USER AGENT'), value: 'submission_HTTP_USER_AGENT' },

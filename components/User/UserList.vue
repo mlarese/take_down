@@ -29,8 +29,7 @@
                 <td>{{ item.phone_number}}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>-->
-                <td>{{ item.name }}</td>
-                <td>{{ item.surname }}</td>
+                <td>{{ item.name }} {{ item.surname }}</td>
                 <td>{{ item.role }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>
@@ -79,7 +78,6 @@
 
             const headers = [
                 { text: this.$vuetify.t('Name'), value: 'name' },
-                { text: this.$vuetify.t('Surname'), value: 'surname' },
                 { text: this.$vuetify.t('Role'), value: 'role' },
                 { text: this.$vuetify.t('Web Address'), value: 'web' },
                 { text: this.$vuetify.t('Email'), value: 'email' },
