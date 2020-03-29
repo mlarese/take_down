@@ -3,36 +3,33 @@
     <v-app dark class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar  dark tabs class="elevation-1 app-toolbar ma-0">
+        <v-toolbar height="80" dark tabs class="elevation-1 app-toolbar ma-0" fixed >
 
             <v-layout slots="extension" rows wrap class="pl-0">
 
-                <v-flex xs2 class="pl-0">
+                <v-flex xs1 class="py-2 px-2">
                     <a class="default-navbar-brand" href="/">
-                        <img src="logo.png" alt="logo" width="85">
+                        <img src="logo.png" alt="logo" width="80">
                     </a>
 
                 </v-flex>
-                <v-flex xs8>
+                <v-flex xs9 class="text-xs-center mt-2 ml-5">
 
-                    <v-tabs
-                            class="mt-4"
+                    <template v-for="(item, i) in menuItems" v-if="item">
 
-                            v-model="ui.currentMenuItem"
-                            slider-color="red"
-                    >
-                        <v-tabs-slider class="mb-2" color="blue"></v-tabs-slider>
-                        <v-tab v-for="(item, i) in menuItems" :key="i"  :to="'/'+item.to" >
-                            {{ $vuetify.t(item.label) }}
-                        </v-tab>
-                    </v-tabs>
+                        <v-btn fab flat  :to="'/'+item.to" :key="i" class="pa-0" nuxt :title="item.label">
+                            <v-icon large v-if="!wXS">{{item.icon}}</v-icon>
+                            <v-icon medium v-if="wXS" class="">{{item.icon}}</v-icon>
+                        </v-btn>
 
+
+                    </template>
                 </v-flex>
 
 
-                <v-flex class="text-xs-right" xs2>
+                <v-flex class="text-xs-right" xs1>
 
-                    <v-btn flat @click="" class="py-2 pl-2 pr-0" :fab="$vuetify.breakpoint.xsOnly" :small="$vuetify.breakpoint.xsOnly">
+                    <v-btn  v-if="false" flat @click="" class="py-2 pl-2 pr-0" :fab="$vuetify.breakpoint.xsOnly" :small="$vuetify.breakpoint.xsOnly">
                         <v-tooltip left>
                             <span slot="activator">
                                 {{userName}}
@@ -45,11 +42,17 @@
             </v-layout>
         </v-toolbar>
 
-        <v-container fluid  class="px-1">
-            <nuxt />
+        <v-container fluid>
+            <v-card style="margin-top:180px; class="pa-3" raised>
+
+                    <div class="mt-5"><nuxt /></div>
+
+
+            </v-card>
+
         </v-container>
 
-
+        <v-footer app></v-footer>
     </v-app>
 </template>
 
@@ -209,7 +212,8 @@
     }
 
     .background {
-        background-image: url(https://www.griffeshield.com/wp-content/uploads/2019/04/banner-v2.jpg) !important;
+
     }
 
+    .v-card {}
 </style>

@@ -7,11 +7,11 @@ import _has from 'lodash/has'
  *
  */
 const menuItems = {
-    home: {to: '', label: 'Home'},
-    user: {to: 'user', label: 'Users'},
-    report: {to: 'report', label: 'Reports'},
-    profile: {to: 'profile', label: 'Profile'},
-    profilereport: {to: 'profilereport', label: 'Reports'}
+    home: {to: '', label: 'Home', icon: 'mdi-home'},
+    user: {to: 'user', label: 'Users', icon: 'mdi-person'},
+    report: {to: 'report', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'},
+    profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
+    profilereport: {to: 'profilereport', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 
 

@@ -5,8 +5,14 @@ import {dmy, time, truncate, statusIdToText} from '../assets/filters'
 import numeral from 'numeral';
 import numFormat from 'vue-filter-number-format';
 import 'vue2-datepicker/index.css';
+import '@mdi/font/css/materialdesignicons.css'
+import VueMediaQueryMixin from 'vue-media-query-mixin';
 
 Vue.use(Vuetify, {
+
+    icons: {
+        iconfont: 'mdi', // default - only for display purposes
+    },
     theme: {
         // primary: '#121212', // a color that is not in the material colors palette
         // accent: colors.grey.darken3,
@@ -24,6 +30,7 @@ Vue.filter('truncate', truncate)
 Vue.filter('statusIdToText', statusIdToText)
 Vue.filter('numFormat', numFormat(numeral));
 
+Vue.use(VueMediaQueryMixin, {framework:'vuetify'});
 export default ({ app, store }) => {
-    store
+
 }
