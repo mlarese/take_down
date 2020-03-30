@@ -7,16 +7,17 @@
                 :loading="isAjax" fixed
                 :items="reportList"
                 :headers="headers"
+                style="text-align: center"
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.username }} {{ item.surname }}</td>
-                <td>{{ item.submission_title }}</td>
+                <td style="white-space: nowrap;text-align: center">{{ item.username }} {{ item.surname }}</td>
+                <td >{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
                 <td>{{ item.submission_HTTP_USER_AGENT }}</td>
                 <td>{{ item.submission_url }}</td>
                 <td>{{ item.submission_country }}</td>
-                <td>{{ item.submission_address }}</td>
+                <td style="white-space: nowrap">{{ item.submission_address }}</td>
                 <td>{{ item.submission_city }}</td>
                 <td>{{ item.submission_region }}</td>
                 <td>{{ item.submission_zipcode }}</td>
@@ -29,8 +30,8 @@
                 </td>
                 <td>{{ item.pictures }}</td>
                 <td>{{ item.submission_status }}</td>
-                <td>{{ item.submission_status_change_datetime }}</td>
-                <td>{{ item.submission_date }}</td>
+                <td style="white-space: nowrap">{{ item.submission_status_change_datetime | dmy}}</td>
+                <td style="white-space: nowrap">{{ item.submission_date | dmy }}</td>
 
                 <!--<td width="1" class="pa-1">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>

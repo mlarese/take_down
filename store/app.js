@@ -8,9 +8,9 @@ import _has from 'lodash/has'
  */
 const menuItems = {
     home: {to: '', label: 'Home', icon: 'mdi-home'},
-    user: {to: 'user', label: 'Users', icon: 'mdi-person'},
+    user: {to: 'user', label: 'Users', icon: 'account_circle'},
     report: {to: 'report', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'},
-    profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
+    profile: {to: 'profile', label: 'profile', icon: 'account_circle'},
     profilereport: {to: 'profilereport', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 

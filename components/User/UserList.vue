@@ -13,6 +13,7 @@
                 :loading="isAjax" fixed
                 :items="userList"
                 :headers="headers"
+                style="text-align: center"
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
@@ -29,7 +30,7 @@
                 <td>{{ item.phone_number}}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>-->
-                <td>{{ item.name }} {{ item.surname }}</td>
+                <td style="white-space: nowrap;text-align: center">{{ item.name }} {{ item.surname }}</td>
                 <td>{{ item.role }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>
@@ -42,12 +43,12 @@
                 <td>{{ item.city }}</td>
                 <td>{{ item.region }}</td>
                 <td>{{ item.zipcode }}</td>
-                <td>{{ item.address }}</td>
+                <td style="white-space: nowrap; text-align: center">{{ item.address }}</td>
                 <td>{{ item.number_of_submissions }}</td>
                 <td>{{ item.number_of_submissions_accepted }}</td>
                 <td>{{ item.number_of_submissions_rejected }}</td>
-                <td>{{ item.last_datetime_pwd_resetted }}</td>
-                <td>{{ item.subscription_datetime }}</td>
+                <td>{{ item.last_datetime_pwd_resetted | dmy}}</td>
+                <td>{{ item.subscription_datetime  | dmy}}</td>
                 <td>{{ item.email_verified }}</td>
                 <!--<td ><v-checkbox class="ml-3 pt-3" v-model="item.status"  primary></v-checkbox></td>
                 <!--<td width="1" class="pa-1">

@@ -12,28 +12,29 @@
                 hide-details
                 dark
                 hide-actions
+                style="text-align: center"
                 class="elevation-0"
                 slot="body-center">
-            <template slot="items" slot-scope="{item}">
-                <td>{{ item.username }} {{ item.surname }}</td>
+            <template slot="items" slot-scope="{item}" style="text-align: center">
+                <td style="white-space: nowrap; text-align: center">{{ item.username }} {{ item.surname }}</td>
                 <td>{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
                 <td>{{ item.submission_HTTP_USER_AGENT }}</td>
                 <td>{{ item.submission_url }}</td>
                 <td>{{ item.submission_country }}</td>
-                <td>{{ item.submission_address }}</td>
+                <td style="white-space: nowrap">{{ item.submission_address }}</td>
                 <td>{{ item.submission_city }}</td>
                 <td>{{ item.submission_region }}</td>
-                <td>{{ item.submission_zipcode }}</td>
+                <td style="white-space: nowrap">{{ item.submission_zipcode }}</td>
                 <td>{{ item.submission_ip }}</td>
                 <td>{{ item.submission_geo_location_latitude }}</td>
                 <td>{{ item.submission_geo_location_longitude }}</td>
-                <td><v-tooltip left v-if="item.submission_description">
+                <td style="text-align: center"><v-tooltip left v-if="item.submission_description">
                     <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
                     {{ item.submission_description }}</v-tooltip>
                 </td>
                 <td>{{ item.submission_status }}</td>
-                <td>{{ item.submission_status_change_datetime | dmy }}</td>
+                <td style="white-space: nowrap">{{ item.submission_status_change_datetime | dmy }}</td>
                 <td>{{ item.submission_date  | dmy }}</td>
 
             </template>

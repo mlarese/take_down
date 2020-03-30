@@ -19,7 +19,7 @@
 
                         <v-btn fab flat  :to="'/'+item.to" :key="i" class="pa-0" nuxt :title="item.label">
                             <v-icon large v-if="!wXS">{{item.icon}}</v-icon>
-                            <v-icon medium v-if="wXS" class="">{{item.icon}}</v-icon>
+                            <v-icon medium v-if="wXS">{{item.icon}}</v-icon>
                         </v-btn>
 
 
