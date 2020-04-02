@@ -31,6 +31,19 @@ export const state = () => {
                 totalItems: 0
             }
         },
+        agesList: [
+            {text:'0-18', value: 1},
+            {text:'19-25', value: 2},
+            {text:'26-35', value: 3},
+            {text:'36-45', value: 4},
+            {text:'46-55', value: 5},
+            {text:'>55', value: 6}
+        ],
+        statusList: [
+            {value: 4,  text: 'Pending'},
+            {value: 5,  text: 'Running'},
+            {value: 6,  text: 'Ended'}
+        ],
         mode: 'list',
         searchActive: false,
         filter: newFilter()
@@ -80,17 +93,17 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/api/brands/${id}`
+        const url = `/brands/${id}`
         return dispatch('api/put', {url, data}, root)
             .then(() => {
                 commit('setAddMode')
             })
     },
     insert ({dispatch, commit}, {data}) {
-        const url = `/brands`
+        const url = `/api/brands`
         return dispatch('api/post', {url, data}, root)
     },
-    reporting ({dispatch, commit, state}) {
+    search ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
         return dispatch('api/post', {url: `/api/brands`, data}, root)
@@ -100,6 +113,18 @@ export const actions = {
                 commit('setSearchActive', true)
                 return res
             })
+    },
+    saves ({dispatch, commit, state, getters}, item) {
+        return dispatch('update', {data:item, id:item.id})
+            .then(r => {
+                commit('setViewMode', {item, active:true})
+
+            })
+
+    },
+    deletes ({dispatch, commit, state}, id) {
+        const url = `/api/brands/${id}`
+        return dispatch('api/delete', {url}, root)
     },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
@@ -140,16 +165,22 @@ export const actions = {
         commit('setList', [])
     },
     load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.list.length > 0) {
+        if (!force && state.loaded) {
             return
         }
-
-        return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
-            .then(res => {
-                commit('setList', res.data)
-                return res
-            })
-
+        if (id === null) {
+            return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
+                .then(res => {
+                    commit('setList', res.data)
+                    return res
+                })
+        } else {
+            return dispatch('api/get', {url: `/api/brands/{id}`, options}, root)
+                .then(res => {
+                    commit('setRecord', res.data)
+                    return res
+                })
+        }
     },
     loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
         if (!force && state.loaded) {
@@ -173,7 +204,6 @@ export const actions = {
 }
 
 export const getters = {
-    agesListById: state => _keyBy (state.agesList, 'value'),
     isEditMode: state => state.mode === 'edit',
     isAddMode: state => state.mode === 'add'
 }

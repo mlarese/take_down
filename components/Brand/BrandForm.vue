@@ -1,11 +1,12 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" >
-        <div slot="header-right">
-            <v-btn class="elevation-0 pl-3" color="info"   @click="$router.go(-1)" >
+        <div slot="header-right" >
+            <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
-        </div><div slot="header-left">
+        </div>
+        <div slot="header-left">
         <span>{{$vuetify.t('Brand Form')}}</span>
     </div>
         <v-form ref="form" lazy-validation>

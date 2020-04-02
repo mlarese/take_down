@@ -65,12 +65,15 @@
             </v-layout>
                 <v-layout rows wrap>
                 <v-flex xs12 sm6 md6>
-                    <v-text-field
-                                    hide-details
-                                    dense
-                                    :label="$vuetify.t('Brand')"
-                                    color="null"
-                                    v-model="$record.submission_brand" />
+                    <v-select
+                        hide-details
+                        dense
+                        :items="brandsList"
+                        item-value="id"
+                        item-text="brand_name"
+                        :label="$vuetify.t('Brand')"
+                        color="null"
+                        v-model="$record.submission_brand" />
                     </v-flex>
 
                     <v-flex xs12 sm6>

@@ -12,30 +12,29 @@
                 hide-details
                 dark
                 hide-actions
-                style="text-align: center"
+
                 class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
                 <td style="white-space: nowrap; text-align: center">{{ item.username }} {{ item.surname }}</td>
                 <td>{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
-                <td>{{ item.submission_HTTP_USER_AGENT }}</td>
                 <td>{{ item.submission_url }}</td>
-                <td>{{ item.submission_country }}</td>
+                <!--<td>{{ item.submission_country }}</td>
                 <td style="white-space: nowrap">{{ item.submission_address }}</td>
                 <td>{{ item.submission_city }}</td>
                 <td>{{ item.submission_region }}</td>
                 <td style="white-space: nowrap">{{ item.submission_zipcode }}</td>
-                <td>{{ item.submission_ip }}</td>
+                <td>{{ item.submission_ip }}</td>-->
                 <td>{{ item.submission_geo_location_latitude }}</td>
                 <td>{{ item.submission_geo_location_longitude }}</td>
                 <td style="text-align: center"><v-tooltip left v-if="item.submission_description">
                     <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
                     {{ item.submission_description }}</v-tooltip>
                 </td>
-                <td>{{ item.submission_status }}</td>
-                <td style="white-space: nowrap">{{ item.submission_status_change_datetime | dmy }}</td>
-                <td>{{ item.submission_date  | dmy }}</td>
+                <td style="text-align: center">{{ item.submission_status }}</td>
+               <!-- <td style="white-space: nowrap">{{ item.submission_status_change_datetime | dmy }}</td>-->
+                <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
 
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
@@ -63,23 +62,15 @@
         data () {
 
             const headers = [
-                { text: this.$vuetify.t('Username'), value: 'username' },
-                { text: this.$vuetify.t('Submission'), value: 'submission_title' },
-                { text: this.$vuetify.t('Submission Brand'), value: 'submission_brand' },
-                { text: this.$vuetify.t('HTTP USER AGENT'), value: 'submission_HTTP_USER_AGENT' },
+                { text: this.$vuetify.t('User'), value: 'username' },
+                { text: this.$vuetify.t('Title'), value: 'submission_title' },
+                { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
                 { text: this.$vuetify.t('URL'), value: 'submission_url' },
-                { text: this.$vuetify.t('Country'), value: 'submission_country' },
-                { text: this.$vuetify.t('Address'), value: 'submission_address' },
-                { text: this.$vuetify.t('Region'), value: 'submission_region' },
-                { text: this.$vuetify.t('City'), value: 'submission_city' },
-                { text: this.$vuetify.t('Zip/Code'), value: 'submission_zipcode' },
-                { text: this.$vuetify.t('Submission IP'), value: 'submission_ip' },
                 { text: this.$vuetify.t('Geo Location Latitude'), value: 'submission_geo_location_latitude' },
                 { text: this.$vuetify.t('Geo Location Longitude'), value: 'submission_geo_location_longitude' },
                 { text: this.$vuetify.t('Description'), value: 'submission_description' },
                 { text: this.$vuetify.t('Status'), value: 'submission_status' },
-                { text: this.$vuetify.t('Status Date Modified'), value: 'submission_status_change_datetime' },
-                { text: this.$vuetify.t('Submission'), value: 'submission_date' },
+                { text: this.$vuetify.t('Date'), value: 'submission_date' },
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }
             ]

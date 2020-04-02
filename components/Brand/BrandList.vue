@@ -1,29 +1,22 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Brand">
-        <CardPanel slot="container-top">
-            <v-btn color="primary"
-                   class="mb-4 "
-                   absolute
-                   bottom
-                   right
-                   @click.native="onAdd"
-            >{{$vuetify.t('Add Brand')}}
-            </v-btn>
-
-        </CardPanel>
-
-
+        <div slot="header-right" class="">
+            <ButtonNew color="green darken-2"  title="New Brand" @click.native="onAdd"/>
+        </div>
 
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
-                :items="list"
                 :headers="headers"
-                class="elevation-0 fixed-header"
+                :items="brandsList"
+                hide-details
+                dark
+                hide-actions
+                style="text-align: center"
+                class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.id }}</td>
                 <td>{{ item.brand_name }}</td>
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
@@ -46,7 +39,6 @@
         data () {
 
             const headers = [
-                { text: this.$vuetify.t('ID'), value: 'id' },
                 { text: this.$vuetify.t('Brand Name'), value: 'brand_name' }
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }
@@ -59,7 +51,7 @@
             }
         },
         computed: {
-            ...mapState('brands', ['list', '$record']),
+            ...mapState('brands', {'brandsList': 'list'}),
             ...mapState('api', {'isAjax': 'isAjax'}),
         },
         methods: {

@@ -18,6 +18,7 @@ mock
   .onGet('/brands').reply(() => [200, brands])
 
   .onGet('/api/users').reply(() => [200, users])
+  .onGet('/api/brands').reply(() => [200, brands])
   .onGet('/api/reports').reply(() => [200, reports])
   .onGet('/api/profiles').reply(() => [200, profiles])
   .onGet('/api/profile_reports').reply(() => [200, profileReports])

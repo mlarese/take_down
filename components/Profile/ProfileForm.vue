@@ -6,6 +6,7 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
+                                disabled
                                 dark
                                 :label="$vuetify.t('Name')"
                                 v-model="$record.name"
@@ -15,6 +16,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
+                                disabled
                                 hide-details
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
@@ -26,18 +28,19 @@
 
                 <v-layout rows wrap>
                 <v-flex xs12 sm6>
-                    <v-select
+                    <v-text-field
+                            disabled
                             hide-details
                             :disabled="!isAdmin"
                             :label="$vuetify.t('Role')"
                             v-model="$record.role"
-                            :items="['Agent', 'Importer', 'Exporter','Shop','Distributor','Customer']"
                             color="null"
-                    ></v-select>
+                    ></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6>
                     <v-text-field
+                            disabled
                             hide-details
                             type="email"
                             :label="$vuetify.t('Email')"
