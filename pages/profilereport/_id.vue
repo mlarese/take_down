@@ -5,7 +5,7 @@
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import ProfileReportForm from '../../components/Profile/ProfileReportForm'
+  import ProfileReportForm from '../../components/Report/ReportForm'
   export default {
     components: {
         ProfileReportForm

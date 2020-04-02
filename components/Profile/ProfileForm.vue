@@ -113,7 +113,7 @@
                             :label="$vuetify.t('Country')"
                             v-model="$record.country"
                             readonly
-                            color="null"
+                            color="null "
                     ></v-text-field>
                 </v-flex>
 
