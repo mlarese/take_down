@@ -4,38 +4,15 @@
     <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Report">
 
         <div slot="header-right" >
-            <v-btn  small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
+            <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div>
         <v-form ref="form" class="mt-2" lazy-validation>
-
-                <v-layout rows wrap>
-                    <v-flex xs12 sm6 md6 d-flex>
-                        <v-select
-                            hide-details
-                            :label="$vuetify.t('HTTP USER AGENT')"
-                            color="null"
-                            v-model="$record.submission_HTTP_USER_AGENT" />
-                    </v-flex>
-
-                    <v-flex xs12 sm6>
-                        <v-text-field
-                                hide-details
-                                type="number"
-                                :label="$vuetify.t('Submission IP')"
-                                v-model="$record.submission_ip"
-                                readonly
-                                color="null"
-
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
-                <v-layout v-if="true" rows wrap>
+                <v-layout rows wrap  v-if="isAdmin">
                     <v-flex xs12 sm6 md6 d-flex>
                         <v-text-field
                                 hide-details
-                                v-if="isAdmin"
                                 disabled
                                 :label="$vuetify.t('Name')"
                                 color="null"
@@ -46,7 +23,6 @@
                         <v-text-field
                                 hide-details
                                 type="number"
-                                v-if="isAdmin"
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
                                 disabled
@@ -55,12 +31,44 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
+            <v-layout rows wrap  v-if="isAdmin">
+                <v-flex xs12 sm4>
+                    <v-text-field
+
+                            disabled
+                            hide-details
+                            :label="$vuetify.t('Country')"
+                            v-model="$record.submission_country"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm4>
+                    <v-text-field
+                            disabled
+                            hide-details
+                            :label="$vuetify.t('City')"
+                            v-model="$record.submission_city"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm4>
+                    <v-text-field
+                            disabled
+                            hide-details
+                            :label="$vuetify.t('Region')"
+                            v-model="$record.submission_region"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
                 <v-layout rows wrap>
                 <v-flex xs12 sm6 md6>
                     <v-text-field
                                     hide-details
                                     dense
-                                    :label="$vuetify.t('Submission Brand')"
+                                    :label="$vuetify.t('Brand')"
                                     color="null"
                                     v-model="$record.submission_brand" />
                     </v-flex>
@@ -68,7 +76,7 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
-                                :label="$vuetify.t('Submission Title')"
+                                :label="$vuetify.t('Title')"
                                 v-model="$record.submission_title"
                                 color="null"
 
@@ -78,7 +86,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6 md6>
                         <v-text-field   dense
-                                        :label="$vuetify.t('Submission Url')"
+                                        :label="$vuetify.t('Url')"
                                         color="null"
                                         hide-details
                                         v-model="$record.submission_url" />
@@ -86,7 +94,7 @@
 
                     <v-flex xs12 sm6 class="custom-select">
                         <v-select
-                                :label="$vuetify.t('Submission Status')"
+                                :label="$vuetify.t('Status')"
                                 v-model="$record.submission_status"
                                 disabled
                                 color="null"
@@ -95,38 +103,8 @@
                     </v-flex>
                 </v-layout>
 
-                <v-layout rows wrap>
-                    <v-flex xs12 sm4>
-                        <v-text-field
-                                disabled
-                                hide-details
-                                :label="$vuetify.t('Country')"
-                                v-model="$record.submission_country"
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
 
-                    <v-flex xs12 sm4>
-                        <v-text-field
-                                disabled
-                                hide-details
-                                :label="$vuetify.t('City')"
-                                v-model="$record.submission_city"
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs12 sm4>
-                        <v-text-field
-                                disabled
-                                hide-details
-                                :label="$vuetify.t('Region')"
-                                v-model="$record.submission_region"
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
-                <v-layout rows wrap>
+                <v-layout rows wrap  v-if="isAdmin">
                     <v-flex xs12 sm6>
                         <v-text-field
                                 disabled
@@ -148,7 +126,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout rows wrap>
-                    <v-flex xs12 sm12>
+                    <v-flex xs12 sm6>
                         <v-text-field
                                 disabled
                                 :label="$vuetify.t('Location Latitude')"
@@ -159,7 +137,7 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex xs12 sm12>
+                    <v-flex xs12 sm6>
                         <v-text-field
                                 disabled
                                 :label="$vuetify.t('Location Longitude')"
@@ -170,9 +148,31 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-                <div>
-                    <v-layout rows wrap class="mt-2">
-                    <v-flex xs12 sm12>
+            <v-layout rows wrap>
+                <v-flex xs12 sm6 md6 d-flex>
+                    <v-text-field
+                            hide-details
+                            disabled
+                            :label="$vuetify.t('HTTP User Agent')"
+                            color="null"
+                            v-model="$record.submission_HTTP_USER_AGENT" />
+                </v-flex>
+
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            hide-details
+                            type="number"
+                            :label="$vuetify.t('IP')"
+                            v-model="$record.submission_ip"
+                            disabled
+                            color="null"
+
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+                    <v-layout rows wrap class="mt-2 text-xs-center" style="justify-content: center">
+                    <v-flex xs12 sm12 class="text-xs-center">
                         <vue-upload-multiple-image
                             :data-images="images"
                             dark
@@ -185,22 +185,30 @@
                             markIsPrimaryText="select image"
                             v-model="$record.pictures"/>
                     </v-flex>
-                    </v-layout>
-                    <v-layout rows wrap>
                     <v-flex xs12 sm12 >
                         <v-textarea
+                                hide-details
                                 color="null"
                                 label="Description"
                                 v-model="$record.submission_description"/>
                         </v-flex>
                     </v-layout>
-                </div>
-                <v-layout>
-                    <v-flex xs12 sm6 style="border-radius: 10px;">
-                    <VueCtkDateTimePicker dark v-model="$record.submission_date" height="100px" :label="$vuetify.t('Submission Date')"/>
+                <v-layout rows wrap>
+                    <v-flex xs12 sm6>
+                        <v-text-field
+                                disabled
+                                hide-details
+                                :label="$vuetify.t('Submission Date')"
+                                color="null"
+                                v-model="$record.submission_date" />
                     </v-flex>
                     <v-flex xs12 sm6>
-                        <VueCtkDateTimePicker dark v-model="$record.submission_status_change_datetime" height="100px" :label="$vuetify.t('Submission Status Change')"/>
+                        <v-text-field
+                                disabled
+                                hide-details
+                                :label="$vuetify.t('Submission Status')"
+                                color="null"
+                                v-model="$record.submission_status_change_datetime" />
                     </v-flex>
                 </v-layout>
 
@@ -213,7 +221,7 @@
                         layout
                         text-xs-center
                 >
-                    <v-btn medium color="blue-grey darken-3" class="elevation-0"  @click="onAdd">
+                    <v-btn  color="green darken-2" class="elevation-0"  @click="onAdd">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>

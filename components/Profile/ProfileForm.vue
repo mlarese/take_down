@@ -152,19 +152,19 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
+                                disabled
                                 :label="$vuetify.t('Subscription IP')"
                                 v-model="$record.subscription_ip"
-                                readonly
                                 color="null"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout rows wrap>
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm6 v-if="isAdmin">
                         <v-text-field
                                 dark
                                 hide-details
-                                :label="$vuetify.t('HTTP USER AGENT')"
+                                :label="$vuetify.t('HTTP User Agent')"
                                 v-model="$record.HTTP_USER_AGENT"
                                 readonly
                                 color="null"
@@ -223,9 +223,10 @@
                                 type="number"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm3>
+                    <v-flex xs12 sm3 v-if="isAdmin">
                         <v-text-field
                                 hide-details
+                                disabled
                                 :label="$vuetify.t('Password Resetted')"
                                 v-model="$record.last_datetime_pwd_resetted"
                                 color="null"
