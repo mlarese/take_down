@@ -1,25 +1,7 @@
 <!--eslint-disable-->
 <template>
-    <FormPanel v-bind="$attrs" title="Profile">
-
-         <v-layout rows wrap>
-            <v-flex xs12 sm12 align-center justify-center text-xs-center>
-                <span class="title">
-                {{ $record.name}} {{ $record.surname}}
-                </span>
-            </v-flex>
-            <v-flex
-                    xs12
-                    sm12
-                    align-center
-                    justify-center
-                    layout
-                    text-xs-center
-            ><span>{{$record.email}}</span>
-            </v-flex>
-         </v-layout>
-            <v-form ref="form" class="mt-2" lazy-validation>
-
+    <FormPanel v-bind="$attrs" title="Profile" >
+            <v-form ref="form" class="" lazy-validation>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
@@ -209,6 +191,7 @@
                     </v-flex>
 
                 </v-layout>
+
                 <v-layout rows wrap>
                     <v-flex xs12 sm3>
                         <v-text-field
@@ -220,7 +203,6 @@
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
@@ -231,7 +213,6 @@
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
@@ -251,13 +232,13 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-                    <v-spacer/>
-                    <v-divider class="mt-5"></v-divider>
+
+                    <v-divider class="mt-2 mb-1"></v-divider>
                     <v-card-actions>
-                        <v-btn medium color="blue-grey darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
+                        <v-btn medium color="red darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
                         <v-spacer></v-spacer>
 
-                        <v-btn medium color="blue-grey darken-3" class="elevation-0" @click="save">Save Profile</v-btn>
+                        <v-btn medium color="green darken-2" class="elevation-0" @click="save">Save Profile</v-btn>
                     </v-card-actions>
 
             </v-form>

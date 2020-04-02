@@ -2,7 +2,7 @@
 <template>
     <GridContainer title="Reports">
         <div slot="header-right" class="">
-            <ButtonNew color="info"  title="New" @click.native="onAdd"/>
+            <ButtonNew color="green darken-2"  title="New" @click.native="onAdd"/>
         </div>
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
@@ -40,6 +40,11 @@
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
+            </template>
+
+            <template v-slot:footer>
+                <td :colspan="headers.length" >
+                </td>
             </template>
 
         </v-data-table>

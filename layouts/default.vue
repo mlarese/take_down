@@ -3,33 +3,26 @@
     <v-app dark class="background pa-0" >
         <notifications position="top right" style="margin-top:50px"/>
 
-        <v-toolbar height="80" dark tabs class="elevation-1 app-toolbar" fixed >
 
+        <v-toolbar style="border-radius:0px" height="30" color="" dark tabs class="background elevation-1 app-toolbar" fixed >
             <v-layout slots="extension" rows wrap class="pl-0">
 
                 <v-flex xs1 class="py-2 px-2">
-                    <a class="default-navbar-brand" href="/">
-                        <img src="logo.png" alt="logo" width="80">
+                    <a style="position:absolute;z-index:3" class="default-navbar-brand" href="/">
+                        <img src="logo.png" alt="logo" width="70">
                     </a>
 
                 </v-flex>
                 <v-flex xs9 class="text-xs-center mt-2 ml-5">
 
-                    <template v-for="(item, i) in menuItems" v-if="item">
-
-                        <v-btn fab flat  :to="'/'+item.to" :key="i" class="pa-0" nuxt :title="item.label">
-                            <v-icon large v-if="!wXS">{{item.icon}}</v-icon>
-                            <v-icon medium v-if="wXS">{{item.icon}}</v-icon>
-                        </v-btn>
 
 
-                    </template>
                 </v-flex>
 
 
                 <v-flex class="text-xs-right" xs1>
 
-                    <v-btn  v-if="false" flat @click="" class="py-2 pl-2 pr-0" :fab="$vuetify.breakpoint.xsOnly" :small="$vuetify.breakpoint.xsOnly">
+                    <v-btn  v-if="false" flat @click="" class="pl-2 pr-0" >
                         <v-tooltip left>
                             <span slot="activator">
                                 {{userName}}
@@ -40,6 +33,18 @@
                     </v-btn>
                 </v-flex>
             </v-layout>
+            <v-bottom-nav absolute  dark  class="px-6 py-0"  >
+
+                <template v-if="item" v-for="(item, i) in menuItems" >
+
+                    <v-btn  flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
+                        <span>{{item.label}}</span>
+                        <v-icon medium>{{item.icon}}</v-icon>
+
+                    </v-btn>
+                </template>
+            </v-bottom-nav>
+
         </v-toolbar>
 
         <v-container class="mt-7 mb-5">
@@ -77,7 +82,7 @@
 <style>
     .v-input__slot {
         border: 0px solid ;
-        border-radius:4px;
+        border-radius:10px;
         padding-left: 8px;
         padding-right: 8px;
 
@@ -209,5 +214,11 @@
 
     .v-toolbar {
         border-radius: 8px 8px 0px 0px;
+    }
+
+    .v-btn--active.v-btn .v-btn__content {
+        font-size: 12px !important;
+        white-space: nowrap;
+        font-weight: bold;
     }
 </style>
