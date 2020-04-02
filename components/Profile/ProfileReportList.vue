@@ -16,6 +16,12 @@
                 class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
+                <td width="1" class="pa-1">
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                </td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                </td>
                 <td style="white-space: nowrap; text-align: center">{{ item.username }} {{ item.surname }}</td>
                 <td>{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
@@ -62,6 +68,8 @@
         data () {
 
             const headers = [
+                { text: 'Edit', value: 'action', sortable: false },
+                { text: 'Delete', value: 'action', sortable: false },
                 { text: this.$vuetify.t('User'), value: 'username' },
                 { text: this.$vuetify.t('Title'), value: 'submission_title' },
                 { text: this.$vuetify.t('Brand'), value: 'submission_brand' },

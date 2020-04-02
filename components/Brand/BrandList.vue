@@ -13,11 +13,16 @@
                 hide-details
                 dark
                 hide-actions
-                style="text-align: center"
                 class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <td>{{ item.brand_name }}</td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                </td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                </td>
+                <td style="justify-content: left">{{ item.brand_name }}</td>
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
@@ -39,6 +44,8 @@
         data () {
 
             const headers = [
+                { text: 'Edit', value: 'action', sortable: false },
+                { text: 'Delete', value: 'action', sortable: false },
                 { text: this.$vuetify.t('Brand Name'), value: 'brand_name' }
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }

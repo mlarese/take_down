@@ -65,7 +65,7 @@ export const actions = {
 }
 
 export const getters = {
-  role: (s, g, rs) => !_has(rs, 'auth.user.role') ? 'user' : rs.auth.user.role,
+  role: (s, g, rs) => !_has(rs, 'auth.user.role') ? 'admin' : rs.auth.user.role,
   user: (s, g, rs) => !_has(rs, 'auth.user') ? '' : rs.auth.user,
   userName: (s, g, rs) => !_has(rs, 'auth.user.userName') ? '' : rs.auth.user.userName,
   menuItems: (s, g) => s.menus[g.role],

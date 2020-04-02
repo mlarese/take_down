@@ -14,6 +14,12 @@
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
+                <td width="1" class="pa-1">
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                </td>
+                <td width="1" class="pa-1">
+                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                </td>
                 <td style="white-space: nowrap;text-align: center">{{ item.username }} {{ item.surname }}</td>
                 <td >{{ item.submission_title }}</td>
                 <td>{{ item.submission_brand }}</td>
@@ -29,12 +35,7 @@
                 <td>{{ item.submission_status }}</td>
                 <td style="white-space: nowrap; text-align: center">{{ item.submission_date | dmy }}</td>
 
-                <!--<td width="1" class="pa-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
-                </td>
-                <td width="1" class="pa-1">
-                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
-                </td>-->
+
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
@@ -57,6 +58,8 @@
         data () {
 
             const headers = [
+                { text: 'Edit', value: 'action', sortable: false },
+                { text: 'Delete', value: 'action', sortable: false },
                 { text: this.$vuetify.t('User'), value: 'username' },
                 { text: this.$vuetify.t('Title'), value: 'submission_title' },
                 { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
