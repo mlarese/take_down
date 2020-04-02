@@ -4,7 +4,7 @@
         <notifications position="top right" style="margin-top:50px"/>
 
 
-        <v-toolbar style="border-radius:0px" height="30" color="" dark tabs class="background elevation-1 app-toolbar" fixed >
+        <v-toolbar style="border-radius:0px"  height="30" color="" dark tabs class="background elevation-1 app-toolbar " fixed >
             <v-layout slots="extension" rows wrap class="pl-0">
 
                 <v-flex xs1 class="py-2 px-2">
@@ -20,7 +20,7 @@
                 </v-flex>
 
 
-                <v-flex class="text-xs-right" xs1>
+                <v-flex class="text-xs-right" xs1 >
 
                     <v-btn  v-if="false" flat @click="" class="pl-2 pr-0" >
                         <v-tooltip left>
@@ -33,7 +33,7 @@
                     </v-btn>
                 </v-flex>
             </v-layout>
-            <v-bottom-nav absolute  dark  class="px-6 py-0"  >
+            <v-bottom-nav absolute  dark  class="px-6 py-0 hidden-sm-and-down"  >
 
                 <template v-if="item" v-for="(item, i) in menuItems" >
 
@@ -44,6 +44,16 @@
                     </v-btn>
                 </template>
             </v-bottom-nav>
+            <v-menu class="hidden-md-and-up">
+                <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
+                <v-list>
+                    <v-list-tile v-for="(item, i) in menuItems" :key="item.i">
+                        <v-list-tile-content>
+                            <v-list-tile-title>{{ item.label }}</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
 
         </v-toolbar>
 
