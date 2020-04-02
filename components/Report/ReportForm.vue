@@ -1,13 +1,12 @@
 <!--eslint-disable-->
 <template>
 
-    <FormPanel v-bind="$attrs" class="ma-0 pa-0">
+    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Report">
+
         <div slot="header-right" >
             <v-btn  small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
-        </div><div slot="header-left">
-            <span>{{$vuetify.t('Report Form')}}</span>
         </div>
         <v-form ref="form" class="mt-2" lazy-validation>
 
@@ -36,6 +35,7 @@
                     <v-flex xs12 sm6 md6 d-flex>
                         <v-text-field
                                 hide-details
+                                v-if="isAdmin"
                                 disabled
                                 :label="$vuetify.t('Name')"
                                 color="null"
@@ -46,6 +46,7 @@
                         <v-text-field
                                 hide-details
                                 type="number"
+                                v-if="isAdmin"
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
                                 disabled

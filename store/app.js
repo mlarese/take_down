@@ -10,7 +10,7 @@ const menuItems = {
     home: {to: '', label: 'Home', icon: 'mdi-home'},
     user: {to: 'user', label: 'Users', icon: 'account_circle'},
     report: {to: 'report', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'},
-    profile: {to: 'profile', label: 'profile', icon: 'account_circle'},
+    profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
     profilereport: {to: 'profilereport', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 
@@ -67,5 +67,5 @@ export const getters = {
   user: (s, g, rs) => !_has(rs, 'auth.user') ? '' : rs.auth.user,
   userName: (s, g, rs) => !_has(rs, 'auth.user.userName') ? '' : rs.auth.user.userName,
   menuItems: (s, g) => s.menus[g.role],
-  isAdmin: (s,g) => g.role === ['admin']
+  isAdmin: (s,g) => g.role === 'admin'
 }

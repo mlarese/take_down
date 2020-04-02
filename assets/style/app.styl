@@ -1,5 +1,12 @@
 // Import Vuetify styling
 @require '~vuetify/src/stylus/main.styl'
+
+.px-6 {
+  padding-left: 64px !important;
+  padding-right: 64px !important;
+}
+
+
 .mt-6 {
   margin-top: 68px !important;
 }
@@ -14,4 +21,23 @@
 
 .theme--dark.v-btn {
   color: #d2d2d2 !important;
+}
+
+.theme--dark.v-table th,
+table.v-table tfoot tr
+{
+  background #292929 !important;
+}
+
+button.theme--dark.v-btn {
+  height: 25px !important;
+}
+
+table.v-table tfoot tr {
+  height: 32px;
+}
+
+.background {
+  __background : url(./gradmd.jpeg) top left;
+
 }

@@ -1,14 +1,13 @@
 <!--eslint-disable-->
 <template>
-    <v-btn small color="blue-grey darken-3" class="elevation-0">
-        <v-icon small>add</v-icon>
+    <v-btn small :color="color" class="elevation-0">
         {{$vuetify.t(title)}}
     </v-btn>
 </template>
 <script>
   export default {
-    name: 'ButtonNew',
     props: {
+      color: {default: 'green darken-2', type: String},
       title: {default: '', type: String}
     }
   }
