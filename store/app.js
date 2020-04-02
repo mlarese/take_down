@@ -9,6 +9,7 @@ import _has from 'lodash/has'
 const menuItems = {
     home: {to: '', label: 'Home', icon: 'mdi-home'},
     user: {to: 'user', label: 'Users', icon: 'account_circle'},
+    brand: {to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
     report: {to: 'report', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'},
     profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
     profilereport: {to: 'profilereport', label: 'Reports', icon: 'mdi-clipboard-arrow-up-outline'}
@@ -18,13 +19,14 @@ const menuItems = {
 const menus = {
   admin: [
     menuItems.home,
-    menuItems.user,
+    menuItems.brand,
     menuItems.report,
+    menuItems.user
   ],
   'user': [
     menuItems.home,
-    menuItems.profile,
-    menuItems.profilereport
+    menuItems.profilereport,
+    menuItems.profile
   ],
   guest: [
 
