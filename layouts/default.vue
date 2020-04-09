@@ -50,7 +50,17 @@
             <nuxt />
         </v-container>
 
-        <v-footer app></v-footer>
+        <v-bottom-nav absolute  dark  class="px-6 py-0 hidden-md-only"  >
+
+            <template v-if="item" v-for="(item, i) in menuItems">
+
+                <v-btn  flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
+                    <span>{{item.label}}</span>
+                    <v-icon medium>{{item.icon}}</v-icon>
+
+                </v-btn>
+            </template>
+        </v-bottom-nav>
     </v-app>
 </template>
 
