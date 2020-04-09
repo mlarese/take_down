@@ -93,13 +93,15 @@
                 </v-layout>
                 <v-layout rows wrap>
                 <v-flex xs12 sm4>
-                    <v-text-field
+                    <v-select
                             hide-details
+                            dense
+                            :item-value="code"
+                            :item-text="name"
+                            :items="countries"
                             :label="$vuetify.t('Country')"
-                            v-model="$record.country"
-                            readonly
-                            color="null "
-                    ></v-text-field>
+                            color="null"
+                            v-model="country" />
                 </v-flex>
 
                 <v-flex xs12 sm4>
@@ -256,10 +258,12 @@
         name: "ProfileForm",
         components: {FormPanel},
         data () {
-            return {}
+            return {
+                country: null
+            }
         },
         computed: {
-            ...mapState('profiles', ['$record']),
+            ...mapState('profiles', ['$record','countries']),
             ...mapGetters('app', ['isAdmin'])
 
         },

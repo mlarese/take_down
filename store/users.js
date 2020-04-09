@@ -144,8 +144,11 @@ export const actions = {
     edit({commit}, item) {
         commit('set$Record', item)
         commit('setAddMode', {item, active:false})
-
-
+    },
+    delete ({dispatch, commit, state}, id) {
+        const url = `/api/users/${id}`
+        return dispatch('api/delete', {url}, root)
+            .then(res => dispatch('load', {}))
     },
     resetSearch ({dispatch, commit, state}) {
         commit('setSearchActive', false)

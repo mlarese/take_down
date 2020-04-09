@@ -28,26 +28,18 @@
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>-->
                 <td width="1" class="pa-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.user_id )"></GridButton>
                 </td>
                 <td width="1" class="pa-1">
-                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                    <GridButton icon="delete" color="error" @click="onDelete(item.user_id)"></GridButton>
                 </td>
                 <td style="white-space: nowrap;text-align: center">{{ item.name }} {{ item.surname }}</td>
                 <td>{{ item.role }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.cell_phone }}</td>
                 <td>{{ item.working_at_company }}</td>
-               <!-- <td style="white-space: nowrap; text-align: center">{{ item.address }}</td>-->
                 <td style="white-space: nowrap; text-align: center">{{ item.subscription_datetime  | dmy}}</td>
                 <td>{{ item.email_verified }}</td>
-                <!--<td ><v-checkbox class="ml-3 pt-3" v-model="item.status"  primary></v-checkbox></td>
-                <!--<td width="1" class="pa-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
-                </td>
-                <td width="1" class="pa-1">
-                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
-                </td>-->
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
@@ -111,6 +103,9 @@
                     .then(() => {
                         this.load({})
                     })
+            },
+            onEdit (id) {
+                this.$router.push(`/profiles/${id}`)
             },
             onAdd () {
                 this.$router.push('/profile')

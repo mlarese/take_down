@@ -1,14 +1,14 @@
 <!--eslint-disable-->
 <template>
-    <report-form title="Edit Report" />
+    <subscription-form title="Edit Subscription" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import reportForm from '../../components/Report/ReportForm'
+  import subscriptionForm from '../../components/Subscription/SubscriptionForm'
   export default {
     components: {
-        reportForm
+        subscriptionForm
     },
     async fetch({store, params}) {
       store.commit('reports/setRecord',{},{root: true})

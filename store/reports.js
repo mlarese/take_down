@@ -175,6 +175,11 @@ export const actions = {
             })
 
     },
+    delete ({dispatch, commit, state}, id) {
+        const url = `/api/reports/${id}`
+        return dispatch('api/delete', {url}, root)
+            .then(res => dispatch('load', {}))
+    },
     loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
         if (!force && state.loaded) {
             return

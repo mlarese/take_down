@@ -1,15 +1,15 @@
 <!--eslint-disable-->
 <template>
-    <report-form title="New Report" />
+    <subscription-form title="New Report" />
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import reportForm from '../../components/Report/ReportForm'
+  import subscriptionForm from '../../components/Subscription/SubscriptionForm'
   import guid from 'uuid/v1'
   export default {
     components: {
-        reportForm
+        subscriptionForm
     },
     fetch({store}) {
         store.commit('reports/setRecord',{portout_flag:'N', guid: guid()},{root: true})

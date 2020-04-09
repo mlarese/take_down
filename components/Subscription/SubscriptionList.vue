@@ -1,8 +1,8 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Reports">
-        <div slot="header-right" class="">
-            <ButtonNew color="green darken-2"  title="New Report" @click.native="onAdd"/>
+    <GridContainer title="Subscriptions">
+        <div slot="header-right" :disabled="!isAdmin">
+            <ButtonNew color="green darken-2"  title="New Subscription" @click.native="onAdd" />
         </div>
 
 
@@ -15,10 +15,10 @@
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
                 <td width="1" class="pa-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.reports_id )"></GridButton>
                 </td>
                 <td width="1" class="pa-1">
-                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                    <GridButton icon="delete" color="error" @click="onDelete(item.reports_id)"></GridButton>
                 </td>
                 <td style="white-space: nowrap;text-align: center">{{ item.username }} {{ item.surname }}</td>
                 <td >{{ item.submission_title }}</td>
@@ -97,6 +97,9 @@
                         this.load({})
                     })
             },
+            onEdit (id) {
+                this.$router.push(`/report/${id}`)
+            }
         }
     }
 </script>

@@ -1,11 +1,11 @@
 [
-  { "id": 1, "brand_name": "Service"},
-  { "id": 2, "brand_name": "Organization"},
-  { "id": 3, "brand_name": "Personal"},
-  { "id": 4, "brand_name": "Group"},
-  { "id": 5, "brand_name": "Event"},
-  { "id": 6, "brand_name": "Media"},
-  { "id": 7, "brand_name": "Innovative"},
-  { "id": 8, "brand_name": "Luxury"},
-  { "id": 9, "brand_name": "Style"}
+  { "brand_id": 1, "brand_name": "Service"},
+  { "brand_id": 2, "brand_name": "Organization"},
+  { "brand_id": 3, "brand_name": "Personal"},
+  { "brand_id": 4, "brand_name": "Group"},
+  { "brand_id": 5, "brand_name": "Event"},
+  { "brand_id": 6, "brand_name": "Media"},
+  { "brand_id": 7, "brand_name": "Innovative"},
+  { "brand_id": 8, "brand_name": "Luxury"},
+  { "brand_id": 9, "brand_name": "Style"}
 ]

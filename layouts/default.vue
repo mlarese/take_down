@@ -35,7 +35,7 @@
             </v-layout>
    <v-bottom-nav absolute  dark  class="px-6 py-0 hidden-sm-and-down"  >
 
-                <template v-if="item" v-for="(item, i) in menuItems" >
+                <template v-if="item" v-for="(item, i) in menuItems">
 
                     <v-btn  flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
                         <span>{{item.label}}</span>
@@ -44,36 +44,6 @@
                     </v-btn>
                 </template>
             </v-bottom-nav>
-            <v-card height="200px">
-                <v-bottom-nav
-                        :active.sync="bottomNav"
-                        :color="color"
-                        :value="true"
-                        absolute
-                        dark
-                        shift
-                >
-                    <v-btn dark>
-                        <span>Video</span>
-                        <v-icon>ondemand_video</v-icon>
-                    </v-btn>
-
-                    <v-btn dark>
-                        <span>Music</span>
-                        <v-icon>music_note</v-icon>
-                    </v-btn>
-
-                    <v-btn dark>
-                        <span>Book</span>
-                        <v-icon>book</v-icon>
-                    </v-btn>
-
-                    <v-btn dark>
-                        <span>Image</span>
-                        <v-icon>image</v-icon>
-                    </v-btn>
-                </v-bottom-nav>
-            </v-card>
         </v-toolbar>
 
         <v-container class="mt-7 mb-5">
@@ -239,7 +209,9 @@
 
     }
 
-    .v-card {}
+    .v-card {
+
+    }
 
     .v-toolbar {
         border-radius: 8px 8px 0px 0px;

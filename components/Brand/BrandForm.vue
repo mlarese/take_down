@@ -10,11 +10,12 @@
         <span>{{$vuetify.t('Brand Form')}}</span>
     </div>
         <v-form ref="form" lazy-validation>
-            <v-layout  >
-
+            <v-layout>
                 <v-flex xs12 sm12 md12>
-                    <v-text-field dense  hide-details :label="$vuetify.t('Brand Name')"
-                                    v-model="$record.brand_name" />
+                    <v-text-field dense
+                                  hide-details
+                                  :label="$vuetify.t('Brand Name')"
+                                  v-model="$record.brand_name" />
                 </v-flex>
             </v-layout>
 

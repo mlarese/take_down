@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
 
-    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Report">
+    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Subscription">
 
         <div slot="header-right" >
             <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >

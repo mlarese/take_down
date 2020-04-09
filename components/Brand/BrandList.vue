@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Brand">
+    <GridContainer title="Brands">
         <div slot="header-right" class="">
             <ButtonNew color="green darken-2"  title="New Brand" @click.native="onAdd"/>
         </div>
@@ -17,10 +17,10 @@
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
                 <td width="1" class="pa-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.brand_id )"></GridButton>
                 </td>
                 <td width="1" class="pa-1">
-                    <GridButton icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                    <GridButton icon="delete" color="error" @click="onDelete(item.brand_id)"></GridButton>
                 </td>
                 <td style="justify-content: left">{{ item.brand_name }}</td>
             </template>
@@ -65,7 +65,16 @@
             onAdd () {
                 this.$router.push('/brand/add')
             },
-            ...mapActions('brands', ['add', 'save']),
+            onDelete (id) {
+                if(!confirm('Do you confirm the row deletion ?')) return
+                this.delete(id)
+                    .then(() => {
+                        this.load({})
+                    })
+            },
+            onEdit (id) {
+                this.$router.push(`/brand/${id}`)
+            }
         }
     }
 </script>

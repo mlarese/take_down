@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import ProfileReportForm from '../../components/Report/ReportForm'
+  import ProfileReportForm from '../../components/Subscription/SubscriptionForm'
   export default {
     components: {
         ProfileReportForm

@@ -122,9 +122,10 @@ export const actions = {
             })
 
     },
-    deletes ({dispatch, commit, state}, id) {
+    delete ({dispatch, commit, state}, id) {
         const url = `/api/brands/${id}`
         return dispatch('api/delete', {url}, root)
+            .then(res => dispatch('load', {}))
     },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
