@@ -146,7 +146,7 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
-                                :label="$vuetify.t('Subscription Date')"
+                                :label="$vuetify.t('Submission Date')"
                                 v-model="$record.subscription_datetime"
                                 readonly
                                 color="null"
@@ -158,7 +158,7 @@
                         <v-text-field
                                 hide-details
                                 disabled
-                                :label="$vuetify.t('Subscription IP')"
+                                :label="$vuetify.t('Submission IP')"
                                 v-model="$record.subscription_ip"
                                 color="null"
                         ></v-text-field>
@@ -221,7 +221,7 @@
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
-                                :label="$vuetify.t('Subscription Date')"
+                                :label="$vuetify.t('Submission Date')"
                                 v-model="$record.number_of_submissions_rejected"
                                 disabled
                                 color="null"
@@ -263,7 +263,7 @@
             }
         },
         computed: {
-            ...mapState('profiles', ['$record','countries']),
+            ...mapState('users', ['$record','countries']),
             ...mapGetters('app', ['isAdmin'])
 
         },
@@ -272,7 +272,7 @@
                 this.save()
                     .then(r => this.$router.go(-1))
             },
-            ...mapActions('profiles', ['add', 'save','insert','deletes']),
+            ...mapActions('users', ['add', 'save','insert','deletes']),
 
         }
 

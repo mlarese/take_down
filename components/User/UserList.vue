@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Users">
-        <div slot="header-right" class="">
+        <div slot="header-right" v-if="isAdmin">
             <ButtonNew color="green darken-2"  title="New User" @click.native="onAdd"/>
         </div>
 
@@ -68,7 +68,7 @@
                 { text: this.$vuetify.t('Email'), value: 'email' },
                 { text: this.$vuetify.t('Phone Number'), value: 'cell_phone' },
                 { text: this.$vuetify.t('Company'), value: 'working_at_company' },
-                { text: this.$vuetify.t('Subscription Date'), value: 'subscription_datetime' },
+                { text: this.$vuetify.t('Submission Date'), value: 'subscription_datetime' },
                 { text: this.$vuetify.t('Email Verified'), value: 'email_verified' }
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }
@@ -105,10 +105,10 @@
                     })
             },
             onEdit (id) {
-                this.$router.push(`/profiles/${id}`)
+                this.$router.push(`/user/${id}`)
             },
             onAdd () {
-                this.$router.push('/profile')
+                this.$router.push('/user/add')
             }
         }
     }

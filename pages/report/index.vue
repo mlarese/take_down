@@ -1,13 +1,13 @@
 <template>
-  <report-list/>
+  <submission-list/>
 </template>
 
 <script>
-  import reportList  from '../../components/Subscription/SubscriptionList'
+  import SubmissionList  from '../../components/Submission/SubmissionList'
   const root = {root: true}
 
   export default {
-    components: {reportList},
+    components: {SubmissionList},
     fetch ({store}) {
         store.dispatch('reports/load', {}, root)
     }

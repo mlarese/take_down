@@ -1,59 +1,218 @@
-[{
+[
+  {
+    "reports_id": 1,
 
-  "submission_internal_progressive_primary_key": 1,
+    "submission_short_uuid": "dux",
 
-  "submission_short_uuid": "string",
+    "submission_date": "2020-03-24T16:12:15+01:00",
 
-  "submission_date": "2020-01-24T16:12:15+01:00",
+    "submission_ip": "11.543.64.118",
 
-  "submission_ip": "95.176.92.118",
+    "submission_HTTP_USER_AGENT": "Company",
 
-  "submission_HTTP_USER_AGENT": "string",
+    "user_id": 3,
 
-  "user_id": 4,
-  "username": "courage",
-  "surname": "larese",
+    "username": "Mauro",
 
-  "submission_url": "https:\\/\\/www.ebay.com",
+    "surname": "Caz",
 
-  "submission_status": "inserito",
+    "submission_url": "https:\\/\\/www.yahoo.com",
 
-  "submission_status_change_datetime": "2020-01-24T16:12:15+01:00",
+    "submission_status": "progress",
 
-  "submission_country": "Italy",
+    "submission_status_change_datetime": "2019-01-31T16:12:15+01:00",
 
-  "submission_city": "Padova",
+    "submission_country": "Germany",
 
-  "submission_region": "PD",
+    "submission_city": "Dutch",
 
-  "submission_zipcode": 30014,
+    "submission_region": "DT",
 
-  "submission_address": "Via Garibaldi 14",
+    "submission_zipcode": "DZ231",
 
-  "submission_geo_location_latitude": 45.49167,
+    "submission_address": "Vue Dudtshe 12",
 
-  "submission_geo_location_longitude": 45.49167,
+    "submission_geo_location_latitude": 93.49167,
 
-  "submission_brand": "Ferrari",
+    "submission_geo_location_longitude": 54.49167,
 
-  "submission_title": "Title",
+    "submission_brand": "Mcdonald",
 
-  "submission_description": "Description",
+    "submission_title": "Theft",
 
-  "pictures":
+    "submission_description": "This is just a brief description",
 
-    {
+    "pictures":[{
 
       "submission_picture_url": "\\/storage\\/05561ae8f311a22661071b8f1ed94d93.jpg",
 
       "submission_picture_original_file_name": "file_name_blabla.jpg",
 
       "submission_picture_exiftool": "ExifTool Version Number"
+    }]
+  },
 
-    }
+
+  {
+    "reports_id": 2,
+
+    "submission_short_uuid": "STringFm",
+
+    "submission_date": "2011-05-04T16:12:15+01:00",
+
+    "submission_ip": "43.534.27.000",
+
+    "submission_HTTP_USER_AGENT": "Brand",
+
+    "user_id": 7,
+
+    "username": "Silvia",
+
+    "surname": "Gog",
+
+    "submission_url": "https:\\/\\/www.gogl.com",
+
+    "submission_status": "finish",
+
+    "submission_status_change_datetime": "2012-01-31T16:12:15+01:00",
+
+    "submission_country": "Africa",
+
+    "submission_city": "Dutch",
+
+    "submission_region": "AL",
+
+    "submission_zipcode": "AB6432",
+
+    "submission_address": "Vue Dudtshe 12",
+
+    "submission_geo_location_latitude": 93.49167,
+
+    "submission_geo_location_longitude": 54.49167,
+
+    "submission_brand": "Nov",
+
+    "submission_title": "BElla",
+
+    "submission_description": "This is just a brief description",
+
+    "pictures":[{
+
+      "submission_picture_url": "\\/storage\\/05561ae8f311a22661071b8f1ed94d93.jpg",
+
+      "submission_picture_original_file_name": "file_name_blabla.jpg",
+
+      "submission_picture_exiftool": "ExifTool Version Number"
+    }]
+  },
 
 
 
-}
+  {
+    "reports_id": 3,
 
+    "submission_short_uuid": "adhbhjsd",
+
+    "submission_date": "2021-05-24T16:12:15+01:00",
+
+    "submission_ip": "99.534.92.118",
+
+    "submission_HTTP_USER_AGENT": "Company",
+
+    "user_id": 3,
+
+    "username": "Mauro",
+
+    "surname": "Caz",
+
+    "submission_url": "https:\\/\\/www.yahoo.com",
+
+    "submission_status": "progress",
+
+    "submission_status_change_datetime": "2019-01-31T16:12:15+01:00",
+
+    "submission_country": "Germany",
+
+    "submission_city": "Dutch",
+
+    "submission_region": "DT",
+
+    "submission_zipcode": "DZ231",
+
+    "submission_address": "Vue Dudtshe 12",
+
+    "submission_geo_location_latitude": 93.49167,
+
+    "submission_geo_location_longitude": 54.49167,
+
+    "submission_brand": "Mcdonald",
+
+    "submission_title": "Theft",
+
+    "submission_description": "This is just a brief description",
+
+    "pictures":[{
+
+      "submission_picture_url": "\\/storage\\/05561ae8f311a22661071b8f1ed94d93.jpg",
+
+      "submission_picture_original_file_name": "file_name_blabla.jpg",
+
+      "submission_picture_exiftool": "ExifTool Version Number"
+    }]
+  },
+
+
+  {
+
+    "reports_id": 4,
+
+    "submission_short_uuid": "string",
+
+    "submission_date": "2020-01-24T16:12:15+01:00",
+
+    "submission_ip": "95.176.92.118",
+
+    "submission_HTTP_USER_AGENT": "string",
+
+    "user_id": 4,
+
+    "username": "courage",
+
+    "surname": "larese",
+
+    "submission_url": "https:\\/\\/www.ebay.com",
+
+    "submission_status": "inserito",
+
+    "submission_status_change_datetime": "2020-01-24T16:12:15+01:00",
+
+    "submission_country": "Italy",
+
+    "submission_city": "Padova",
+
+    "submission_region": "PD",
+
+    "submission_zipcode": 30014,
+
+    "submission_address": "Via Garibaldi 14",
+
+    "submission_geo_location_latitude": 45.49167,
+
+    "submission_geo_location_longitude": 45.49167,
+
+    "submission_brand": "Ferrari",
+
+    "submission_title": "Title",
+
+    "submission_description": "Description",
+
+    "pictures":[{
+
+      "submission_picture_url": "\\/storage\\/05561ae8f311a22661071b8f1ed94d93.jpg",
+
+      "submission_picture_original_file_name": "file_name_blabla.jpg",
+
+      "submission_picture_exiftool": "ExifTool Version Number"
+    }]
+  }
 ]

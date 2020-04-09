@@ -1,19 +1,19 @@
 <!--eslint-disable-->
 <template>
-    <profile-form/>
+    <user-form/>
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import ProfileForm from '../../components/Profile/ProfileForm'
+  import UserForm from '../../components/User/UserForm'
   import guid from 'uuid/v1'
   export default {
     components: {
-        ProfileForm
+        UserForm
     },
     fetch({store}) {
-        store.commit('profiles/setRecord',{portout_flag:'N', guid: guid()},{root: true})
-        store.commit('profiles/setAddMode',null,{root: true})
+        store.commit('users/setRecord',{portout_flag:'N', guid: guid()},{root: true})
+        store.commit('users/setAddMode',null,{root: true})
     }
   }
 </script>

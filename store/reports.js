@@ -145,13 +145,20 @@ export const actions = {
         if (!force && state.list.length > 0) {
             return
         }
-
-        return dispatch('api/get', {url: `/api/reports`, options, debug: false}, root)
-            .then(res => {
-                commit('setList', res.data)
-                return res
-            })
-
+        if (id === null) {
+            return dispatch('api/get', {url: `/api/reports`, options, debug: false}, root)
+                .then(res => {
+                    commit('setList', res.data)
+                    return res
+                })
+        } else {
+            const url = `/api/reports/${id}`
+            return dispatch('api/get', {url, options}, root)
+                .then(res => {
+                    commit('setRecord', res.data)
+                    return res
+                })
+        }
     },
     delete ({dispatch, commit, state}, id) {
         const url = `/api/reports/${id}`

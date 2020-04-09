@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
 
-    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Subscription">
+    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Submission">
 
         <div slot="header-right" >
             <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
@@ -16,13 +16,12 @@
                                 disabled
                                 :label="$vuetify.t('Name')"
                                 color="null"
-                                v-model="$record.name" />
+                                v-model="$record.username" />
                     </v-flex>
 
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
-                                type="number"
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
                                 disabled
@@ -95,7 +94,7 @@
                                         v-model="$record.submission_url" />
                     </v-flex>
 
-                    <v-flex xs12 sm6 class="custom-select">
+                    <v-flex xs12 sm6 >
                         <v-select
                                 :label="$vuetify.t('Status')"
                                 v-model="$record.submission_status"
@@ -111,7 +110,6 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 disabled
-                                type="number"
                                 hide-details
                                 :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.submission_zipcode"
@@ -164,7 +162,6 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-                            type="number"
                             :label="$vuetify.t('IP')"
                             v-model="$record.submission_ip"
                             disabled
@@ -254,16 +251,16 @@
             }
         },
         computed: {
-            ...mapState('profileReports', ['$record']),
+            ...mapState('reports', ['$record']),
             ...mapState('brands', {'brandsList': 'list'}),
             ...mapGetters('app', ['isAdmin'])
             },
         methods: {
-            onAdd() {
+            onAdd () {
                 this.save()
                     .then(r => this.$router.go(-1))
             },
-            ...mapActions('profileReports', ['add', 'save','profilereportlist'])
+            ...mapActions('reports', ['add', 'save','reportList'])
         }
     }
 </script>

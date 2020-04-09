@@ -114,14 +114,6 @@ export const actions = {
                 return res
             })
     },
-    saves ({dispatch, commit, state, getters}, item) {
-        return dispatch('update', {data:item, id:item.id})
-            .then(r => {
-                commit('setViewMode', {item, active:true})
-
-            })
-
-    },
     delete ({dispatch, commit, state}, id) {
         const url = `/api/brands/${id}`
         return dispatch('api/delete', {url}, root)
@@ -138,8 +130,8 @@ export const actions = {
                     return r
                 })
         } else {
-            let id = data.code
-            return dispatch('update', {data, id})
+            let id = data.lp_id
+            return dispatch('api/put', {url: `/api/brands/${id}`, data}, root)
                 .then(r => {
                     commit('addRecord', data)
                     commit('set$Record', {})
@@ -169,33 +161,21 @@ export const actions = {
         if (!force && state.list.length > 0) {
             return
         }
-
-        return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
-            .then(res => {
-                commit('setList', res.data)
-                return res
-            })
-
-    },
-    loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.loaded) {
-            return
-        }
         if (id === null) {
-            return dispatch('api/post', {url: `/api/brands`, options, debug: false}, root)
+            return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
-                    commit('setPagination')
                     return res
                 })
         } else {
-            return dispatch('api/get', {url: `/api/brands/{id}`, options}, root)
+            const url = `/api/brands/${id}`
+            return dispatch('api/get', {url, options}, root)
                 .then(res => {
-                    commit('setRecord', res)
+                    commit('setRecord', res.data)
                     return res
                 })
         }
-    },
+    }
 }
 
 export const getters = {

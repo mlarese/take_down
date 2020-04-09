@@ -1,13 +1,13 @@
 <!--eslint-disable-->
 <template>
-        <profile-report-form title="New Report"/>
+        <profile-submission-form title="New Report"/>
 </template>
 
 <script>
-  import ProfileReportForm from '../../components/Subscription/SubscriptionForm'
+  import ProfileSubmissionForm from '../../components/Profile/ProfileSubmissionForm'
   export default {
     components: {
-        ProfileReportForm
+        ProfileSubmissionForm
     },
     fetch({store}) {
         store.commit('profileReports/setRecord',{},{root: true})

@@ -4,7 +4,7 @@
   </v-layout>
 </template>
 <script>
-    import profileReportForm from '../components/Subscription/SubscriptionForm'
+    import profileReportForm from '../components/Submission/SubmissionForm'
     export default {
         components : {profileReportForm}
     }

@@ -1,13 +1,13 @@
 <template>
-  <profile-report-list/>
+  <profile-submission-list/>
 </template>
 
 <script>
-  import ProfileReportList  from '../../components/Profile/ProfileReportList'
+  import ProfileSubmissionList  from '../../components/Profile/ProfileSubmissionList'
   const root = {root: true}
 
   export default {
-    components: {ProfileReportList},
+    components: {ProfileSubmissionList},
     fetch ({store}) {
         store.dispatch('profileReports/load', {}, root)
     }
