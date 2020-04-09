@@ -100,7 +100,7 @@ export const actions = {
             })
     },
     insert ({dispatch, commit}, {data}) {
-        const url = `/api/brands`
+        const url = `/brands`
         return dispatch('api/post', {url, data}, root)
     },
     search ({dispatch, commit, state}) {
@@ -166,22 +166,16 @@ export const actions = {
         commit('setList', [])
     },
     load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.loaded) {
+        if (!force && state.list.length > 0) {
             return
         }
-        if (id === null) {
-            return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
-                .then(res => {
-                    commit('setList', res.data)
-                    return res
-                })
-        } else {
-            return dispatch('api/get', {url: `/api/brands/{id}`, options}, root)
-                .then(res => {
-                    commit('setRecord', res.data)
-                    return res
-                })
-        }
+
+        return dispatch('api/get', {url: `/api/brands`, options, debug: false}, root)
+            .then(res => {
+                commit('setList', res.data)
+                return res
+            })
+
     },
     loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
         if (!force && state.loaded) {

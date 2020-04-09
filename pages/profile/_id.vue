@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <profile-form-form />
+    <profile-form />
 </template>
 
 <script>

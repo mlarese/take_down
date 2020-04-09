@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Subscriptions">
-        <div slot="header-right" :disabled="!isAdmin">
+        <div slot="header-right">
             <ButtonNew color="green darken-2"  title="New Subscription" @click.native="onAdd" />
         </div>
 

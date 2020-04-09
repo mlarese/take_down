@@ -103,28 +103,6 @@ export const actions = {
         const url = `/reports`
         return dispatch('api/post', {url, data}, root)
     },
-    search ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/api/campaigns_search`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
-    reporting ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/reports`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
 

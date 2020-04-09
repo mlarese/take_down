@@ -1,19 +1,19 @@
 <!--eslint-disable-->
 <template>
-    <user-form />
+    <profile-form/>
 </template>
 
 <script>
   import {mapActions, mapState, mapGetters} from 'vuex'
-  import userForm from "../../components/User/UserForm"
+  import ProfileForm from "../../components/Profile/ProfileForm"
   export default {
     components: {
-        userForm
+        ProfileForm
     },
     async fetch({store, params}) {
-      store.commit('users/setRecord',{},{root: true})
-      store.commit('users/setEditMode',null,{root: true})
-      await store.dispatch('users/load', {id: params.id}, {root: true})
+      store.commit('profiles/setRecord',{},{root: true})
+      store.commit('profiles/setEditMode',null,{root: true})
+      await store.dispatch('profiles/load', {id: params.id}, {root: true})
     }
   }
 </script>

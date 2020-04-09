@@ -4,7 +4,6 @@
         <div slot="header-right" class="">
             <ButtonNew color="green darken-2"  title="New Brand" @click.native="onAdd"/>
         </div>
-
         <v-data-table
                 :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
