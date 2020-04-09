@@ -50,7 +50,7 @@
             <nuxt />
         </v-container>
 
-        <v-bottom-nav absolute  dark  class="px-6 py-0 hidden-md-only"  >
+        <v-bottom-nav absolute  dark  class="px-6 py-0 hidden-md-and-up"  >
 
             <template v-if="item" v-for="(item, i) in menuItems">
 

@@ -10,7 +10,6 @@
                                 dark
                                 :label="$vuetify.t('Name')"
                                 v-model="$record.name"
-                                readonly
                                 color="null"
                         ></v-text-field>
                     </v-flex>
@@ -127,7 +126,6 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
-                                type="number"
                                 :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.zipcode"
                                 color="null"
@@ -150,7 +148,6 @@
                                 v-model="$record.subscription_datetime"
                                 readonly
                                 color="null"
-
                         ></v-text-field>
                     </v-flex>
 
@@ -178,7 +175,6 @@
 
                     <v-flex xs12 sm3 style=" ">
                         <v-switch
-
                                 color="green"
                                 hide-details
                                 v-model="$record.email_verified"
@@ -201,7 +197,6 @@
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
-                                type="number"
                                 :label="$vuetify.t('Number of Submissions')"
                                 v-model="$record.number_of_submissions"
                                 disabled
@@ -211,7 +206,6 @@
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
-                                type="number"
                                 :label="$vuetify.t('Number of Submissions Accepted')"
                                 v-model="$record.number_of_submissions_accepted"
                                 disabled
@@ -225,7 +219,6 @@
                                 v-model="$record.number_of_submissions_rejected"
                                 disabled
                                 color="null"
-                                type="number"
                         ></v-text-field>
                     </v-flex>
                     <v-flex xs12 sm3 v-if="isAdmin">
