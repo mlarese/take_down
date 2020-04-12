@@ -27,10 +27,9 @@
                 <td>{{ item.phone_number}}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.web }}</td>-->
-                <td width="1" class="pa-1">
+                <td width="1" class="pa-1" style="white-space: nowrap;">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.user_id )"></GridButton>
-                </td>
-                <td width="1" class="pa-1">
+
                     <GridButton icon="delete" color="error" @click="onDelete(item.user_id)"></GridButton>
                 </td>
                 <td style="white-space: nowrap;text-align: center">{{ item.name }} {{ item.surname }}</td>
@@ -61,8 +60,7 @@
         data () {
 
             const headers = [
-                { text: 'Edit', value: 'action', sortable: false },
-                { text: 'Delete', value: 'action', sortable: false },
+                { text: 'Action', value: 'action', sortable: false },
                 { text: this.$vuetify.t('User'), value: 'name' },
                 { text: this.$vuetify.t('Role'), value: 'role' },
                 { text: this.$vuetify.t('Email'), value: 'email' },
