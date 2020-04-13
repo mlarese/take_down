@@ -40,20 +40,8 @@
                 </v-card-actions>
                     </v-tab-item>
 
-
-
-
-
-
-
-
-
-
-
-
-
                     <v-tab-item>
-                        <v-card flat>
+                        <v-card>
                             <v-card-text>
                                 <v-form method="post" action="#" @submit="checkForm" novalidate="true">
                                     <div class="title mb-5 mt-3" style="text-align: center">New here? Register</div>
@@ -62,7 +50,7 @@
                                     <v-text-field append-icon="" v-model="role" :rules="[rules.role]" label="Role" counter="25" required></v-text-field>
                                     <v-text-field append-icon="" v-model="company" :rules="[rules.company]" label="Company" required></v-text-field>
                                     <v-text-field append-icon=""  label="Partita Iva"></v-text-field>
-                                    <v-autocomplete append-icon="" v-model="country" :rules="[rules.country]" label="Country" required></v-autocomplete>
+                                    <v-autocomplete append-icon=""  label="Country" items="countries" items-value="code" items-text="name"></v-autocomplete>
                                     <v-text-field append-icon="" v-model="address" :rules="[rules.address]" label="Address" required></v-text-field>
                                     <v-text-field append-icon="" v-model="city" :rules="[rules.city]" label="City" required></v-text-field>
                                     <v-text-field append-icon="" v-model="cap" :rules="[rules.cap]" label="Cap" required></v-text-field>
@@ -70,9 +58,6 @@
                                     <v-text-field append-icon="" v-model="phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
                                     <v-text-field append-icon="" v-model="email" :rules="[rules.email]" label="Email" required></v-text-field>
                                     <v-text-field append-icon="" label="Web"></v-text-field>
-                                    <re-c-a-p-t-c-h-a/>
-                                    <br>
-
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
                                         <v-btn color="primary" :disabled="!isValid" >Sign Up</v-btn>
@@ -93,6 +78,7 @@
   import {mapState, mapActions} from 'vuex'
   import {notifyError} from '../../storeimp/api/actions'
   import {getSchema} from '../../assets/helpers'
+  import countries from '../../storeimp/fixtures/country.json'
   export default {
     layout: 'empty',
     auth: 'guest',
@@ -100,26 +86,26 @@
     data () {
       return {
         error: null,
+        countries: [],
         username: '',
         password: '',
         alert: null,
         unverified: false,
         showReset: false,
         loading: false,
-          dialog: false,
-          email: undefined,
-          form: false,
-          isLoading: false,
-          phone: undefined,
-          name: null,
-          role: null,
-          phoneNumber: null,
-          zip: null,
-          surname: null,
-          address: null,
-          city: null,
-          company: null,
-          country: null,
+        dialog: false,
+        email: false,
+        form: false,
+        isLoading: false,
+        phone: undefined,
+        name: null,
+        role: null,
+        phoneNumber: null,
+        zip: null,
+        surname: null,
+        address: null,
+        city: null,
+        company: null,
           rules: {
               email: v => (v || '').match(/@/) || 'Please enter a valid email',
               length: len => v => (v || '').length >= len || `Invalid character length, required ${len}`,
@@ -133,8 +119,7 @@
               phoneNumber: val => (val || '').phoneNumber > 0 || 'This field is required',
               company: val => (val || '').company > 0 || 'This field is required',
               zip: val => (val || '').zip > 0 || 'This field is required',
-              country: val => (val || '').country > 0 || 'This field is required',
-              role: val => (val || '').role > 0 || 'This field is required',
+              role: val => (val || '').role > 0 || 'This field is required'
           },
       }
     },
