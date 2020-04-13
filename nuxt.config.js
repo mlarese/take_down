@@ -1,8 +1,55 @@
 const pkg = require('./package')
 
+let routerBase = '/'
+if (process.env.NODE_ENV === 'production') {
+  routerBase = '/app/'
+}
+
 module.exports = {
   mode: 'spa',
-
+  router: {
+    // mode: 'hash',
+    base: routerBase,
+    middleware: ['acl', 'auth']
+  },
+  auth: {
+    redirect: {
+      logout: '/login',
+      callback: '/callback'
+    },
+    resetOnError: true,
+    strategies: {
+      prod: {
+        _scheme: 'local',
+        endpoints: {
+          login: { baseURL: '/', url: '/api/auth/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: '/', url: '/api/auth/logout', method: 'post' },
+          user: {baseURL: '/', url: '/api/auth/user', method: 'get', propertyName: 'user' }
+        },
+        tokenRequired: true,
+        tokenType: 'bearer'
+      },
+      dev: {
+        _scheme: 'local',
+        endpoints: {
+          login: { baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/logout', method: 'post' },
+          user: {baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/user', method: 'get', propertyName: 'user' }
+        },
+        tokenRequired: true,
+        tokenType: 'bearer'
+      },
+      local: {
+        endpoints: {
+          login: { baseURL: 'http://localhost', url: '/api/auth/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: 'http://localhost', url: '/api/auth/logout', method: 'post' },
+          user: {baseURL: 'http://localhost', url: '/api/auth/user', method: 'get', propertyName: 'user' }
+        },
+        tokenRequired: true,
+        tokenType: 'bearer'
+      }
+    }
+  },
   /*
   ** Headers of the page
   */
@@ -15,8 +62,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
-      { rel: 'stylesheet', href: 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      // { rel: 'stylesheet', href: 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css' }
     ]
   },
 
@@ -36,15 +83,16 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/auth.js'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration

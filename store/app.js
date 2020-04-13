@@ -1,11 +1,5 @@
 import _has from 'lodash/has'
 
-/**
- * ruoli:
- *    admin
- *
- *
- */
 const menuItems = {
     home: {to: '', label: 'Home', icon: 'mdi-home'},
     user: {to: 'user', label: 'Users', icon: 'account_circle'},
@@ -62,12 +56,19 @@ export const mutations = {
 }
 
 export const actions = {
+  logOut ({commit}, $auth) {
+    $auth.setUser({})
+  }
 }
 
 export const getters = {
-  role: (s, g, rs) => !_has(rs, 'auth.user.role') ? 'user' : rs.auth.user.role,
+  role: (s, g, rs) => !_has(rs, 'auth.user.role') ? 0 : rs.auth.user.role,
   user: (s, g, rs) => !_has(rs, 'auth.user') ? '' : rs.auth.user,
-  userName: (s, g, rs) => !_has(rs, 'auth.user.userName') ? '' : rs.auth.user.userName,
-  menuItems: (s, g) => s.menus[g.role],
-  isAdmin: (s,g) => g.role === 'admin'
+  userName: (s, g, rs) => !_has(rs, 'auth.user.name') ? '' : `${rs.auth.user.name} ${rs.auth.user.surname}`,
+  menuItems: (s, g) => {
+    let rName = 'user'
+    if(g.role === 0) rName = 'admin'
+    return s.menus[rName]
+  },
+  isAdmin: (s,g) => g.role === 0
 }

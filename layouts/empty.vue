@@ -1,9 +1,9 @@
 <!--eslint-disable-->
 <template>
-  <v-app  id="inspire" class="transparent">
-    <notifications position="top left" style="margin-top:50px"/>
+  <v-app id="inspire" class="grey lighten-2">
+    <notifications position="top right" style="margin-top:50px"/>
     <v-content class="back-city">
-      <v-container fluid fill-height class="transparent">
+      <v-container fluid fill-height>
         <nuxt />
       </v-container>
     </v-content>
@@ -12,13 +12,7 @@
 
 <script>
   import {mapState} from 'vuex'
-
   export default {
-    head () {
-      return {
-        title: 'Take Down',
-      }
-    },
     computed: {
       ...mapState('app', ['title']),
       ...mapState('api', ['notification'])
@@ -31,3 +25,13 @@
   }
 </script>
 
+<style>
+  .back-city{
+    background-image:  url(https://www.griffeshield.com/wp-content/uploads/2019/04/banner-v2.jpg) !important;
+    background-color: rgb(0,0,0,0.9) ;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+
+  }
+</style>

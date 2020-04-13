@@ -7,7 +7,7 @@ export const locale = curLocale
 
 export const getSchema = () => {
   let schema = 'prod'
-  // if (process.env.NODE_ENV === 'development') schema = 'dev'
+  if(process.env.NODE_ENV === 'development') schema = 'dev'
   return schema
 }
 export const getServer = () => {

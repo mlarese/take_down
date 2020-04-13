@@ -3,6 +3,7 @@ import {getSchema} from '../assets/helpers'
 
 export default async function ({route, store, redirect, app}) {
 
+  return
   const schema = getSchema()
   const token = app.$auth.getToken(schema)
 

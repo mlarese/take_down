@@ -8,6 +8,17 @@ import format from 'date-fns/format'
 let today = new Date()
 let fmtToday = format(today, 'yyyy-MM-dd')
 
+export const reportStates = [
+    {text: 'Inserted', value: 0},
+    {text: 'Canceled', value: 1},
+    {text: 'Transmitted', value: 2},
+    {text: 'Expired', value: 3},
+    {text: 'Accepted', value: 4},
+    {text: 'Not accepted', value: 5},
+    {text: 'Under processinge', value: 6},
+    {text: 'Resolved', value: 7}
+]
+
 const newFilter = () => ({
     creation_datetime: [fmtToday, fmtToday],
     start_datetime: [fmtToday, fmtToday],
@@ -21,29 +32,6 @@ export const state = () => {
         $record: {},
         addRecord: {},
         resetItem: {},
-        grid: {
-            pagination: {
-                search: '',
-                descending: true,
-                page: 1,
-                pages: 0,
-                rowsPerPage: 100,
-                totalItems: 0
-            }
-        },
-        agesList: [
-            {text:'0-18', value: 1},
-            {text:'19-25', value: 2},
-            {text:'26-35', value: 3},
-            {text:'36-45', value: 4},
-            {text:'46-55', value: 5},
-            {text:'>55', value: 6}
-        ],
-        statusList: [
-            {value: 4,  text: 'Pending'},
-            {value: 5,  text: 'Running'},
-            {value: 6,  text: 'Ended'}
-        ],
         mode: 'list',
         searchActive: false,
         filter: newFilter()
@@ -53,12 +41,6 @@ export const state = () => {
 const root = {root: true}
 
 export const mutations = {
-    setPagination (state) {
-        state.grid.pagination.totalItems = state.list.length
-        state.grid.pagination.page = 1
-        state.grid.pagination.pages = Math.ceil(state.grid.pagination.totalItems / state.grid.pagination.rowsPerPage)
-        console.dir(state.grid)
-    },
     setSearchActive (state, payload) { state.searchActive = payload },
     setRecordList (state, payload) { state.recordList = payload },
     setList (state, payload) {
@@ -126,16 +108,6 @@ export const actions = {
 
         }
     },
-    add ({dispatch, commit}, {data}) {
-        const url = `/reports`
-        return dispatch('api/post', {url, data}, root)
-    },
-    edit({commit}, item) {
-        commit('set$Record', item)
-        commit('setAddMode', {item, active:false})
-
-
-    },
     resetSearch ({dispatch, commit, state}) {
         commit('setSearchActive', false)
         commit('resetFilter')
@@ -164,30 +136,10 @@ export const actions = {
         const url = `/api/reports/${id}`
         return dispatch('api/delete', {url}, root)
             .then(res => dispatch('load', {}))
-    },
-    loadAll ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.loaded) {
-            return
-        }
-        if (id === null) {
-            return dispatch('api/post', {url: `/api/reports`, options, debug: false}, root)
-                .then(res => {
-                    commit('setList', res.data)
-                    commit('setPagination')
-                    return res
-                })
-        } else {
-            return dispatch('api/get', {url: `/api/reports/{id}`, options}, root)
-                .then(res => {
-                    commit('setRecord', res)
-                    return res
-                })
-        }
-    },
+    }
 }
 
 export const getters = {
-    agesListById: state => _keyBy (state.agesList, 'value'),
     isEditMode: state => state.mode === 'edit',
     isAddMode: state => state.mode === 'add'
 }

@@ -13,28 +13,38 @@ const newFilter = () => ({
     start_datetime: [fmtToday, fmtToday],
     cb_age_range: [1,2,3,4,5,6]
 })
+
+export const roles = [
+  {value: 0, text: 'Admin'},
+  {value: 1, text: 'Shop'},
+  {value: 2, text: 'Agent'},
+  {value: 3, text: 'Distributor'},
+  {value: 4, text: 'Importer'},
+  {value: 5, text: 'End customer'},
+  {value: 6, text: 'Stockista'},
+  {value: 7, text: 'Branch'}
+]
+
+export const usersRoles = [
+  roles[1],
+  roles[2],
+  roles[3],
+  roles[4],
+  roles[5],
+  roles[6],
+  roles[7]
+]
+
 export const state = () => {
     return {
+        roles,
+        usersRoles,
         list: [],
         recordList: [],
         record: {},
         $record: {},
         addRecord: {},
         resetItem: {},
-        grid: {
-            pagination: {
-                search: '',
-                descending: true,
-                page: 1,
-                pages: 0,
-                rowsPerPage: 100,
-                totalItems: 0
-            }
-        },
-        statusList: [
-            {value: 4,  text: 'Active'},
-            {value: 5,  text: 'Disabled'}
-        ],
         mode: 'list',
         searchActive: false,
         filter: newFilter()
@@ -44,12 +54,6 @@ export const state = () => {
 const root = {root: true}
 
 export const mutations = {
-    setPagination (state) {
-        state.grid.pagination.totalItems = state.list.length
-        state.grid.pagination.page = 1
-        state.grid.pagination.pages = Math.ceil(state.grid.pagination.totalItems / state.grid.pagination.rowsPerPage)
-        console.dir(state.grid)
-    },
     setSearchActive (state, payload) { state.searchActive = payload },
     setRecordList (state, payload) { state.recordList = payload },
     setList (state, payload) {
@@ -94,26 +98,6 @@ export const actions = {
         const url = `/users`
         return dispatch('api/post', {url, data}, root)
     },
-    search ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/api/campaigns_search`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
-    reporting ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/users`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                return res
-            })
-    },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
 
@@ -136,14 +120,6 @@ export const actions = {
 
 
         }
-    },
-    add ({dispatch, commit}, {data}) {
-        const url = `/users`
-        return dispatch('api/post', {url, data}, root)
-    },
-    edit({commit}, item) {
-        commit('set$Record', item)
-        commit('setAddMode', {item, active:false})
     },
     delete ({dispatch, commit, state}, id) {
         const url = `/api/users/${id}`
@@ -177,7 +153,6 @@ export const actions = {
 }
 
 export const getters = {
-    agesListById: state => _keyBy (state.agesList, 'value'),
     isEditMode: state => state.mode === 'edit',
     isAddMode: state => state.mode === 'add'
 }
