@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
-    <v-btn small :color="color" class="elevation-0">
-        {{$vuetify.t(title)}}
+    <v-btn small :color="color" fab class="elevation-0">
+        <v-icon>add</v-icon>
     </v-btn>
 </template>
 <script>

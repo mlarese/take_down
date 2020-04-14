@@ -1,4 +1,5 @@
 const pkg = require('./package')
+require('dotenv').config()
 
 let routerBase = '/'
 if (process.env.NODE_ENV === 'production') {
@@ -7,6 +8,9 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   mode: 'spa',
+  env: {
+    NODE_ENV: process.env.NODE_ENV
+  },
   router: {
     // mode: 'hash',
     base: routerBase,
@@ -93,6 +97,9 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth'
+  ],
+  buildModules: [
+    ['@nuxtjs/dotenv', { systemvars: true }]
   ],
   /*
   ** Axios module configuration

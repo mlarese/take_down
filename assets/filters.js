@@ -53,10 +53,3 @@ export const truncate = (value, limit, appendText='...') => {
   }
   return value
 }
-
-export const statusIdToText = (value) => {
-  if(!value || !statusList[value]) return ''
-  return statusList[value].text
-}
-
-export const statusList = [{conversion_status_id:0, text:'Pending'},{conversion_status_id:1, text:'Full Conversion'},{conversion_status_id:2, text:'Likely Conversion'},{conversion_status_id:3, text:'Detractor'}]

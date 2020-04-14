@@ -50,7 +50,7 @@
 
 
             <v-footer app>
-                <div class="caption">Takedown  © 2020 all right reserved - Griffeshield s.r.l</div>
+                <div class="caption"> © 2020 Takedown all right reserved - Griffeshield s.r.l</div>
             </v-footer>
 
         </div>
@@ -83,9 +83,6 @@
                 this.$notify(this.notification)
             }
         },
-      created () {
-          console.dir(this)
-      },
         methods: {
             OnLogout () {
               this.loggingOut = true
@@ -191,10 +188,7 @@
     .v-datatable__progress th.column{
         background: transparent;
     }
-    .v-progress-linear {
-        position: relative !important;
-        top: -20px !important;
-    }
+
     .sub-tabs .v-tabs__bar {
         background: #f3f3f3f3;
     }

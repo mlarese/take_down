@@ -5,50 +5,34 @@
             <ButtonNew color="green darken-2"  title="New Submission" @click.native="onAdd"/>
         </div>
         <v-data-table
-                :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
+                :rows-per-page-items="[7]"
                 :loading="isAjax" fixed
                 :items="reportList"
                 :headers="headers"
                 hide-details
                 dark
-                hide-actions
+                :hide-actions="false"
 
                 class="elevation-0"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
-                <td width="1" class="pa-1" style="white-space: nowrap;">
+                <td width="1" class="no-wrap px-1">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.reports_id )"></GridButton>
                     <GridButton icon="delete" color="error" @click="onDelete(item.reports_id)"></GridButton>
                 </td>
-                <td style="white-space: nowrap; text-align: center">{{ item.username }} {{ item.surname }}</td>
-                <td>{{ item.submission_title }}</td>
-                <td>{{ item.submission_brand }}</td>
-                <td>{{ item.submission_url }}</td>
-                <!--<td>{{ item.submission_country }}</td>
-                <td style="white-space: nowrap">{{ item.submission_address }}</td>
-                <td>{{ item.submission_city }}</td>
-                <td>{{ item.submission_region }}</td>
-                <td style="white-space: nowrap">{{ item.submission_zipcode }}</td>
-                <td>{{ item.submission_ip }}</td>-->
-                <td>{{ item.submission_geo_location_latitude }}</td>
-                <td>{{ item.submission_geo_location_longitude }}</td>
-                <td style="text-align: center"><v-tooltip left v-if="item.submission_description">
-                    <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
-                    {{ item.submission_description }}</v-tooltip>
-                </td>
+
                 <td style="text-align: center">{{ item.submission_status }}</td>
-               <!-- <td style="white-space: nowrap">{{ item.submission_status_change_datetime | dmy }}</td>-->
                 <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
+                <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
+                <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
+                <td class="no-wrap">{{ item.submission_url }}</td>
 
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
-                {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
+                {{ pageStart }} - {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
             </template>
 
-            <template v-slot:footer>
-                <td :colspan="headers.length" >
-                </td>
-            </template>
+
 
         </v-data-table>
 
@@ -66,18 +50,12 @@
         data () {
 
             const headers = [
-                { text: 'Action', value: 'action', sortable: false },
-                { text: this.$vuetify.t('User'), value: 'username' },
-                { text: this.$vuetify.t('Title'), value: 'submission_title' },
-                { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
-                { text: this.$vuetify.t('URL'), value: 'submission_url' },
-                { text: this.$vuetify.t('Geo Location Latitude'), value: 'submission_geo_location_latitude' },
-                { text: this.$vuetify.t('Geo Location Longitude'), value: 'submission_geo_location_longitude' },
-                { text: this.$vuetify.t('Description'), value: 'submission_description' },
+                { text: 'Actions', value: 'action', sortable: false },
                 { text: this.$vuetify.t('Status'), value: 'submission_status' },
                 { text: this.$vuetify.t('Date'), value: 'submission_date' },
-                //{ text: 'Edit', value: 'action', sortable: false },
-                //{ text: 'Delete', value: 'action', sortable: false }
+                { text: this.$vuetify.t('Title'), value: 'submission_title' },
+                { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
+                { text: this.$vuetify.t('URL'), value: 'submission_url' }
             ]
             return {
                 sms_mo_date: null,

@@ -1,7 +1,12 @@
 import axios from 'axios'
 import {mockApp, baseURL} from './api-properties'
+import Vue from 'vue'
+import {getSchema} from "../../assets/helpers";
 
 if (mockApp) require('./mocks')
+
+const scheme = getSchema()
+const getToken = () => Vue.localStorage.get(`auth._token.${scheme}`)
 
 export const notifyError = (err, translate = null) => {
     let text = 'Error'
@@ -29,7 +34,7 @@ const instance = axios.create({
     baseURL,
     timeout: 90000,
     headers: {'Content-Type': 'application/json'},
-    withCredentials: true
+    withCredentials: false
 })
 
 export const actions = {
@@ -37,18 +42,16 @@ export const actions = {
         commit('error')
         commit('hasError')
     },
-    get ({commit, getters}, {url, options = {}, debug = false}) {
+    get ({commit, getters, rootGetters}, {url, options = {}, debug = false}) {
         commit('isAjax', true)
         commit('error')
         commit('hasError')
 
-        if (!options.headers) {
-            options.headers = {}
-        }
+        if (!options.headers)  options.headers = {}
+        options.headers.Authorization = getToken()
 
-        if (debug) {
-            console.log(baseURL + url, options)
-        }
+        // console.log(baseURL + url, options)
+
         return instance.get(url, options)
             .then(res => {
                 commit('isAjax')
@@ -64,12 +67,13 @@ export const actions = {
                 return Promise.reject(err)
             })
     },
-    post ({commit, getters}, {url, data = {}, options = {}}) {
+    post ({commit, getters, rootGetters}, {url, data = {}, options = {}}) {
         commit('isAjax', true)
         commit('error')
         commit('hasError')
 
-        console.log('---- post', url, data, options)
+        if (!options.headers)  options.headers = {}
+        options.headers.Authorization = getToken()
 
         return instance.post(url, data, options)
             .then(res => {
@@ -85,12 +89,14 @@ export const actions = {
                 return Promise.reject(err)
             })
     },
-    put ({commit, getters}, {url, data, options = {}}) {
+    put ({commit, getters, rootGetters}, {url, data, options = {}}) {
         commit('isAjax', true)
         commit('error')
         commit('hasError')
 
-        console.log(url)
+        if (!options.headers)  options.headers = {}
+        options.headers.Authorization = getToken()
+
         return instance.put(url, data, options)
             .then(res => {
                 commit('isAjax')
@@ -105,11 +111,12 @@ export const actions = {
                 return Promise.reject(err)
             })
     },
-    delete ({commit, getters}, {url, options = {}}) {
+    delete ({commit, getters, rootGetters}, {url, options = {}}) {
         commit('isAjax', true)
         commit('error')
         commit('hasError')
-        console.log(url)
+        if (!options.headers)  options.headers = {}
+        options.headers.Authorization = getToken()
 
         return instance.delete(url, options)
             .then(res => {

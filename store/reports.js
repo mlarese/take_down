@@ -11,11 +11,11 @@ let fmtToday = format(today, 'yyyy-MM-dd')
 export const reportStates = [
     {text: 'Inserted', value: 0},
     {text: 'Canceled', value: 1},
-    {text: 'Transmitted', value: 2},
+    {text: 'Sent', value: 2},
     {text: 'Expired', value: 3},
     {text: 'Accepted', value: 4},
-    {text: 'Not accepted', value: 5},
-    {text: 'Under processinge', value: 6},
+    {text: 'Rejected', value: 5},
+    {text: 'Waiting', value: 6},
     {text: 'Resolved', value: 7}
 ]
 

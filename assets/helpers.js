@@ -7,30 +7,8 @@ export const locale = curLocale
 
 export const getSchema = () => {
   let schema = 'prod'
-  if(process.env.NODE_ENV === 'development') schema = 'dev'
+  if (window.location.hostname === 'localhost')  schema = 'dev'
   return schema
-}
-export const getServer = () => {
-  let server = 'https://privacy.dataone.online'
-  if (process.env.NODE_ENV === 'development') {
-    server = 'http://localhost'
-  }
-
-  return server
-}
-export const extractFlags = (paragraphs, termId) => {
-  if (!paragraphs) {
-    return []
-  }
-  const flags = []
-  for (let i = 0; i < paragraphs.length; i++) {
-    let p = paragraphs[i]
-    for (let j = 0; j < p.treatments.length; j++) {
-      const {code, selected, mandatory} = p.treatments[j]
-      flags.push({code, selected, mandatory, termId})
-    }
-  }
-  return flags
 }
 
 export const formatDate = (date) => {

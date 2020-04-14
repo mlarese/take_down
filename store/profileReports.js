@@ -63,53 +63,19 @@ export const mutations = {
 
 }
 export const actions = {
-    update ({dispatch, commit, state}, {data, id}) {
-        const url = `/api/profile_reports/${id}`
-        return dispatch('api/put', {url, data}, root)
-            .then(() => {
-                commit('setAddMode')
-            })
-    },
-    insert ({dispatch, commit}, {data}) {
-        const url = `/profileReports`
-        return dispatch('api/post', {url, data}, root)
-    },
 
-    save ({dispatch, commit, state, getters}) {
-        let data = state.$record
-
-        if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/profile_reports`, data}, root)
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
-        } else {
-            let id = data.code
-            return dispatch('update', {data, id})
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
-
-
-
-        }
-    },
     load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
         if (!force && state.list.length > 0) {
             return
         }
         if (id === null) {
-            return dispatch('api/get', {url: `/api/profile_reports`, options, debug: false}, root)
+            return dispatch('api/get', {url: `/customer/submissions`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
                     return res
                 })
         } else {
-            const url = `/api/profile_reports/${id}`
+            const url = `/customer/submissions/${id}`
             return dispatch('api/get', {url, options}, root)
                 .then(res => {
                     commit('setRecord', res.data)

@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Notifications from 'vue-notification'
-import {dmy, time, truncate, statusIdToText} from '../assets/filters'
+import {dmy, time, truncate} from '../assets/filters'
 import numeral from 'numeral';
 import numFormat from 'vue-filter-number-format';
 import 'vue2-datepicker/index.css';
 import '@mdi/font/css/materialdesignicons.css'
 import VueMediaQueryMixin from 'vue-media-query-mixin';
+import VueLocalStorage from 'vue-localstorage'
+
+Vue.use(VueLocalStorage)
 
 Vue.use(Vuetify, {
 
@@ -27,7 +30,6 @@ Vue.use(Notifications)
 Vue.filter('dmy', dmy)
 Vue.filter('time', time)
 Vue.filter('truncate', truncate)
-Vue.filter('statusIdToText', statusIdToText)
 Vue.filter('numFormat', numFormat(numeral));
 
 Vue.use(VueMediaQueryMixin, {framework:'vuetify'});
