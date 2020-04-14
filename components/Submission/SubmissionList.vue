@@ -12,32 +12,25 @@
                 :headers="headers"
                 class="elevation-0 fixed-header"
                 slot="body-center">
-            <template slot="items" slot-scope="{item}">
-                <td width="1" class="pa-1" style="white-space: nowrap;">
+            <template slot="items" slot-scope="{item}" style="text-align: center">
+                <td width="1" class="no-wrap px-1">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.reports_id )"></GridButton>
-
                     <GridButton icon="delete" color="error" @click="onDelete(item.reports_id)"></GridButton>
                 </td>
-                <td style="white-space: nowrap;">{{ item.username }} {{ item.surname }}</td>
-                <td style="white-space: nowrap;">{{ item.submission_title|truncate(20) }}</td>
-                <td>{{ item.submission_brand }}</td>
-                <td>{{ item.submission_url }}</td>
-                <td>{{ item.submission_country }}</td>
-                <td>{{ item.submission_geo_location_latitude }}</td>
-                <td>{{ item.submission_geo_location_longitude }}</td>
-                <td><v-tooltip left v-if="item.submission_description">
-                    <span class="pa-3" slot="activator">{{ item.submission_description |  truncate(20,'...') }}</span>
-                    {{ item.submission_description }}</v-tooltip>
-                </td>
-                <td>{{ item.pictures }}</td>
-                <td>{{ item.submission_status }}</td>
-                <td style="white-space: nowrap; text-align: center">{{ item.submission_date | dmy }}</td>
 
+                <td style="text-align: center">{{ item.submission_status }}</td>
+                <td style="text-align: center">{{ item.username }}</td>
+                <td style="text-align: center">{{ item.surname }}</td>
+                <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
+                <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
+                <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
+                <td class="no-wrap">{{ item.submission_url }}</td>
 
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
-                {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
+                {{ pageStart }} - {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
             </template>
+
 
         </v-data-table>
 
@@ -56,20 +49,14 @@
         data () {
 
             const headers = [
-                { text: 'Action', value: 'action', sortable: false },
-                { text: this.$vuetify.t('User'), value: 'username' },
+                { text: 'Actions', value: 'action', sortable: false },
+                { text: this.$vuetify.t('Status'), value: 'submission_status' },
+                { text: this.$vuetify.t('Username'), value: 'username' },
+                { text: this.$vuetify.t('Surname'), value: 'surname' },
+                { text: this.$vuetify.t('Date'), value: 'submission_date' },
                 { text: this.$vuetify.t('Title'), value: 'submission_title' },
                 { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
-                { text: this.$vuetify.t('URL'), value: 'submission_url' },
-                { text: this.$vuetify.t('Country'), value: 'submission_country' },
-                { text: this.$vuetify.t('Geo Location Latitude'), value: 'submission_geo_location_latitude' },
-                { text: this.$vuetify.t('Geo Location Longitude'), value: 'submission_geo_location_longitude' },
-                { text: this.$vuetify.t('Description'), value: 'submission_description' },
-                { text: this.$vuetify.t('Picture'), value: 'pictures' },
-                { text: this.$vuetify.t('Status'), value: 'submission_status' },
-                { text: this.$vuetify.t('Date'), value: 'submission_date' },
-                //{ text: 'Edit', value: 'action', sortable: false },
-                //{ text: 'Delete', value: 'action', sortable: false }
+                { text: this.$vuetify.t('URL'), value: 'submission_url' }
             ]
             return {
                 sms_mo_date: null,

@@ -81,19 +81,18 @@
                                 :label="$vuetify.t('Title')"
                                 v-model="$record.submission_title"
                                 color="null"
-
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6 md6>
-                        <v-text-field   dense
+                        <v-text-field
+                                        dense
                                         :label="$vuetify.t('Url')"
                                         color="null"
                                         hide-details
                                         v-model="$record.submission_url" />
                     </v-flex>
-
                     <v-flex xs12 sm6 >
                         <v-select
                                 :label="$vuetify.t('Status')"

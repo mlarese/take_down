@@ -31,22 +31,19 @@
                                     <v-form method="post" action="#" @submit="checkForm" novalidate="true">
                                         <div class="title" style="text-align: center">New here? Register</div>
                                         <br>
-                                        <v-text-field append-icon="" v-model="name" :rules="[rules.name]" label="Name" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="role" :rules="[rules.role]" label="Role" counter="25" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="company" :rules="[rules.company]" label="Company" required></v-text-field>
-                                        <v-text-field append-icon=""  label="Partita Iva"></v-text-field>
-                                        <v-autocomplete append-icon="" v-model="country" :rules="[rules.country]" label="Country" required></v-autocomplete>
-                                        <v-text-field append-icon="" v-model="address" :rules="[rules.address]" label="Address" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="city" :rules="[rules.city]" label="City" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="cap" :rules="[rules.cap]" label="Cap" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="zip" :rules="[rules.zip]" label="ZIP / Postal Code" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
-                                        <v-text-field append-icon="" v-model="email" :rules="[rules.email]" label="Email" required></v-text-field>
-                                        <v-text-field append-icon="" label="Web"></v-text-field>
-                                        <re-c-a-p-t-c-h-a/>
-                                        <br>
-
+                                        <v-text-field hide-details append-icon="" v-model="name" :rules="[rules.name]" label="Name" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
+                                        <v-autocomplete :items="profilesList" item-value="user_id" item-text="brand_name" hide-details append-icon="" v-model="role" :rules="[rules.role]" label="Role" counter="25" required></v-autocomplete>
+                                        <v-text-field hide-details append-icon="" v-model="company" :rules="[rules.company]" label="Company" required></v-text-field>
+                                        <v-text-field hide-details append-icon=""  label="Partita Iva"></v-text-field>
+                                        <v-autocomplete hide-details append-icon="" v-model="country" :rules="[rules.country]" label="Country" required></v-autocomplete>
+                                        <v-text-field hide-details append-icon="" v-model="address" :rules="[rules.address]" label="Address" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="city" :rules="[rules.city]" label="City" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="cap" :rules="[rules.cap]" label="Cap" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="zip" :rules="[rules.zip]" label="ZIP / Postal Code" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" v-model="email" :rules="[rules.email]" label="Email" required></v-text-field>
+                                        <v-text-field hide-details append-icon="" label="Web"></v-text-field>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="primary" :disabled="!isValid" >Sign Up</v-btn>
@@ -110,6 +107,7 @@
                 computed: {
                     ...mapState('app', ['title', 'ui']),
                     ...mapState('api', ['notification']),
+                    ...mapState('profiles', ['role']),
                     ...mapGetters('app', ['menuItems', 'role', 'userName']),
                     isValid () {
                         if(!this.$record.email) return false

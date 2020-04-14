@@ -22,6 +22,8 @@
                 </td>
 
                 <td style="text-align: center">{{ item.submission_status }}</td>
+                <td style="text-align: center">{{ item.username }}</td>
+                <td style="text-align: center">{{ item.surname }}</td>
                 <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
                 <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
                 <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
@@ -52,6 +54,8 @@
             const headers = [
                 { text: 'Actions', value: 'action', sortable: false },
                 { text: this.$vuetify.t('Status'), value: 'submission_status' },
+                { text: this.$vuetify.t('Username'), value: 'username' },
+                { text: this.$vuetify.t('Surname'), value: 'surname' },
                 { text: this.$vuetify.t('Date'), value: 'submission_date' },
                 { text: this.$vuetify.t('Title'), value: 'submission_title' },
                 { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
