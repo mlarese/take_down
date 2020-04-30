@@ -9,21 +9,17 @@ let today = new Date()
 let fmtToday = format(today, 'yyyy-MM-dd')
 
 export const reportStates = [
-    {text: 'Inserted', value: 0},
-    {text: 'Canceled', value: 1},
-    {text: 'Sent', value: 2},
-    {text: 'Expired', value: 3},
-    {text: 'Accepted', value: 4},
-    {text: 'Rejected', value: 5},
-    {text: 'Waiting', value: 6},
-    {text: 'Resolved', value: 7}
+    {icon: 'mdi-new-box',cur: 'Inserito', text: 'Inserted', value: 0},
+    {icon: 'mdi-close-circle',cur: 'Annullato', text: 'Canceled', value: 1},
+    {icon: 'mdi-transfer-right',cur: 'Trasmesso', text: 'Sent', value: 2},
+    {icon: 'mdi-calendar-remove',cur: 'Scaduto', text: 'Expired', value: 3},
+    {icon: 'mdi-thumb-up',cur: 'Accettato', text: 'Accepted', value: 4},
+    {icon: 'mdi-cancel',cur: 'Non accettato', text: 'Rejected', value: 5},
+    {icon: 'mdi-timer-sand',cur: 'In lavorazione', text: 'Waiting', value: 6},
+    {icon: 'mdi-checkbox-marked-circle',cur: 'Risolto', text: 'Resolved', value: 7}
 ]
 
-const newFilter = () => ({
-    creation_datetime: [fmtToday, fmtToday],
-    start_datetime: [fmtToday, fmtToday],
-    cb_age_range: [1,2,3,4,5,6]
-})
+
 export const state = () => {
     return {
         list: [],
@@ -32,9 +28,11 @@ export const state = () => {
         $record: {},
         addRecord: {},
         resetItem: {},
+        ui: {filter: null},
         mode: 'list',
         searchActive: false,
-        filter: newFilter()
+        reportStates,
+        filter: {}
     }
 }
 
@@ -69,7 +67,7 @@ export const mutations = {
     setEditMode (state) { state.mode = 'edit' },
     setAddMode (state) { state.mode = 'add' },
     resetFilter (state) {
-        state.filter = newFilter()
+        state.filter = {}
     }
 
 }
@@ -118,16 +116,19 @@ export const actions = {
             return
         }
         if (id === null) {
-            return dispatch('api/get', {url: `/api/reports`, options, debug: false}, root)
+            return dispatch('api/get', {url: `/api/customer/submissions`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
                     return res
                 })
         } else {
-            const url = `/api/reports/${id}`
+            const url = `/api/customer/submissions/${id}`
             return dispatch('api/get', {url, options}, root)
                 .then(res => {
-                    commit('setRecord', res.data)
+                    let data = res.data
+                    if(data.length > 0) data = data[0]
+                    else data = {}
+                    commit('setRecord', data)
                     return res
                 })
         }
@@ -141,6 +142,7 @@ export const actions = {
 
 export const getters = {
     isEditMode: state => state.mode === 'edit',
-    isAddMode: state => state.mode === 'add'
+    isAddMode: state => state.mode === 'add',
+    reportStatesByKey: state => _keyBy(state.reportStates, 'cur')
 }
 

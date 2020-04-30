@@ -13,7 +13,7 @@ const menuItems = {
 const menus = {
   admin: [
     menuItems.home,
-    menuItems.brand,
+    // menuItems.brand,
     menuItems.report,
     menuItems.user
   ],
@@ -32,11 +32,6 @@ export const state = () => ({
   title: 'Take Down',
   debugMode: true,
   ui: {currentMenuItem: 0, currentTab: 0},
-  languages: [
-    {id: 'it', label: 'ITA'},
-    {id: 'en', label: 'ENG'},
-    {id: 'de', label: 'DEU'}
-  ],
   menus
 })
 

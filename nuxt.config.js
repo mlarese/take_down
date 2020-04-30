@@ -3,7 +3,7 @@ require('dotenv').config()
 
 let routerBase = '/'
 if (process.env.NODE_ENV === 'production') {
-  routerBase = '/app/'
+  routerBase = '/site/'
 }
 
 module.exports = {
@@ -26,9 +26,9 @@ module.exports = {
       prod: {
         _scheme: 'local',
         endpoints: {
-          login: { baseURL: '/', url: '/api/auth/login', method: 'post', propertyName: 'token' },
-          logout: {baseURL: '/', url: '/api/auth/logout', method: 'post' },
-          user: {baseURL: '/', url: '/api/auth/user', method: 'get', propertyName: 'user' }
+          login: { baseURL: '/', url: '/api/customer/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: '/', url: '/api/customer/logout', method: 'post' },
+          user: {baseURL: '/', url: '/api/customer/user', method: 'get', propertyName: 'user' }
         },
         tokenRequired: true,
         tokenType: 'bearer'
@@ -36,9 +36,9 @@ module.exports = {
       dev: {
         _scheme: 'local',
         endpoints: {
-          login: { baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/login', method: 'post', propertyName: 'token' },
-          logout: {baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/logout', method: 'post' },
-          user: {baseURL: 'http://api.test.eu.ngrok.io/api', url: '/customer/user', method: 'get', propertyName: 'user' }
+          login: { baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/logout', method: 'post' },
+          user: {baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/user', method: 'get', propertyName: 'user' }
         },
         tokenRequired: true,
         tokenType: 'bearer'
@@ -58,7 +58,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: 'Take Down',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

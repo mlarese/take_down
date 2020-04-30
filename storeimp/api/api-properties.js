@@ -4,8 +4,9 @@ let doMock = false
 let url = '/api'
 
 if (window.location.hostname === 'localhost') {
-   url = 'http://api.test.eu.ngrok.io/api'
+
 }
 
+url = 'http://beta.takedownwebsite.com'
 export const baseURL = url
 export const mockApp = doMock

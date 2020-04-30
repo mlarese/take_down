@@ -8,11 +8,13 @@ import 'vue2-datepicker/index.css';
 import '@mdi/font/css/materialdesignicons.css'
 import VueMediaQueryMixin from 'vue-media-query-mixin';
 import VueLocalStorage from 'vue-localstorage'
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 
+// For more options see below
+//Vue.use(VueReCaptcha, { siteKey: '6LctAOoUAAAAAMIL5hmjpjZcs_8MnH7UFDNvsxnI' })
 Vue.use(VueLocalStorage)
 
 Vue.use(Vuetify, {
-
     icons: {
         iconfont: 'mdi', // default - only for display purposes
     },
