@@ -16,7 +16,7 @@
                                 disabled
                                 :label="$vuetify.t('Name')"
                                 color="null"
-                                v-model="$record.username" />
+                                v-model="$record.name" />
                     </v-flex>
 
                     <v-flex xs12 sm6>
@@ -199,7 +199,7 @@
                                 hide-details
                                 :label="$vuetify.t('Submission Date')"
                                 color="null"
-                                v-model="$record.submission_date" />
+                                v-model="$record.updated_at" />
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
