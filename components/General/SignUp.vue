@@ -9,18 +9,18 @@
                             <div style="height:380px;overflow-y: auto">
                                 <v-form method="post" action="#" novalidate="true">
 
-                                    <v-text-field  hide-details  append-icon="" v-model="name" :rules="[rules.name]" label="Name" required></v-text-field>
-                                    <v-text-field hide-details  append-icon="" v-model="surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
-                                    <v-autocomplete :items="usersRoles" hide-details v-model="role" :rules="[rules.role]" label="Role" counter="25" required></v-autocomplete>
-                                    <v-text-field hide-details append-icon="" v-model="company" :rules="[rules.company]" label="Company" required></v-text-field>
+                                    <v-text-field  hide-details  append-icon="" v-model="record.name " :rules="[rules.name]" label="Name" required></v-text-field>
+                                    <v-text-field hide-details  append-icon="" v-model="record.surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
+                                    <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.role]" label="Role" counter="25" required></v-autocomplete>
+                                    <v-text-field hide-details append-icon="" v-model="record.company" :rules="[rules.company]" label="Company" required></v-text-field>
                                     <v-text-field hide-details  append-icon=""  label="Partita Iva"></v-text-field>
-                                    <v-autocomplete hide-details :items="countries" label="Country" v-model="country" :rules="[rules.country]"  required item-value="code" item-text="name" ></v-autocomplete>
-                                    <v-text-field hide-details append-icon="" v-model="address" label="Address"></v-text-field>
-                                    <v-text-field  hide-details append-icon="" v-model="city" label="City"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="cap" label="Cap"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="zip" label="ZIP / Postal Code"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="email" :rules="[rules.email]" label="Email" required></v-text-field>
+                                    <v-autocomplete hide-details :items="countries" label="Country" v-model="record.country" :rules="[rules.country]"  required item-value="code" item-text="name" ></v-autocomplete>
+                                    <v-text-field hide-details append-icon="" v-model="record.address" label="Address"></v-text-field>
+                                    <v-text-field  hide-details append-icon="" v-model="record.city" label="City"></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.cap" label="Cap"></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.zip" label="ZIP / Postal Code"></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.email" :rules="[rules.email]" label="Email" required></v-text-field>
                                     <v-text-field hide-details append-icon="" label="Web"></v-text-field>
 
                                 </v-form>
@@ -40,7 +40,7 @@
         name: "SignUp",
         data() {
             return {
-                $record : {
+                record : {
                     username: '',
                     password: '',
                     alert: null,
