@@ -9,7 +9,9 @@ import '@mdi/font/css/materialdesignicons.css'
 import VueMediaQueryMixin from 'vue-media-query-mixin';
 import VueLocalStorage from 'vue-localstorage'
 import { VueReCaptcha } from 'vue-recaptcha-v3'
+import PortalVue from 'portal-vue'
 
+Vue.use(PortalVue)
 // For more options see below
 //Vue.use(VueReCaptcha, { siteKey: '6LctAOoUAAAAAMIL5hmjpjZcs_8MnH7UFDNvsxnI' })
 Vue.use(VueLocalStorage)

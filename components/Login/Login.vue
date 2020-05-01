@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <v-layout align-center justify-center class="login">
+    <v-layout align-center justify-center class="login ">
         <ResetPassword
                 :show="showReset"
                 @on-cancel="showReset=false"
@@ -9,16 +9,17 @@
 
 
         <v-flex xs12 sm8 md4>
-            <v-card dark class="elevation-20 " style="border-radius: 8px 8px 0 0;" ref="loginBox">
-                <v-tabs color="grey darken-2" dark slider-color="white" style="height: 583px;">
+            <v-card dark class="elevation-20 grad" style="border-radius: 8px 8px 0 0;" ref="loginBox">
+                <v-tabs v-model="activeTab" color="grey darken-2" dark slider-color="white" style="height: 583px;">
 
                     <v-tab style="width: 100%" class="subheading">Login</v-tab>
                     <v-tab components="SignUp" style="width: 100%">Register</v-tab>
 
                     <v-tab-item>
 
-                        <div class="display-1 mb-1 mt-4 text-xs-center">Take Down</div>
+                        <div class="deepshadow display-2 mb-1 mt-4 text-xs-center">Take Down</div>
                         <div class="body-1 mb-2 mt-0 text-xs-center">Member Login!</div>
+
 
                         <v-card-text>
                             <v-form method="post" action="#" @submit="login" novalidate="true">
@@ -27,14 +28,19 @@
                             </v-form>
                         </v-card-text>
 
-                        <v-card-actions class="mt-4 px-4">
-                            <v-btn @click="showReset=true" small flat>Password reset</v-btn>
-                            <v-spacer></v-spacer>
-                            <v-btn flat :loading="loading" :disabled="!canLogin" color="info" @click="login" @keyup.enter="login" small>
-                                Login
-                                <v-icon right>input</v-icon>
-                            </v-btn>
-                        </v-card-actions>
+                        <portal to="login-bottom-bar">
+                            <v-card  style="width:100%">
+                                <v-card-actions class="">
+
+                                    <v-btn @click="showReset=true" small flat>Password reset</v-btn>
+                                    <v-spacer></v-spacer>
+                                    <v-btn flat :loading="loading" :disabled="!canLogin" color="info" @click="login" @keyup.enter="login" small>
+                                        Login
+                                        <v-icon right>input</v-icon>
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </portal>
 
                     </v-tab-item>
 
@@ -42,7 +48,10 @@
                         <sign-up/>
                     </v-tab-item>
                 </v-tabs>
-                <v-footer></v-footer>
+                <v-footer>
+                    <portal-target style="width: 100%" v-if="activeTab==0" name="login-bottom-bar"></portal-target>
+                    <portal-target style="width: 100%" v-if="activeTab==1" name="signup-bottom-bar"></portal-target>
+                </v-footer>
             </v-card>
         </v-flex>
 
@@ -64,6 +73,7 @@
     components: {ResetPassword, SignUp},
     data () {
           return {
+              activeTab: 0,
               componentHeight: 200,
               error: null,
               username: '',
