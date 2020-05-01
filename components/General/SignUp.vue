@@ -7,7 +7,7 @@
                             <div class="body-1 mb-2 mt-0 text-xs-center">Register</div>
 
                             <div style="height:380px;overflow-y: auto">
-                                <v-form method="post" action="#" novalidate="true"
+                                <v-form method="post" action="#" novalidate="true">
 
                                     <v-text-field  hide-details  append-icon="" v-model="name" :rules="[rules.name]" label="Name" required></v-text-field>
                                     <v-text-field hide-details  append-icon="" v-model="surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
@@ -27,7 +27,7 @@
                             </div>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn flat class="elevation-0"  small color="green darken-2" >Sign Up</v-btn>
+                                <v-btn flat class="elevation-0" :disabled="!canRegister" small color="green darken-2" >Sign Up</v-btn>
                             </v-card-actions>
                         </v-card-text>
 
@@ -64,8 +64,8 @@
                 company: null,
                 rules: {
                     email: v => (v || '').match(/@/) || 'Please enter a valid email',
-                    name: val => (val || 'must enter your name').length > 0 || 'This field is required',
-                    surname: val => (val || '').length > 0 || 'This field is required',
+                    name: val => (val || 'must enter your name').name > 0 || 'This field is required',
+                    surname: val => (val || '').surname > 0 || 'This field is required',
                     phoneNumber: val => (val || '').phoneNumber > 0 || 'This field is required',
                     company: val => (val || '').company > 0 || 'This field is required',
                     country: val => (val || '').country > 0 || 'This field is required',
@@ -75,7 +75,43 @@
         },
         computed: {
             ...mapState('users', ['usersRoles']),
-            ...mapState('users', ['countries'])
+            ...mapState('users', ['countries']),
+            canRegister () {
+                if (!this.name) {
+                    return false
+                }
+                if (!this.surname) {
+                    return false
+                }
+                if (!this.role) {
+                    return false
+                }
+                if (!this.company) {
+                    return false
+                }
+                if (!this.country) {
+                    return false
+                }
+                if (!this.address) {
+                    return false
+                }
+                if (!this.city) {
+                    return false
+                }
+                if (!this.cap) {
+                    return false
+                }
+                if (!this.zip) {
+                    return false
+                }
+                if (!this.phoneNumber) {
+                    return false
+                }
+                if (!this.email) {
+                    return false
+                }
+                return true
+            }
         }
     }
 </script>
