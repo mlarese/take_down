@@ -3,7 +3,7 @@
     <v-layout align-center justify-center class="signup">
 
                         <v-card-text>
-                            <div class="display-1 mb-1 mt-3 text-xs-center">Take Down</div>
+                            <div class="deepshadow display-2 mb-1 mt-3 text-xs-center">Take Down</div>
                             <div class="body-1 mb-2 mt-0 text-xs-center">Register</div>
 
                             <div style="height:380px;overflow-y: auto">
@@ -25,10 +25,16 @@
 
                                 </v-form>
                             </div>
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn flat class="elevation-0" :disabled="!canRegister" small color="green darken-2" >Sign Up</v-btn>
-                            </v-card-actions>
+
+                            <portal to="signup-bottom-bar">
+                                <v-card>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn flat class="elevation-0" :disabled="!canRegister" small color="green darken-2" >Sign Up</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </portal>
+
                         </v-card-text>
 
     </v-layout>

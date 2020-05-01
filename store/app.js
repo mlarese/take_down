@@ -31,6 +31,7 @@ export const state = () => ({
   locale: 'it',
   title: 'Take Down',
   debugMode: true,
+  registrationRecord: {},
   ui: {currentMenuItem: 0, currentTab: 0},
   menus
 })
@@ -51,6 +52,9 @@ export const mutations = {
 }
 
 export const actions = {
+  register ({commit, dispatch}, data) {
+    return dispatch('api/post', {url: '/customer/register', data})
+  },
   logOut ({commit}, $auth) {
     $auth.setUser({})
   }

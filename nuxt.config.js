@@ -95,6 +95,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    'portal-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/auth'
   ],
