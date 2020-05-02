@@ -241,10 +241,9 @@
 
             <v-divider class="mt-2 mb-1"></v-divider>
             <v-card-actions>
-                <v-btn medium color="red darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
                 <v-spacer></v-spacer>
 
-                <v-btn medium color="green darken-2" class="elevation-0" @click="save">Save Profile</v-btn>
+                <v-btn medium color="green darken-2" flat class="elevation-0" @click="save">Save Profile</v-btn>
             </v-card-actions>
 
         </v-form>

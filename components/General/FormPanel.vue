@@ -5,7 +5,7 @@
 
             <slot name="header-left">
 
-                    <v-toolbar-title class="display-5 " style="width:100%;text-align: left;">
+                    <v-toolbar-title class="body-1 " style="width:100%;text-align: left;">
 
                         <v-btn v-if="false"small class="ml-4" flat fab @click="$router.push(-1)" >
                             <v-icon>mdi-arrow-left</v-icon>

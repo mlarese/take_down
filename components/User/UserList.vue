@@ -1,44 +1,40 @@
 <!--eslint-disable-->
 <template>
     <GridContainer title="Users">
-        <div slot="header-right" v-if="isAdmin">
-            <ButtonNew color="green darken-2"  title="New User" @click.native="onAdd"/>
-        </div>
+        <<div slot="header-right" class="pt-3 pr-1">
 
+            <v-text-field class=""
+                          single-line
+                          style="width:200px"
+                          label="Search"
+                          clearable
+                          height="28"
+                          v-model="ui.filter"
+                          autofocus
+                          append-icon="search"/>
+        </div>
         <v-data-table
-                :rows-per-page-items="[100,200,500,{'text':'All','value':-1}]"
+                :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
                 :items="userList"
                 :headers="headers"
                 style="text-align: center"
+                :search="ui.filter"
                 class="elevation-0 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}">
-                <!--<td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.surname }}</td>
-                <td>{{ item.role }}</td>
-                <td>{{ item.company }}</td>
-                <td>{{ item.partita_iva }}</td>
-                <td>{{ item.country }}</td>
-                <td>{{ item.address }}</td>
-                <td>{{ item.city}}</td>
-                <td>{{ item.zip_code }}</td>
-                <td>{{ item.phone_number}}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.web }}</td>-->
                 <td width="1" class="pa-1" style="white-space: nowrap;">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.user_id )"></GridButton>
+                    <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
 
-                    <GridButton icon="delete" color="error" @click="onDelete(item.user_id)"></GridButton>
+                    <GridButton v-if="false" icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
                 </td>
-                <td style="white-space: nowrap;text-align: center">{{ item.name }} {{ item.surname }}</td>
-                <td>{{ item.role }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.cell_phone }}</td>
-                <td>{{ item.working_at_company }}</td>
-                <td style="white-space: nowrap; text-align: center">{{ item.subscription_datetime  | dmy}}</td>
-                <td>{{ item.email_verified }}</td>
+                <td class="text-xs-left" style="white-space: nowrap;">{{ item.name }} {{ item.surname }}</td>
+                <td class="text-xs-left" >{{ item.role }}</td>
+                <td class="text-xs-left" >{{ item.email }}</td>
+                <td class="text-xs-left" >{{ item.cell_phone }}</td>
+                <td class="text-xs-left" >{{ item.working_at_company }}</td>
+                <td class="text-xs-left"  style="white-space: nowrap;">{{ item.subscription_datetime  | dmy}}</td>
+                <td class="text-xs-left" >{{ item.email_verified }}</td>
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
@@ -79,7 +75,7 @@
             }
         },
         computed: {
-            ...mapState('users', {'userList': 'list'}),
+            ...mapState('users', {'userList': 'list', 'ui': 'ui'}),
             ...mapState('api', {'isAjax': 'isAjax'}),
         },
         created () {
