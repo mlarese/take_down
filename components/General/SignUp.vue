@@ -12,14 +12,13 @@
                                     <v-text-field  hide-details  append-icon="" v-model="record.name " :rules="[rules.name]" label="Name" required></v-text-field>
                                     <v-text-field hide-details  append-icon="" v-model="record.surname" :rules="[rules.surname]" label="Surname" required></v-text-field>
                                     <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.role]" label="Role" counter="25" required></v-autocomplete>
-                                    <v-text-field hide-details append-icon="" v-model="record.company" :rules="[rules.company]" label="Company" required></v-text-field>
-                                    <v-text-field hide-details  append-icon=""  label="Partita Iva"></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.working_at_company" :rules="[rules.company]" label="Company" required></v-text-field>
+                                    <v-text-field hide-details  append-icon="" v-model="record.working_at_company_VAT" label="Company VAT"></v-text-field>
                                     <v-autocomplete hide-details :items="countries" label="Country" v-model="record.country" :rules="[rules.country]"  required item-value="code" item-text="name" ></v-autocomplete>
                                     <v-text-field hide-details append-icon="" v-model="record.address" label="Address"></v-text-field>
                                     <v-text-field  hide-details append-icon="" v-model="record.city" label="City"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="record.cap" label="Cap"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="record.zip" label="ZIP / Postal Code"></v-text-field>
-                                    <v-text-field hide-details append-icon="" v-model="record.phoneNumber" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.zipcode" label="ZIP / Postal Code"></v-text-field>
+                                    <v-text-field hide-details append-icon="" v-model="record.cell_phone" :rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
                                     <v-text-field hide-details append-icon="" v-model="record.email" :rules="[rules.email]" label="Email" required></v-text-field>
                                     <v-text-field hide-details append-icon="" label="Web"></v-text-field>
 
@@ -60,14 +59,15 @@
                     phone: undefined,
                     name: null,
                     role: null,
-                    phoneNumber: null,
-                    zip: null,
+                    cell_phone: null,
+                    zipcode: null,
+                    working_at_company_VAT: null,
                     cap: null,
                     surname: null,
                     address: null,
                     country: null,
                     city: null,
-                    company: null,
+                    working_at_company: null,
 
                 },
                 rules: {
