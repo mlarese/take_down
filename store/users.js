@@ -36,7 +36,7 @@ export const usersRoles = [
 ]
 
 
-export const country = [
+export const countries = [
     {"name": "Afghanistan", "code": "AF"},
     {"name": "Åland Islands", "code": "AX"},
     {"name": "Albania", "code": "AL"},
@@ -282,13 +282,10 @@ export const country = [
     {"name": "Zimbabwe", "code": "ZW"}
 ]
 
-export const countries = country
-
 
 export const state = () => {
     return {
         roles,
-        country,
         usersRoles,
         countries,
         list: [],

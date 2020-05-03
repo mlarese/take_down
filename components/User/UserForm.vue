@@ -100,7 +100,7 @@
                             :item-text="name"
                             :items="countries"
                             :label="$vuetify.t('Country')"
-                            color="null"
+                            :color="null"
                             v-model="country" />
                 </v-flex>
 
