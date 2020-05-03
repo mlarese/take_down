@@ -13,7 +13,7 @@
                     <v-flex xs12 sm6 md6 d-flex>
                         <v-text-field
                                 hide-details
-                                disabled
+
                                 :label="$vuetify.t('Name')"
                                 color="null"
                                 v-model="$record.username" />
@@ -25,7 +25,7 @@
                                 type="number"
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
-                                disabled
+
                                 color="null"
 
                         ></v-text-field>
@@ -35,7 +35,7 @@
                 <v-flex xs12 sm4>
                     <v-text-field
 
-                            disabled
+
                             hide-details
                             :label="$vuetify.t('Country')"
                             v-model="$record.submission_country"
@@ -45,7 +45,7 @@
 
                 <v-flex xs12 sm4>
                     <v-text-field
-                            disabled
+
                             hide-details
                             :label="$vuetify.t('City')"
                             v-model="$record.submission_city"
@@ -55,7 +55,7 @@
 
                 <v-flex xs12 sm4>
                     <v-text-field
-                            disabled
+
                             hide-details
                             :label="$vuetify.t('Region')"
                             v-model="$record.submission_region"
@@ -99,7 +99,7 @@
                         <v-select
                                 :label="$vuetify.t('Status')"
                                 v-model="$record.submission_status"
-                                disabled
+
                                 color="null"
                                 hide-details
                         ></v-select>
@@ -110,7 +110,7 @@
                 <v-layout rows wrap  v-if="isAdmin">
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 hide-details
                                 :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.submission_zipcode"
@@ -119,7 +119,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Address')"
                                 v-model="$record.submission_address"
                                 color="null"
@@ -130,7 +130,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Location Latitude')"
                                 v-model="$record.submission_geo_location_latitude"
                                 readonly
@@ -141,7 +141,7 @@
 
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Location Longitude')"
                                 v-model="$record.submission_geo_location_longitude"
                                 readonly
@@ -154,7 +154,7 @@
                 <v-flex xs12 sm6 md6 d-flex>
                     <v-text-field
                             hide-details
-                            disabled
+
                             :label="$vuetify.t('HTTP User Agent')"
                             color="null"
                             v-model="$record.submission_HTTP_USER_AGENT" />
@@ -165,7 +165,7 @@
                             hide-details
                             :label="$vuetify.t('IP')"
                             v-model="$record.submission_ip"
-                            disabled
+
                             color="null"
 
                     ></v-text-field>
@@ -197,7 +197,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 hide-details
                                 :label="$vuetify.t('Submission Date')"
                                 color="null"
@@ -205,7 +205,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 hide-details
                                 :label="$vuetify.t('Submission Status')"
                                 color="null"

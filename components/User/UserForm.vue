@@ -6,21 +6,21 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-                            disabled
+
                             dark
                             :label="$vuetify.t('Name')"
                             v-model="$record.name"
-                            readonly
+
                             color="null"
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                     <v-text-field
-                            disabled
+
                             hide-details
                             :label="$vuetify.t('Surname')"
                             v-model="$record.surname"
-                            readonly
+
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -28,19 +28,21 @@
 
             <v-layout rows wrap>
                 <v-flex xs12 sm6>
-                    <v-text-field
-                            disabled
+                    <v-select
                             hide-details
-                            :disabled="!isAdmin"
+                            :="!isAdmin"
+                            :items="roles"
+                            item-value="value"
+                            item-text="text"
                             :label="$vuetify.t('Role')"
                             v-model="$record.role"
                             color="null"
-                    ></v-text-field>
+                    ></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6>
                     <v-text-field
-                            disabled
+
                             hide-details
                             type="email"
                             :label="$vuetify.t('Email')"
@@ -55,7 +57,7 @@
                             hide-details
                             :label="$vuetify.t('Web')"
                             v-model="$record.web"
-                            readonly
+
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -63,10 +65,8 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-                            :label="$vuetify.t('Phone Number')"
+                            label="Phone Number"
                             v-model="$record.cell_phone"
-                            readonly
-                            mask="phone"
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -96,12 +96,13 @@
                     <v-select
                             hide-details
                             dense
-                            :item-value="code"
-                            :item-text="name"
                             :items="countries"
+                            item-value="code"
+                            item-text="name"
                             :label="$vuetify.t('Country')"
+                            v-model="$record.country"
                             :color="null"
-                            v-model="country" />
+                    ></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm4>
@@ -157,7 +158,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-                            disabled
+
                             :label="$vuetify.t('Submission IP')"
                             v-model="$record.subscription_ip"
                             color="null"
@@ -204,7 +205,7 @@
                             type="number"
                             :label="$vuetify.t('Number of Submissions')"
                             v-model="$record.number_of_submissions"
-                            disabled
+
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -214,7 +215,7 @@
                             type="number"
                             :label="$vuetify.t('Number of Submissions Accepted')"
                             v-model="$record.number_of_submissions_accepted"
-                            disabled
+
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -223,7 +224,7 @@
                             hide-details
                             :label="$vuetify.t('Submission Date')"
                             v-model="$record.number_of_submissions_rejected"
-                            disabled
+
                             color="null"
                             type="number"
                     ></v-text-field>
@@ -231,7 +232,7 @@
                 <v-flex xs12 sm3 v-if="isAdmin">
                     <v-text-field
                             hide-details
-                            disabled
+
                             :label="$vuetify.t('Password Resetted')"
                             v-model="$record.last_datetime_pwd_resetted"
                             color="null"
@@ -258,11 +259,14 @@
         components: {FormPanel},
         data () {
             return {
+
                 country: null
+
             }
         },
         computed: {
             ...mapState('users', ['$record','countries']),
+            ...mapState('users', ['$record','roles']),
             ...mapGetters('app', ['isAdmin'])
 
         },
