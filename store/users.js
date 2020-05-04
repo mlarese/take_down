@@ -26,6 +26,7 @@ export const roles = [
 ]
 
 export const usersRoles = [
+    roles[0],
     roles[1],
     roles[2],
     roles[3],

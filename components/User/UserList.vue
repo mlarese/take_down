@@ -25,7 +25,6 @@
             <template slot="items" slot-scope="{item}">
                 <td width="1" class="pa-1" style="white-space: nowrap;">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
-
                     <GridButton v-if="false" icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
                 </td>
                 <td class="text-xs-left" style="white-space: nowrap;">{{ item.name }} {{ item.surname }}</td>

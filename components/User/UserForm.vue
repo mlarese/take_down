@@ -1,6 +1,13 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" title="Profile" >
+
+        <div slot="header-right" >
+            <v-btn  flat small fab class="elevation-0"  @click="$router.go(-1)" >
+                {{$vuetify.t('Back')}}
+            </v-btn>
+        </div>
+
         <v-form ref="form" class="" lazy-validation>
             <v-layout rows wrap>
                 <v-flex xs12 sm6>
@@ -166,7 +173,7 @@
                 </v-flex>
             </v-layout>
             <v-layout rows wrap>
-                <v-flex xs12 sm6 v-if="isAdmin">
+                <v-flex xs12 sm6   >
                     <v-text-field
                             dark
                             hide-details
@@ -177,7 +184,7 @@
                     ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm3 style=" ">
+                <v-flex xs12 sm3 style=" " v-if="false">
                     <v-switch
 
                             color="green"
@@ -187,7 +194,7 @@
                     ></v-switch>
                 </v-flex>
 
-                <v-flex xs12 sm3>
+                <v-flex xs12 sm3 class="pt-3">
                     <v-switch
                             color="green"
                             hide-details
@@ -229,7 +236,7 @@
                             type="number"
                     ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm3 v-if="isAdmin">
+                <v-flex xs12 sm3   >
                     <v-text-field
                             hide-details
 
