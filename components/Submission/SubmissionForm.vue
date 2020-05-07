@@ -109,6 +109,7 @@
                                 v-model="$record.submission_status"
                                 :items="reportStates"
 
+                                disabled
                                 color="null"
                                 hide-details
                         ></v-select>
