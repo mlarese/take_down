@@ -7,10 +7,10 @@
                 @reset-password="onResetPassword"
         />
 
-
         <v-flex xs12 sm8 md4>
+
             <v-card dark class="elevation-20 grad" style="border-radius: 8px 8px 0 0;" ref="loginBox">
-                <v-tabs v-model="activeTab" color="grey darken-2" dark slider-color="white" style="height: 583px;">
+                <v-tabs v-model="ui.activeLoginTab" color="grey darken-2" dark slider-color="white" style="height: 500px;">
 
                     <v-tab style="width: 100%" class="subheading">Login</v-tab>
                     <v-tab components="SignUp" style="width: 100%">Register</v-tab>
@@ -32,7 +32,7 @@
                             <v-card  style="width:100%">
                                 <v-card-actions class="">
 
-                                    <v-btn @click="showReset=true" small flat>Password reset</v-btn>
+                                    <v-btn v-if="false" @click="showReset=true" small flat>Password reset</v-btn>
                                     <v-spacer></v-spacer>
                                     <v-btn flat :loading="loading" :disabled="!canLogin" color="info" @click="login" @keyup.enter="login" small>
                                         Login
@@ -49,8 +49,8 @@
                     </v-tab-item>
                 </v-tabs>
                 <v-footer>
-                    <portal-target style="width: 100%" v-if="activeTab==0" name="login-bottom-bar"></portal-target>
-                    <portal-target style="width: 100%" v-if="activeTab==1" name="signup-bottom-bar"></portal-target>
+                    <portal-target style="width: 100%" v-if="ui.activeLoginTab==0" name="login-bottom-bar"></portal-target>
+                    <portal-target style="width: 100%" v-if="ui.activeLoginTab==1" name="signup-bottom-bar"></portal-target>
                 </v-footer>
             </v-card>
         </v-flex>
@@ -61,7 +61,7 @@
 <script>
   import Vue from 'vue'
   import ResetPassword from '../../components/General/ResetPassword'
-  import {mapState, mapActions} from 'vuex'
+  import {mapState, mapActions, mapMutations} from 'vuex'
   import {notifyError} from '../../storeimp/api/actions'
   import {getSchema} from '../../assets/helpers'
   import SignUp from '../General/SignUp'
@@ -73,7 +73,6 @@
     components: {ResetPassword, SignUp},
     data () {
           return {
-              activeTab: 0,
               componentHeight: 200,
               error: null,
               username: '',
@@ -84,7 +83,7 @@
           }
     },
     computed: {
-      ...mapState('app', ['title']),
+      ...mapState('app', ['title', 'ui']),
       ...mapState('api', ['isAjax']),
       canLogin () {
         if (!this.username) {
@@ -97,21 +96,17 @@
       },
     },
     mounted() {
-      this.matchHeight();
+      this.matchHeight()
     },
     methods: {
-      ...mapActions('auth', ['passwordReset']),
+      ...mapActions('app', ['passwordReset']),
+      ...mapMutations('users', ['setRecord']),
       matchHeight() {
-        var heightString = this.$refs.loginBox.clientHeight + 'px';
-        console.log(this.$refs.loginBox)
-        Vue.set(this, 'componentHeight', heightString);
+        var heightString = this.$refs.loginBox.clientHeight + 'px'
+        Vue.set(this, 'componentHeight', heightString)
       },
       onResetPassword (user) {
         this.showReset = false
-        this.$notify({
-          type: 'success',
-          text: this.$t('You will receive an email shortly')
-        })
         return this.passwordReset(user)
       },
       async login () {
@@ -131,6 +126,7 @@
           })
           .then((res) => {
             this.loading = false
+            this.setRecord({})
             //this.$auth.setUser(user)
           })
           .catch(e => {

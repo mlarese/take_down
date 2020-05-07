@@ -100,16 +100,16 @@
             </v-layout>
             <v-layout rows wrap>
                 <v-flex xs12 sm4>
-                    <v-select
+                    <v-autocomplete
                             hide-details
                             dense
                             :items="countries"
-                            item-value="code"
+                            item-value="name"
                             item-text="name"
                             :label="$vuetify.t('Country')"
                             v-model="$record.country"
                             :color="null"
-                    ></v-select>
+                    ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm4>
@@ -154,8 +154,8 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-                            :label="$vuetify.t('Submission Date')"
-                            v-model="$record.subscription_datetime"
+                            :label="$vuetify.t('Subscription Date')"
+                            v-model="created_at"
                             readonly
                             color="null"
 
@@ -239,11 +239,12 @@
                 <v-flex xs12 sm3   >
                     <v-text-field
                             hide-details
-
+                            readonly
                             :label="$vuetify.t('Password Resetted')"
-                            v-model="$record.last_datetime_pwd_resetted"
+                            v-model="last_datetime_pwd_resetted"
                             color="null"
                     ></v-text-field>
+
                 </v-flex>
             </v-layout>
 
@@ -261,6 +262,7 @@
 <script>
     import {mapState, mapGetters, mapActions} from 'vuex'
     import FormPanel from '../General/FormPanel'
+    import {formatDate} from '../../assets/helpers'
     export default {
         name: "ProfileForm",
         components: {FormPanel},
@@ -274,10 +276,16 @@
         computed: {
             ...mapState('users', ['$record','countries']),
             ...mapState('users', ['$record','roles']),
-            ...mapGetters('app', ['isAdmin'])
-
+            ...mapGetters('app', ['isAdmin']),
+            last_datetime_pwd_resetted () {
+              return this.formatDate(this.$record.last_datetime_pwd_resetted)
+            },
+            created_at () {
+                return this.formatDate(this.$record.created_at)
+            }
         },
         methods: {
+            formatDate,
             onAdd () {
                 this.save()
                     .then(r => this.$router.go(-1))

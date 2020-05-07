@@ -14,6 +14,23 @@ const newFilter = () => ({
     cb_age_range: [1,2,3,4,5,6]
 })
 
+export const baseRecord = {
+  // "name":"Mauro",
+  // "surname":"Larese",
+  // "email":"mauro.larese@gmail.com",
+  // "password":"asemota91",
+  // "role": 2,
+  // "web": "http://www.oconnell.biz/-iure-rerum-illo",
+  // "cell_phone": "(841) 284-0144 x0637",
+  // "working_at_company": "Jenkins, Mueller and Kuvalis",
+  // "working_at_company_VAT": "IT90756787650",
+  // "country": "Malawi",
+  // "city": "Adrianaside",
+  // "region": "aaa",
+  // "zipcode": "60725",
+  // "address": "8207 Domenico Throughway\nBrownberg, MD 11296",
+  // "g-recaptcha-response":"1111"
+}
 export const roles = [
   {value: 0, text: 'Admin'},
   {value: 1, text: 'Shop'},
@@ -26,7 +43,6 @@ export const roles = [
 ]
 
 export const usersRoles = [
-    roles[0],
     roles[1],
     roles[2],
     roles[3],
@@ -291,7 +307,7 @@ export const state = () => {
         countries,
         list: [],
         recordList: [],
-        record: {},
+        record: baseRecord,
         ui: {filter: null},
         $record: {},
         addRecord: {},

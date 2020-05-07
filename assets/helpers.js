@@ -12,10 +12,10 @@ export const getSchema = () => {
 }
 
 export const formatDate = (date) => {
-  // console.log('---- formatDate', date)
   if (!date) return null
-  const [year, month, day] = date.split('-')
-  return `${month}/${day}/${year}`
+  let [year, month, day] = date.split('-')
+  day = day.split(' ')[0]
+  return `${day}/${month}/${year}`
 }
 
 export const parseDate = (date) => {

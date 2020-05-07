@@ -63,16 +63,26 @@
                 </v-flex>
             </v-layout>
                 <v-layout rows wrap>
-                <v-flex xs12 sm6 md6>
-                    <v-select
-                        hide-details
-                        dense
-                        :items="brandsList"
-                        item-value="id"
-                        item-text="brand_name"
-                        :label="$vuetify.t('Brand')"
-                        color="null"
-                        v-model="$record.submission_brand" />
+                    <v-flex xs12 sm6 md6>
+                        <v-text-field
+                                class="left-float"
+                                style="width:90%"
+                                hide-details
+                                :label="$vuetify.t('Brand')"
+                                v-model="$record.submission_brand"
+                                color="null"
+                        ></v-text-field>
+                        <v-autocomplete
+
+                            class="only-menu left-float"
+                            hide-details
+                            dense
+
+                            flat
+                            :items="brandsList"
+
+                            color="null"
+                            v-model="$record.submission_brand" />
                     </v-flex>
 
                     <v-flex xs12 sm6>
@@ -97,7 +107,8 @@
                         <v-select
                                 :label="$vuetify.t('Status')"
                                 v-model="$record.submission_status"
-                                disabled
+                                :items="reportStates"
+
                                 color="null"
                                 hide-details
                         ></v-select>
@@ -108,7 +119,7 @@
                 <v-layout rows wrap  v-if="isAdmin">
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 hide-details
                                 :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.submission_zipcode"
@@ -117,7 +128,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Address')"
                                 v-model="$record.submission_address"
                                 color="null"
@@ -128,10 +139,10 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Location Latitude')"
                                 v-model="$record.submission_geo_location_latitude"
-                                readonly
+
                                 color="null"
                                 hide-details
                         ></v-text-field>
@@ -139,10 +150,10 @@
 
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+
                                 :label="$vuetify.t('Location Longitude')"
                                 v-model="$record.submission_geo_location_longitude"
-                                readonly
+
                                 color="null"
                                 hide-details
                         ></v-text-field>
@@ -172,7 +183,7 @@
 
                     <v-layout rows wrap class="mt-2 text-xs-center" style="justify-content: center">
                     <v-flex xs12 sm12 class="text-xs-center">
-                        <vue-upload-multiple-image
+                        <!-- vue-upload-multiple-image
                             :data-images="images"
                             dark
                             dragText="Drag File"
@@ -182,7 +193,7 @@
                             popupText="This is image is been uploaded from your pc"
                             :maxImage="4"
                             markIsPrimaryText="select image"
-                            v-model="$record.pictures"/>
+                            v-model="$record.pictures"/ -->
                     </v-flex>
                     <v-flex xs12 sm12 >
                         <v-textarea
@@ -199,15 +210,15 @@
                                 hide-details
                                 :label="$vuetify.t('Submission Date')"
                                 color="null"
-                                v-model="$record.updated_at" />
+                                v-model="updated_at" />
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
                                 disabled
                                 hide-details
-                                :label="$vuetify.t('Submission Status')"
+                                :label="$vuetify.t('Status change date')"
                                 color="null"
-                                v-model="$record.submission_status_change_datetime" />
+                                v-model="submission_status_change_datetime" />
                     </v-flex>
                 </v-layout>
 
@@ -220,7 +231,7 @@
                         layout
                         text-xs-center
                 >
-                    <v-btn  color="green darken-2" class="elevation-0"  @click="onAdd">
+                    <v-btn  flat color="green darken-2" class="elevation-0"  @click="onAdd">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>
@@ -240,20 +251,29 @@
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     import ButtonNew from '../General/ButtonNew'
+    import {formatDate} from '../../assets/helpers'
+    import {reportStates} from '../../store/reports'
+
     export default {
         components: {
             FormPanel, GridButton,VueUploadMultipleImage,VueCtkDateTimePicker,CookieConsent,ButtonNew
         },
         data() {
             return {
-                images: []
+              images: []
             }
         },
         computed: {
-            ...mapState('reports', ['$record']),
-            ...mapState('brands', {'brandsList': 'list'}),
-            ...mapGetters('app', ['isAdmin'])
-            },
+          updated_at () {
+            return formatDate(this.$record.updated_at)
+          },
+          submission_status_change_datetime () {
+            return formatDate(this.$record.submission_status_change_datetime)
+          },
+          ...mapState('reports', ['$record', 'reportStates']),
+          ...mapState('brands', {'brandsList': 'list'}),
+          ...mapGetters('app', ['isAdmin'])
+        },
         methods: {
             onAdd () {
                 this.save()
