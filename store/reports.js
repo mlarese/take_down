@@ -73,38 +73,21 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/reports/${id}`
+        const url = `/api/customer/submissionrecord/${id}`
         return dispatch('api/put', {url, data}, root)
-            .then(() => {
-                commit('setAddMode')
-            })
     },
-    insert ({dispatch, commit}, {data}) {
-        const url = `/reports`
-        return dispatch('api/post', {url, data}, root)
-    },
+
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
 
-        if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/reports`, data}, root)
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
-        } else {
-            let id = data.code
-            return dispatch('update', {data, id})
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
+        let id = data.id
+        return dispatch('update', {data, id})
+            .then(r => {
+                commit('set$Record', {})
+                return r
+            })
 
 
-
-        }
     },
     resetSearch ({dispatch, commit, state}) {
         commit('setSearchActive', false)

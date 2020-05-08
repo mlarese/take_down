@@ -9,7 +9,7 @@
             </v-btn>
         </div>
         <v-form ref="form" class="mt-2" lazy-validation>
-                <v-layout rows wrap  v-if="isAdmin">
+                <v-layout rows wrap  >
                     <v-flex xs12 sm6 md6 d-flex>
                         <v-text-field
                                 hide-details
@@ -30,7 +30,7 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-            <v-layout rows wrap  v-if="isAdmin">
+            <v-layout rows wrap  >
                 <v-flex xs12 sm4>
                     <v-text-field
 
@@ -117,7 +117,7 @@
                 </v-layout>
 
 
-                <v-layout rows wrap  v-if="isAdmin">
+                <v-layout rows wrap  >
                     <v-flex xs12 sm6>
                         <v-text-field
 
