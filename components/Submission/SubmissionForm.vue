@@ -30,38 +30,6 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-            <v-layout rows wrap  >
-                <v-flex xs12 sm4>
-                    <v-text-field
-
-                            disabled
-                            hide-details
-                            :label="$vuetify.t('Country')"
-                            v-model="$record.submission_country"
-                            color="null"
-                    ></v-text-field>
-                </v-flex>
-
-                <v-flex xs12 sm4>
-                    <v-text-field
-                            disabled
-                            hide-details
-                            :label="$vuetify.t('City')"
-                            v-model="$record.submission_city"
-                            color="null"
-                    ></v-text-field>
-                </v-flex>
-
-                <v-flex xs12 sm4>
-                    <v-text-field
-                            disabled
-                            hide-details
-                            :label="$vuetify.t('Region')"
-                            v-model="$record.submission_region"
-                            color="null"
-                    ></v-text-field>
-                </v-flex>
-            </v-layout>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6 md6>
                         <v-text-field
@@ -85,13 +53,21 @@
                             v-model="$record.submission_brand" />
                     </v-flex>
 
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm12>
                         <v-text-field
                                 hide-details
                                 :label="$vuetify.t('Title')"
                                 v-model="$record.submission_title"
                                 color="null"
                         ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs12 sm12 >
+                        <v-textarea
+                                hide-details
+                                color="null"
+                                label="Description"
+                                v-model="$record.submission_description"/>
                     </v-flex>
                 </v-layout>
                 <v-layout rows wrap>
@@ -116,34 +92,13 @@
                     </v-flex>
                 </v-layout>
 
-
-                <v-layout rows wrap  >
-                    <v-flex xs12 sm6>
-                        <v-text-field
-
-                                hide-details
-                                :label="$vuetify.t('Zip/Code')"
-                                v-model="$record.submission_zipcode"
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6>
-                        <v-text-field
-
-                                :label="$vuetify.t('Address')"
-                                v-model="$record.submission_address"
-                                color="null"
-                                hide-details
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
 
                                 :label="$vuetify.t('Location Latitude')"
                                 v-model="$record.submission_geo_location_latitude"
-
+                                type="number"
                                 color="null"
                                 hide-details
                         ></v-text-field>
@@ -154,7 +109,7 @@
 
                                 :label="$vuetify.t('Location Longitude')"
                                 v-model="$record.submission_geo_location_longitude"
-
+                                type="number"
                                 color="null"
                                 hide-details
                         ></v-text-field>
@@ -182,28 +137,7 @@
                 </v-flex>
             </v-layout>
 
-                    <v-layout rows wrap class="mt-2 text-xs-center" style="justify-content: center">
-                    <v-flex xs12 sm12 class="text-xs-center">
-                        <!-- vue-upload-multiple-image
-                            :data-images="images"
-                            dark
-                            dragText="Drag File"
-                            browseText="Browse Text"
-                            label="images"
-                            primaryText="Image Insert"
-                            popupText="This is image is been uploaded from your pc"
-                            :maxImage="4"
-                            markIsPrimaryText="select image"
-                            v-model="$record.pictures"/ -->
-                    </v-flex>
-                    <v-flex xs12 sm12 >
-                        <v-textarea
-                                hide-details
-                                color="null"
-                                label="Description"
-                                v-model="$record.submission_description"/>
-                        </v-flex>
-                    </v-layout>
+
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
@@ -223,6 +157,29 @@
                     </v-flex>
                 </v-layout>
 
+
+
+            <v-layout rows wrap class="mt-2 text-xs-center" style="justify-content: center">
+                <v-flex xs12 sm12 class="text-xs-center">
+
+
+                    <Images :images="images"/>
+
+
+                    <!-- vue-upload-multiple-image
+                        :data-images="images"
+                        dark
+                        dragText="Drag File"
+                        browseText="Browse Text"
+                        label="images"
+                        primaryText="Image Insert"
+                        popupText="This is image is been uploaded from your pc"
+                        :maxImage="4"
+                        markIsPrimaryText="select image"
+                        v-model="$record.pictures"/ -->
+                </v-flex>
+
+            </v-layout>
             <v-layout row wrap class="mt-2">
                 <v-flex
                         xs12
@@ -247,6 +204,7 @@
     import {mapState, mapActions, mapGetters} from 'vuex'
     import FormPanel from '../General/FormPanel'
     import GridButton from '../General/GridButton'
+    import Images from '../General/Images'
     import CookieConsent from '../General/CookieConsent'
     import VueUploadMultipleImage from 'vue-upload-multiple-image'
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
@@ -254,15 +212,13 @@
     import ButtonNew from '../General/ButtonNew'
     import {formatDate} from '../../assets/helpers'
     import {reportStates} from '../../store/reports'
+    import _map from 'lodash/map'
 
     export default {
         components: {
-            FormPanel, GridButton,VueUploadMultipleImage,VueCtkDateTimePicker,CookieConsent,ButtonNew
-        },
-        data() {
-            return {
-              images: []
-            }
+          FormPanel, GridButton,VueUploadMultipleImage,
+          VueCtkDateTimePicker,CookieConsent,ButtonNew,
+          Images
         },
         computed: {
           updated_at () {
@@ -273,7 +229,11 @@
           },
           ...mapState('reports', ['$record', 'reportStates']),
           ...mapState('brands', {'brandsList': 'list'}),
-          ...mapGetters('app', ['isAdmin'])
+          ...mapGetters('app', ['isAdmin']),
+          images () {
+            if(this.$record && this.$record.pictures) return _map(this.$record.pictures, 'picture_url')
+            else return []
+          }
         },
         methods: {
             onAdd () {

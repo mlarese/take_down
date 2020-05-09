@@ -10,10 +10,14 @@
     components: {
         SubmissionForm
     },
-    async fetch({store, params}) {
+    async fetch({store, params, $auth}) {
       store.commit('reports/setRecord',{},{root: true})
       store.commit('reports/setEditMode',null,{root: true})
       await store.dispatch('reports/load', {id: params.id}, {root: true})
+        .catch(e => {
+          alert('Your session is expired')
+          $auth.logout()
+        })
     }
   }
 </script>

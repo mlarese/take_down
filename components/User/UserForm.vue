@@ -10,7 +10,7 @@
 
         <v-form ref="form" class="" lazy-validation>
             <v-layout rows wrap>
-                <v-flex xs12 sm6>
+                <v-flex xs12 sm5>
                     <v-text-field
                             hide-details
 
@@ -21,7 +21,7 @@
                             color="null"
                     ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6>
+                <v-flex xs12 sm4>
                     <v-text-field
 
                             hide-details
@@ -30,6 +30,17 @@
 
                             color="null"
                     ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm3 class="pt-3">
+                    <v-switch
+                            style="position: relative; top:-4px"
+                            height="33"
+                            color="green"
+                            hide-details
+                            v-model="$record.is_user_enabled"
+                            :label="$vuetify.t('Enabled')"
+                    ></v-switch>
                 </v-flex>
             </v-layout>
 
@@ -112,7 +123,7 @@
                     ></v-autocomplete>
                 </v-flex>
 
-                <v-flex xs12 sm4>
+                <v-flex xs12 sm3>
                     <v-text-field
                             hide-details
                             :label="$vuetify.t('City')"
@@ -122,7 +133,7 @@
                     ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm4>
+                <v-flex xs12 sm2>
                     <v-text-field
                             hide-details
                             :label="$vuetify.t('Region')"
@@ -130,9 +141,7 @@
                             color="null"
                     ></v-text-field>
                 </v-flex>
-            </v-layout>
-            <v-layout rows wrap>
-                <v-flex xs12 sm6>
+                <v-flex xs12 sm3>
                     <v-text-field
                             hide-details
                             type="number"
@@ -141,7 +150,9 @@
                             color="null"
                     ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6>
+            </v-layout>
+            <v-layout rows wrap>
+                <v-flex xs12 >
                     <v-text-field
                             hide-details
                             :label="$vuetify.t('Address')"
@@ -173,7 +184,7 @@
                 </v-flex>
             </v-layout>
             <v-layout rows wrap>
-                <v-flex xs12 sm6   >
+                <v-flex xs12   >
                     <v-text-field
                             dark
                             hide-details
@@ -194,14 +205,6 @@
                     ></v-switch>
                 </v-flex>
 
-                <v-flex xs12 sm3 class="pt-3">
-                    <v-switch
-                            color="green"
-                            hide-details
-                            v-model="$record.is_user_enabled"
-                            :label="$vuetify.t('User Enabled')"
-                    ></v-switch>
-                </v-flex>
 
             </v-layout>
 
@@ -210,7 +213,7 @@
                     <v-text-field
                             hide-details
                             type="number"
-                            :label="$vuetify.t('Number of Submissions')"
+                            :label="$vuetify.t('Submissions')"
                             v-model="$record.number_of_submissions"
 
                             color="null"
@@ -220,7 +223,7 @@
                     <v-text-field
                             hide-details
                             type="number"
-                            :label="$vuetify.t('Number of Submissions Accepted')"
+                            :label="$vuetify.t('Accepted')"
                             v-model="$record.number_of_submissions_accepted"
 
                             color="null"
@@ -229,7 +232,7 @@
                 <v-flex xs12 sm3>
                     <v-text-field
                             hide-details
-                            :label="$vuetify.t('Submission Date')"
+                            :label="$vuetify.t('Rejected')"
                             v-model="$record.number_of_submissions_rejected"
 
                             color="null"
