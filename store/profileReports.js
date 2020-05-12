@@ -76,10 +76,10 @@ export const mutations = {
 
 }
 export const actions = {
-  uploadImage ({dispatch, commit, state}, {picture}) {
+  uploadImage ({dispatch, commit, state}, {picture, id}) {
     const data = new FormData();
-    data.append('picture',picture)
-    data.append('submission_id',1)
+    data.append('picture', picture)
+    data.append('submission_id', id)
     data.append('nonce','nncupldfrmdt')
 
     const url = `/api/customer/pictures`
@@ -89,7 +89,7 @@ export const actions = {
     const url = `/api/customer/submissionrecord/${id}`
     return dispatch('api/put', {url, data}, root)
   },
-  insert ({dispatch, commit, state}) {
+  insert ({dispatch, commit, state}, images) {
     let data = state.$record
     if(data.send_coordinates) {
       data.submission_geo_location_longitude = currentPosition.coords.longitude + ''
@@ -102,7 +102,14 @@ export const actions = {
     const url = `/api/customer/submissions`
     return dispatch('api/post', {url, data}, root)
       .then(res => {
-        console.dir(res)
+        const all = []
+        let id = res.data.output.id
+        for(let i = 0; i < images.length; i++) {
+          let picture = images[i].file
+          all.push (dispatch('uploadImage', {picture, id}))
+        }
+
+        return Promise.all(all)
       })
       .then(() => commit('set$Record', {}))
   },

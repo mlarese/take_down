@@ -32,7 +32,7 @@
                             <v-card  style="width:100%">
                                 <v-card-actions class="">
 
-                                    <v-btn v-if="false" @click="showReset=true" small flat>Password reset</v-btn>
+                                    <v-btn v-if="true" @click="showReset=true" small flat>Password reset</v-btn>
                                     <v-spacer></v-spacer>
                                     <v-btn flat :loading="loading" :disabled="!canLogin" color="info" @click="login" @keyup.enter="login" small>
                                         Login
@@ -108,6 +108,7 @@
       onResetPassword (user) {
         this.showReset = false
         return this.passwordReset(user)
+          .then(r => { alert('Password resetted')})
       },
       async login () {
         if (!this.canLogin) {

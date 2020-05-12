@@ -8,7 +8,7 @@
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div>
-        <v-form ref="form" class="mt-2" v-model="isValid">
+        <v-form ref="form" class="mt-2" v-model="isFormValid">
 
 
                 <v-layout rows wrap>
@@ -74,10 +74,8 @@
 
 
                     <v-layout rows wrap class="mt-2 text-xs-center" >
-                        <v-flex sm3>
-                            {{images}}
-                        </v-flex>
-                        <v-flex xs12 sm5  class="text-xs-center">
+
+                        <v-flex xs12 class="text-xs-center">
 
                             <vue-upload-multiple-image
                                 @before-remove="beforeRemove"
@@ -98,6 +96,7 @@
 
             <v-layout row wrap class="mt-2">
 
+
                 <v-flex
                         xs12
                         sm12
@@ -117,11 +116,21 @@
                     ></v-switch>
 
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!isValid" color="green darken-2" flat class="elevation-0"  @click="onAdd">
+                    <v-btn :disabled="!canRegister" color="green darken-2" flat class="elevation-0"  @click="onAdd">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>
             </v-layout>
+            <v-layout>
+
+                <v-flex xs6 class="vue-recaptcha text-xs-center">
+                    <div class="vue-recaptcha text-xs-center">
+                        <VueRecaptcha  @verify="onActvated" language="en" :loadRecaptchaScript="true" theme="dark" sitekey="6LcLBvMUAAAAAPFVSfnKjo-XLGu7m4en0-SGe_k3" />
+                    </div>
+                </v-flex>
+            </v-layout>
+
+
         </v-form>
 
     </FormPanel>
@@ -138,6 +147,7 @@
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     import ButtonNew from '../General/ButtonNew'
+    import VueRecaptcha from 'vue-recaptcha';
 
     const decimalTranslator = suid("0123456789")
 
@@ -145,7 +155,13 @@
 
     export default {
         components: {
-            FormPanel, GridButton,VueUploadMultipleImage,VueCtkDateTimePicker,CookieConsent,ButtonNew
+          VueRecaptcha,
+          FormPanel,
+          GridButton,
+          VueUploadMultipleImage,
+          VueCtkDateTimePicker,
+          CookieConsent,
+          ButtonNew
         },
         data() {
             return {
@@ -157,16 +173,25 @@
                 required: value => !!value || 'Required.',
                 min: v => (v && v.length >= 8) || 'Min 8 characters'
               },
-              isValid: false,
+              isFormValid: false,
+              isFormVerified: false,
               images: []
             }
         },
         computed: {
             ...mapState('profileReports', ['$record']),
             ...mapState('brands', {'brandsList': 'list'}),
-            ...mapGetters('app', ['isAdmin'])
+            ...mapGetters('app', ['isAdmin']),
+          canRegister () {
+            if (!this.isFormVerified) return false
+            if (!this.isFormValid)  return false
+            return true
+          }
         },
         methods: {
+          onActvated() {
+            this.isFormVerified = true
+          },
           editImage(formData, index, fileList) {
             this.images = fileList
           },
@@ -178,12 +203,11 @@
             if (r == true) {
               done()
               this.images = fileList
-              console.dir(fileList)
             }
           },
           onAdd () {
-                this.insert()
-                    /// .then(r => this.$router.go(-1))
+                this.insert(this.images)
+                    .then(r => this.$router.go(-1))
           },
           ...mapActions('profileReports', ['insert', 'save', 'reportList', 'uploadImage'])
         },
