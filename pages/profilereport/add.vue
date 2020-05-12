@@ -10,7 +10,7 @@
         ProfileSubmissionForm
     },
     fetch({store}) {
-        store.commit('profileReports/setRecord',{},{root: true})
+        store.commit('profileReports/setRecord',{send_coordinates: true},{root: true})
         store.commit('profileReports/setAddMode',null,{root: true})
     }
   }

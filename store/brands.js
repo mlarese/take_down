@@ -1,5 +1,6 @@
 import _cloneDeep from 'lodash/cloneDeep'
 import Vue from 'vue'
+import _union from 'lodash/union'
 import csvparser from 'papaparse'
 
 const newFilter = {}
@@ -54,15 +55,16 @@ export const mutations = {
 }
 export const actions = {
     load ({dispatch, commit, state}) {
+        const d = new Date();
+        const n = d.getTime();
+        const {origin, pathname} = window.location
+        return dispatch('api/get', {url: `${origin}${pathname}resources/brands.csv?${n}`}, root)
+            .then(res => {
+              const jsondt = csvparser.parse(res.data, {header: false})
+              commit('setList', _union(...jsondt.data))
+              return res
 
-    const {origin, pathname} = window.location
-    return dispatch('api/get', {url: `${origin}${pathname}resources/brands.csv`}, root)
-        .then(res => {
-          const jsondt = csvparser.parse(res.data, {header: false})
-          commit('setList', jsondt.data)
-          return res
-
-        })
+            })
 
     }
 }

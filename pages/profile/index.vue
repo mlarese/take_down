@@ -1,20 +1,21 @@
 <template>
   <div>
     <template>
-      <ProfileForm/>
+      <ProfileFormOri/>
     </template>
   </div>
 </template>
 
 <script>
-    import ProfileForm from "../../components/Profile/ProfileForm"
+    import ProfileFormOri from "../../components/Profile/ProfileFormOri"
     const root = {root: true}
 
     export default {
         name: "Profile",
-        components: {ProfileForm},
+        components: {ProfileFormOri},
         fetch ({store}) {
-            store.dispatch('profiles/load', {}, root)
+          const id = store.$auth.user.id
+          store.dispatch('profiles/load', {id}, root)
         }
     }
 </script>

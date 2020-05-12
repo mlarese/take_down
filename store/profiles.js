@@ -309,11 +309,8 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/profiles/${id}`
+        const url = `/api/customer/customerrecord/${id}`
         return dispatch('api/put', {url, data}, root)
-            .then(() => {
-                commit('setAddMode')
-            })
     },
     insert ({dispatch, commit}, {data}) {
         const url = `/api/profiles`
@@ -343,10 +340,6 @@ export const actions = {
     },
     saves ({dispatch, commit, state, getters}, item) {
         return dispatch('update', {data:item, id:item.id})
-            .then(r => {
-                commit('setViewMode', {item, active:true})
-
-            })
 
     },
     deletes ({dispatch, commit, state}, id) {
@@ -355,16 +348,7 @@ export const actions = {
     },
     save ({dispatch, commit, state, getters}) {
         let data = state.$record
-
-        if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/profiles`, data}, root)
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
-        } else {
-            let id = data.code
+            let id = data.id
             return dispatch('update', {data, id})
                 .then(r => {
                     commit('addRecord', data)
@@ -372,9 +356,6 @@ export const actions = {
                     return r
                 })
 
-
-
-        }
     },
     resetSearch ({dispatch, commit, state}) {
         commit('setSearchActive', false)
@@ -386,15 +367,17 @@ export const actions = {
             return
         }
         if (id === null) {
-            return dispatch('api/get', {url: `/api/profiles`, options, debug: false}, root)
-                .then(res => {
+            return dispatch('api/get', {url: `/api/customer/customers`, options, debug: false}, root)
+                .then(res => {$
                     commit('setList', res.data)
                     return res
                 })
         } else {
-            return dispatch('api/get', {url: `/api/profiles/{id}`, options}, root)
+            return dispatch('api/get', {url: `/api/customer/customers/${id}`, options}, root)
                 .then(res => {
-                    commit('setRecord', res.data)
+                    let data = res.data
+                    if(data && data.length>0) data = data[0]
+                    commit('setRecord', data)
                     return res
                 })
         }

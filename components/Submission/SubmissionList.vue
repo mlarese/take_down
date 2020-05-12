@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Subscriptions">
+    <GridContainer title="Submissions">
         <div slot="header-right" class="pt-3 pr-1">
 
             <v-text-field class=""
@@ -25,7 +25,7 @@
             <template slot="items" slot-scope="{item}" style="text-align: center">
                 <td width="1" class="no-wrap pa-0 text-xs-center">
                     <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
-                    <GridButton v-if="false" icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
+                    <GridButton v-if="false" icon="cancel" color="error" @click="onDelete(item.id)"></GridButton>
                 </td>
 
                 <td :title="reportStatesByKey[item.submission_status].text" class="text-xs-center">

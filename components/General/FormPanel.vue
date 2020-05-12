@@ -19,7 +19,7 @@
         </v-toolbar>
 
         <v-card slot="container-top" class="elevation-0 pa-1" style="border:0px solid;background-color: #212121 ;border-bottom:0 !important">
-            <v-container fluid grid-list-md>
+            <v-container class="pt-1" fluid grid-list-md>
             <slot>
 
             </slot>

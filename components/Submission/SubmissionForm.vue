@@ -165,18 +165,6 @@
 
                     <Images :images="images"/>
 
-
-                    <!-- vue-upload-multiple-image
-                        :data-images="images"
-                        dark
-                        dragText="Drag File"
-                        browseText="Browse Text"
-                        label="images"
-                        primaryText="Image Insert"
-                        popupText="This is image is been uploaded from your pc"
-                        :maxImage="4"
-                        markIsPrimaryText="select image"
-                        v-model="$record.pictures"/ -->
                 </v-flex>
 
             </v-layout>
@@ -189,7 +177,7 @@
                         layout
                         text-xs-center
                 >
-                    <v-btn  flat color="green darken-2" class="elevation-0"  @click="onAdd">
+                    <v-btn  flat color="green darken-2" class="elevation-0"  @click="onSave">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>
@@ -236,7 +224,7 @@
           }
         },
         methods: {
-            onAdd () {
+            onSave () {
                 this.save()
                     .then(r => this.$router.go(-1))
             },

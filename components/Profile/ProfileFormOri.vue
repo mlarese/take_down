@@ -1,0 +1,225 @@
+<!--eslint-disable-->
+<template>
+    <FormPanel v-bind="$attrs" title="Profile" >
+
+        <v-form ref="form" class="" lazy-validation>
+                <v-layout rows wrap>
+                    <v-flex xs12 sm6>
+                        <v-text-field
+                                hide-details
+
+                                dark
+                                :label="$vuetify.t('Name')"
+                                v-model="$record.name"
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6>
+                        <v-text-field
+
+                                hide-details
+                                :label="$vuetify.t('Surname')"
+                                v-model="$record.surname"
+                                readonly
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+
+                <v-layout rows wrap>
+                <v-flex xs12 sm6>
+                    <v-select
+                            hide-details
+                            disabled
+                            :items="roles"
+                            item-value="value"
+                            item-text="text"
+                            :label="$vuetify.t('Role')"
+                            v-model="$record.role"
+                            color="null"
+                    ></v-select>
+                </v-flex>
+
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            disabled
+                            hide-details
+                            type="email"
+                            :label="$vuetify.t('Email')"
+                            v-model="$record.email"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+                </v-layout>
+                <v-layout rows wrap>
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('Web')"
+                            v-model="$record.web"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('Phone Number')"
+                            v-model="$record.cell_phone"
+                            mask="phone"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+                </v-layout>
+                <v-layout rows wrap>
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('Company')"
+                            v-model="$record.working_at_company"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('Company VAT')"
+                            v-model="$record.working_at_company_VAT"
+                            readonly
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+                </v-layout>
+                <v-layout rows wrap>
+                <v-flex xs12 sm4>
+                    <v-select
+                            hide-details
+                            dense
+                            item-value="code"
+                            item-text="name"
+                            :items="countries"
+                            :label="$vuetify.t('Country')"
+                            color="null"
+                            v-model="$record.country" />
+                </v-flex>
+
+                <v-flex xs12 sm4>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('City')"
+                            v-model="$record.city"
+                            color="null"
+                            readonly
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm4>
+                    <v-text-field
+                            hide-details
+                            :label="$vuetify.t('Region')"
+                            v-model="$record.region"
+                            color="null"
+                    ></v-text-field>
+                </v-flex>
+                </v-layout>
+                <v-layout rows wrap>
+                    <v-flex xs12 sm3>
+                        <v-text-field
+                                hide-details
+                                :label="$vuetify.t('Zip/Code')"
+                                v-model="$record.zipcode"
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm9>
+                        <v-text-field
+                                hide-details
+                                :label="$vuetify.t('Address')"
+                                v-model="$record.address"
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+
+                <v-layout rows wrap>
+                    <v-flex xs12 sm3>
+                        <v-text-field
+                                hide-details
+                                :label="$vuetify.t('Submissions')"
+                                v-model="$record.number_of_submissions"
+                                disabled
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm3>
+                        <v-text-field
+                                hide-details
+                                :label="$vuetify.t('Accepted')"
+                                v-model="$record.number_of_submissions_accepted"
+                                disabled
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm3>
+                        <v-text-field
+                                hide-details
+                                :label="$vuetify.t('Rejected')"
+                                v-model="$record.number_of_submissions_rejected"
+                                disabled
+                                color="null"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+
+                    <v-divider class="mt-2 mb-1"></v-divider>
+                    <v-card-actions>
+                        <v-btn v-if="false" medium flat color="red darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
+                        <v-spacer></v-spacer>
+
+                        <v-btn medium flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
+                    </v-card-actions>
+
+            </v-form>
+        </FormPanel>
+</template>
+
+<script>
+    import {mapState, mapGetters, mapActions} from 'vuex'
+    import FormPanel from '../General/FormPanel'
+    export default {
+        components: {FormPanel},
+        data () {
+            return {
+                country: null
+            }
+        },
+        computed: {
+            ...mapState('profiles', ['$record']),
+            ...mapState('users', ['countries', 'roles']),
+            ...mapGetters('app', ['isAdmin'])
+
+        },
+        methods: {
+            onSave () {
+                this.save()
+                  .then(() => this.$router.push('/home'))
+                  .then(() => this.$notify({
+                    type: 'success',
+                    text: 'Profile updated'
+                  }))
+
+            },
+            ...mapActions('profiles', ['add', 'save','insert','deletes']),
+
+        }
+
+    }
+</script>
+
+<style scoped>
+    .v-input--selection-controls {
+        margin-top: 10px;
+        padding-top: 4px;
+    }
+</style>

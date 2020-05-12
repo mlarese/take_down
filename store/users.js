@@ -354,40 +354,23 @@ export const mutations = {
 
 }
 export const actions = {
-    update ({dispatch, commit, state}, {data, id}) {
-        const url = `/users/${id}`
-        return dispatch('api/put', {url, data}, root)
-            .then(() => {
-                commit('setAddMode')
-            })
-    },
-    insert ({dispatch, commit}, {data}) {
-        const url = `/users`
-        return dispatch('api/post', {url, data}, root)
-    },
-    save ({dispatch, commit, state, getters}) {
-        let data = state.$record
+  update ({dispatch, commit, state}, {data, id}) {
+    const url = `/api/customer/customerrecord/${id}`
+    return dispatch('api/put', {url, data}, root)
+  },
 
-        if (getters.isAddMode) {
-            return dispatch('api/post', {url: `/api/users`, data}, root)
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
-        } else {
-            let id = data.code
-            return dispatch('update', {data, id})
-                .then(r => {
-                    commit('addRecord', data)
-                    commit('set$Record', {})
-                    return r
-                })
+  save ({dispatch, commit, state, getters}) {
+    let data = state.$record
+
+    let id = data.id
+    return dispatch('update', {data, id})
+      .then(r => {
+        commit('set$Record', {})
+        return r
+      })
 
 
-
-        }
-    },
+  },
     delete ({dispatch, commit, state}, id) {
         const url = `/api/users/${id}`
         return dispatch('api/delete', {url}, root)
@@ -414,7 +397,7 @@ export const actions = {
                 .then(res => {
                   let data = res.data
                   if(data.length > 0) data = data[0]
-                  else data = {}
+
                   commit('setRecord', data)
                     return res
                 })

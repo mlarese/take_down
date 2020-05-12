@@ -4,9 +4,9 @@ const menuItems = {
     home: {to: '', label: 'Home', icon: 'mdi-home'},
     user: {to: 'user', label: 'Users', icon: 'account_circle'},
     brand: {to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
-    report: {to: 'report', label: 'Submission', icon: 'mdi-clipboard-arrow-up-outline'},
+    report: {to: 'report', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'},
     profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
-    profilereport: {to: 'profilereport', label: 'Submission', icon: 'mdi-clipboard-arrow-up-outline'}
+    profilereport: {to: 'profilereport', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 
 

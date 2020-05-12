@@ -251,12 +251,20 @@
                 </v-flex>
             </v-layout>
 
-            <v-divider class="mt-2 mb-1"></v-divider>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-
-                <v-btn medium color="green darken-2" flat class="elevation-0" @click="save">Save Profile</v-btn>
-            </v-card-actions>
+            <v-layout row wrap class="mt-2">
+                <v-flex
+                        xs12
+                        sm12
+                        align-center
+                        justify-center
+                        layout
+                        text-xs-center
+                >
+                    <v-btn  flat color="green darken-2" class="elevation-0"  @click="onSave">
+                        {{$vuetify.t('Save') }}
+                    </v-btn>
+                </v-flex>
+            </v-layout>
 
         </v-form>
     </FormPanel>
@@ -278,7 +286,7 @@
         },
         computed: {
             ...mapState('users', ['$record','countries']),
-            ...mapState('users', ['$record','roles']),
+            ...mapState('users', ['roles']),
             ...mapGetters('app', ['isAdmin']),
             last_datetime_pwd_resetted () {
               return this.formatDate(this.$record.last_datetime_pwd_resetted)
@@ -289,7 +297,7 @@
         },
         methods: {
             formatDate,
-            onAdd () {
+            onSave () {
                 this.save()
                     .then(r => this.$router.go(-1))
             },

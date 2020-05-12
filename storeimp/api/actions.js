@@ -49,6 +49,7 @@ export const actions = {
 
         if (!options.headers)  options.headers = {}
         options.headers.Authorization = getToken()
+        options.headers.nonce = 'mstrnncstrrndm'
 
         // console.log(baseURL + url, options)
 
@@ -67,6 +68,31 @@ export const actions = {
                 return Promise.reject(err)
             })
     },
+    postmp ({commit, getters, rootGetters}, {url, data = {}, options = {}}) {
+        commit('isAjax', true)
+        commit('error')
+        commit('hasError')
+
+        if (!options.headers)  options.headers = {}
+        options.headers.Authorization = getToken()
+        options.headers.nonce = 'mstrnncstrrndm'
+        options.headers['Content-Type'] = 'multipart/form-data'
+        options.headers['X-Requested-With'] = 'multipart/form-data'
+
+        return instance.post(url, data, options)
+          .then(res => {
+            commit('isAjax')
+            return res
+          })
+          .catch(err => {
+            console.log(err)
+            commit('isAjax')
+            commit('error', err)
+            commit('hasError', true)
+            commit('notification', notifyError(err))
+            return Promise.reject(err)
+          })
+    },
     post ({commit, getters, rootGetters}, {url, data = {}, options = {}}) {
         commit('isAjax', true)
         commit('error')
@@ -74,7 +100,7 @@ export const actions = {
 
         if (!options.headers)  options.headers = {}
         options.headers.Authorization = getToken()
-
+        options.headers.nonce = 'mstrnncstrrndm'
         return instance.post(url, data, options)
             .then(res => {
                 commit('isAjax')
@@ -96,7 +122,7 @@ export const actions = {
 
         if (!options.headers)  options.headers = {}
         options.headers.Authorization = getToken()
-
+        options.headers.nonce = 'mstrnncstrrndm'
         return instance.put(url, data, options)
             .then(res => {
                 commit('isAjax')
@@ -117,7 +143,7 @@ export const actions = {
         commit('hasError')
         if (!options.headers)  options.headers = {}
         options.headers.Authorization = getToken()
-
+        options.headers.nonce = 'mstrnncstrrndm'
         return instance.delete(url, options)
             .then(res => {
                 commit('isAjax')

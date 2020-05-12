@@ -1,29 +1,36 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Submission">
-        <div slot="header-right" class="">
-            <ButtonNew color="green darken-2"  title="New Submission" @click.native="onAdd"/>
+    <GridContainer title="Submissions">
+        <div slot="header-right" class="pt-3 pr-1">
+
+            <v-text-field class=""
+                          single-line
+                          style="width:200px"
+                          label="Search"
+                          clearable
+                          height="28"
+                          v-model="ui.filter"
+                          autofocus
+                          append-icon="search"/>
         </div>
+
         <v-data-table
-                :rows-per-page-items="[7]"
+                :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
                 :loading="isAjax" fixed
                 :items="reportList"
                 :headers="headers"
-                hide-details
-                dark
-                :hide-actions="false"
-
-                class="elevation-0"
+                :search="ui.filter"
+                class="elevation-4 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
-                <td width="1" class="no-wrap px-1">
-                    <GridButton icon="edit" color="primary" @click="onEdit(item.reports_id )"></GridButton>
-                    <GridButton icon="delete" color="error" @click="onDelete(item.reports_id)"></GridButton>
+                <td width="1" class="no-wrap pa-0 text-xs-center">
+                    <GridButton  v-if="false" icon="edit" color="primary" @click="onEdit(item.id )" />
+                    <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
                 </td>
 
-                <td style="text-align: center">{{ item.submission_status }}</td>
-                <td style="text-align: center">{{ item.username }}</td>
-                <td style="text-align: center">{{ item.surname }}</td>
+                <td :title="reportStatesByKey[item.submission_status].text" class="text-xs-center">
+                    <v-icon>{{reportStatesByKey[item.submission_status].icon}}</v-icon>
+                </td>
                 <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
                 <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
                 <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
@@ -34,60 +41,60 @@
                 {{ pageStart }} - {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
             </template>
 
-
-
         </v-data-table>
 
+        <template slot="fab">
+            <ButtonNew  title="New" @click.native="onAdd" />
+        </template>
     </GridContainer>
 </template>
 <script>
-    import {mapState, mapActions, mapGetters} from 'vuex'
-    import GridButton from '../General/GridButton'
-    import GridContainer from '../General/GridContainer'
-    import CardPanel from "../General/CardPanel"
-    import ButtonNew from "../General/ButtonNew"
-    import DatePicker from 'vue2-datepicker'
-    export default {
-        components: {ButtonNew, CardPanel, GridButton, GridContainer, DatePicker},
-        data () {
+  import {mapState, mapActions, mapGetters} from 'vuex'
+  import GridButton from '../General/GridButton'
+  import GridContainer from '../General/GridContainer'
+  import CardPanel from "../General/CardPanel"
+  import ButtonNew from "../General/ButtonNew"
+  import DatePicker from 'vue2-datepicker'
+  import {statusIdToText} from '../../assets/filters'
+  export default {
+    components: {ButtonNew, CardPanel, GridButton, GridContainer, DatePicker},
+    data () {
 
-            const headers = [
-                { text: 'Actions', value: 'action', sortable: false },
-                { text: this.$vuetify.t('Status'), value: 'submission_status' },
-                { text: this.$vuetify.t('Username'), value: 'username' },
-                { text: this.$vuetify.t('Surname'), value: 'surname' },
-                { text: this.$vuetify.t('Date'), value: 'submission_date' },
-                { text: this.$vuetify.t('Title'), value: 'submission_title' },
-                { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
-                { text: this.$vuetify.t('URL'), value: 'submission_url' }
-            ]
-            return {
-                sms_mo_date: null,
-                click_date: null,
-                gridFilter: '',
-                headers
-            }
-        },
-        computed: {
-            ...mapState('profileReports', {'reportList': 'list'}),
-            ...mapState('brands', ['$record']),
-            ...mapState('api', {'isAjax': 'isAjax'}),
-        },
-        methods: {
-            onDelete (id) {
-                if(!confirm('Do you confirm the row deletion ?')) return
-                this.delete(id)
-                    .then(() => {
-                        this.load({})
-                    })
-            },
-            onAdd () {
-                this.$router.push('/profilereport/add')
-            },
-            onEdit (id) {
-                this.$router.push(`/profilereport/${id}`)
-            },
-            ...mapActions('profilereport', ['add', 'save']),
-        }
+      const headers = [
+        { text: 'Actions', value: 'action', sortable: false },
+        { text: this.$vuetify.t('Status'), value: 'submission_status' },
+        { text: this.$vuetify.t('Date'), value: 'submission_date' },
+        { text: this.$vuetify.t('Title'), value: 'submission_title' },
+        { text: this.$vuetify.t('Brand'), value: 'submission_brand' },
+        { text: this.$vuetify.t('URL'), value: 'submission_url' }
+      ]
+      return {
+        sms_mo_date: null,
+        click_date: null,
+        gridFilter: '',
+        headers
+      }
+    },
+    computed: {
+      ...mapGetters('reports', ['reportStatesByKey']),
+      ...mapState('profileReports', {'reportList': 'list', 'ui': 'ui'}),
+      ...mapState('api', {'isAjax': 'isAjax'}),
+    },
+    methods: {
+      ...mapActions('profileReports', ['delete', 'load']),
+      onAdd () {
+        this.$router.push('/profilereport/add')
+      },
+      onDelete (id) {
+        if(!confirm('Do you confirm the row deletion ?')) return
+        this.delete(id)
+          .then(() => {
+            this.load({})
+          })
+      },
+      onEdit (id) {
+        this.$router.push(`/profilereport/${id}`)
+      }
     }
+  }
 </script>

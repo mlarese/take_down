@@ -6,23 +6,23 @@
                             <div class="deepshadow display-2 mb-1 mt-3 text-xs-center">Take Down</div>
                             <div class="body-1 mb-2 mt-0 text-xs-center">Register</div>
 
-                            <div style="height:380px;overflow-y: auto">
+                            <div style="height:330px;overflow-y: auto">
                                 <v-form method="post" action="#" v-model="isFormValid" class="pb-5">
 
-                                    <v-text-field  hide-details    v-model="record.name " _rules="[rules.name]" label="Name" required></v-text-field>
-                                    <v-text-field hide-details    v-model="record.surname" _rules="[rules.surname]" label="Surname" required></v-text-field>
-                                    <v-text-field hide-details    v-model="record.password" _rules="[rules.surname]" label="Password" password required></v-text-field>
-                                    <v-text-field hide-details   v-model="record.email" :rules="[rules.email]" label="Email" required></v-text-field>
+                                    <v-text-field  hide-details    v-model="record.name " :rules="[rules.required]" label="Name*" required></v-text-field>
+                                    <v-text-field hide-details    v-model="record.surname" :rules="[rules.required]" label="Surname*" required></v-text-field>
+                                    <v-text-field hide-details  type="password"   v-model="record.password" :rules="[rules.required, rules.min]" label="Password* (min 8 characters)" password required></v-text-field>
+                                    <v-text-field hide-details   v-model="record.email" :rules="[rules.email, rules.required]" label="Email" required></v-text-field>
 
-                                    <v-autocomplete :items="usersRoles" hide-details v-model="record.role" _rules="[rules.role]" label="Role" counter="25" required></v-autocomplete>
-                                    <v-text-field hide-details   v-model="record.working_at_company" _rules="[rules.company]" label="Company" required></v-text-field>
-                                    <v-text-field hide-details    v-model="record.working_at_company_VAT" label="Company VAT"></v-text-field>
-                                    <v-autocomplete hide-details :items="countries" label="Country" v-model="record.country" _rules="[rules.country]"  required item-value="code" item-text="name" ></v-autocomplete>
-                                    <v-text-field hide-details   v-model="record.address" label="Address"></v-text-field>
-                                    <v-text-field  hide-details   v-model="record.city" label="City"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.region" label="Region"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.zipcode" label="Postal Code"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.cell_phone" _rules="[rules.phoneNumber]" label="Phone Number" required></v-text-field>
+                                    <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.required]" label="Role*" counter="25" required></v-autocomplete>
+                                    <v-text-field hide-details   v-model="record.working_at_company" :rules="[rules.required]" label="Company*" required></v-text-field>
+                                    <v-text-field hide-details    v-model="record.working_at_company_VAT"  :rules="[rules.required]"  label="Company VAT*"></v-text-field>
+                                    <v-autocomplete hide-details :items="countries" label="Country*" v-model="record.country" :rules="[rules.required]"  required item-value="code" item-text="name" ></v-autocomplete>
+                                    <v-text-field hide-details   v-model="record.address" :rules="[rules.required]"  label="Address*"></v-text-field>
+                                    <v-text-field hide-details   v-model="record.city" :rules="[rules.required]"  label="City*"></v-text-field>
+                                    <v-text-field hide-details   v-model="record.region" :rules="[rules.required]"  label="Region*"></v-text-field>
+                                    <v-text-field hide-details   v-model="record.zipcode" :rules="[rules.required]"  label="Postal Code*"></v-text-field>
+                                    <v-text-field hide-details   v-model="record.cell_phone" :rules="[rules.required]" label="Phone Number*" required></v-text-field>
 
                                     <v-text-field hide-details   v-model="record.web" label="Web"></v-text-field>
 
@@ -61,6 +61,8 @@
                 isFormValid: true,
                 isFormVerified: false,
                 rules: {
+                    required: value => !!value || 'Required.',
+                    min: v => (v && v.length >= 8) || 'Min 8 characters',
                     email: value => {
                       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                       return pattern.test(value) || 'Invalid e-mail.'
@@ -68,6 +70,7 @@
                 }
             }
         },
+
         computed: {
             ...mapState('users', ['usersRoles', 'record', 'ui']),
             ...mapState('users', ['countries']),
@@ -94,6 +97,11 @@
                 return true
             }
         },
+      watch: {
+        'ui.activeLoginTab' () {
+          alert('')
+        }
+      },
         methods: {
             ...mapActions('app', ['register']),
             ...mapMutations('users', ['setRecord']),

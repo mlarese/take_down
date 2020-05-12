@@ -1,6 +1,6 @@
 import _cloneDeep from 'lodash/cloneDeep'
 import _keyBy from 'lodash/keyBy'
-
+import {reportStates} from './reports'
 import Vue from 'vue'
 import addDays from 'date-fns/addDays'
 import format from 'date-fns/format'
@@ -8,85 +8,153 @@ import format from 'date-fns/format'
 let today = new Date()
 let fmtToday = format(today, 'yyyy-MM-dd')
 
-const newFilter = () => ({
-    creation_datetime: [fmtToday, fmtToday],
-    start_datetime: [fmtToday, fmtToday],
-    cb_age_range: [1,2,3,4,5,6]
-})
+let currentPosition = {
+  coords: {
+    latitude: 0,
+    longitude:0
+  }
+}
+
+function getPosition(position) {
+  currentPosition = position
+  return currentPosition
+}
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+
+
 export const state = () => {
-    return {
-        list: [],
-        recordList: [],
-        record: {},
-        $record: {},
-        addRecord: {},
-        resetItem: {},
-        mode: 'list',
-        searchActive: false,
-        filter: newFilter()
-    }
+  return {
+    list: [],
+    recordList: [],
+    record: {},
+    $record: {},
+    addRecord: {},
+    resetItem: {},
+    ui: {filter: null},
+    mode: 'list',
+    searchActive: false,
+    reportStates,
+    filter: {}
+  }
 }
 
 const root = {root: true}
 
 export const mutations = {
-    setSearchActive (state, payload) { state.searchActive = payload },
-    setRecordList (state, payload) { state.recordList = payload },
-    setList (state, payload) {
-        state.list = payload
-    },
-    setRecord (state, payload) {
-        state.record = _cloneDeep(payload)
-        state.$record = _cloneDeep(payload)
-        state.loaded = true
-    },
-    set$Record (state, payload) {
-        state.$record = _cloneDeep(payload)
-        state.loaded = true
-    },
-    updateItemList (state,  {data, index}) {
-        Vue.set(state.list, index, data)
-    },
-    addRecord (state,  p ) {
-        state.list.push(p)
-    },
-    reset$Record (state) {
-        state.$record = {}
-    },
-    setMode (state, payload) { state.mode = payload },
-    setForm (state, payload) { state.form = payload },
-    setEditMode (state) { state.mode = 'edit' },
-    setAddMode (state) { state.mode = 'add' },
-    resetFilter (state) {
-        state.filter = newFilter()
-    }
+  setSearchActive (state, payload) { state.searchActive = payload },
+  setRecordList (state, payload) { state.recordList = payload },
+  setList (state, payload) {
+    state.list = payload
+  },
+  setRecord (state, payload) {
+    state.record = _cloneDeep(payload)
+    state.$record = _cloneDeep(payload)
+    state.loaded = true
+  },
+  set$Record (state, payload) {
+    state.$record = _cloneDeep(payload)
+    state.loaded = true
+  },
+  updateItemList (state,  {data, index}) {
+    Vue.set(state.list, index, data)
+  },
+  addRecord (state,  p ) {
+    state.list.push(p)
+  },
+  reset$Record (state) {
+    state.$record = {}
+  },
+  setMode (state, payload) { state.mode = payload },
+  setForm (state, payload) { state.form = payload },
+  setEditMode (state) { state.mode = 'edit' },
+  setAddMode (state) { state.mode = 'add' },
+  resetFilter (state) {
+    state.filter = {}
+  }
 
 }
 export const actions = {
+  uploadImage ({dispatch, commit, state}, {picture}) {
+    const data = new FormData();
+    data.append('picture',picture)
+    data.append('submission_id',1)
+    data.append('nonce','nncupldfrmdt')
 
-    load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
-        if (!force && state.list.length > 0) {
-            return
-        }
-        if (id === null) {
-            return dispatch('api/get', {url: `/customer/submissions`, options, debug: false}, root)
-                .then(res => {
-                    commit('setList', res.data)
-                    return res
-                })
-        } else {
-            const url = `/customer/submissions/${id}`
-            return dispatch('api/get', {url, options}, root)
-                .then(res => {
-                    commit('setRecord', res.data)
-                    return res
-                })
-        }
+    const url = `/api/customer/pictures`
+    return dispatch('api/postmp', {url, data}, root)
+  },
+  update ({dispatch, commit, state}, {data, id}) {
+    const url = `/api/customer/submissionrecord/${id}`
+    return dispatch('api/put', {url, data}, root)
+  },
+  insert ({dispatch, commit, state}) {
+    let data = state.$record
+    if(data.send_coordinates) {
+      data.submission_geo_location_longitude = currentPosition.coords.longitude + ''
+      data.submission_geo_location_latitude = currentPosition.coords.latitude + ''
+    } else {
+      data.submission_geo_location_longitude = "0"
+      data.submission_geo_location_latitude = "0"
     }
+
+    const url = `/api/customer/submissions`
+    return dispatch('api/post', {url, data}, root)
+      .then(res => {
+        console.dir(res)
+      })
+      .then(() => commit('set$Record', {}))
+  },
+  save ({dispatch, commit, state, getters}) {
+    let data = state.$record
+
+    let id = data.id
+    return dispatch('update', {data, id})
+      .then(r => {
+        commit('set$Record', {})
+        return r
+      })
+
+
+  },
+  resetSearch ({dispatch, commit, state}) {
+    commit('setSearchActive', false)
+    commit('resetFilter')
+    commit('setList', [])
+  },
+  load ({dispatch, commit, state}, {id = null, force = true, options = {}}) {
+    if (!force && state.list.length > 0) {
+      return
+    }
+    if (id === null) {
+      return dispatch('api/get', {url: `/api/customer/submissions`, options, debug: false}, root)
+        .then(res => {
+          commit('setList', res.data)
+          return res
+        })
+    } else {
+      const url = `/api/customer/submissions/${id}`
+      return dispatch('api/get', {url, options}, root)
+        .then(res => {
+          let data = res.data
+          if(data.length > 0) data = data[0]
+          else data = {}
+          commit('setRecord', data)
+          return res
+        })
+    }
+  },
+  delete ({dispatch, commit, state}, id) {
+    const url = `/api/customer/submissions/cancel/${id}`
+    return dispatch('api/delete', {url}, root)
+      .then(res => dispatch('load', {}))
+  }
 }
 
 export const getters = {
-    isEditMode: state => state.mode === 'edit',
-    isAddMode: state => state.mode === 'add'
+  isEditMode: state => state.mode === 'edit',
+  isAddMode: state => state.mode === 'add',
+  reportStatesByKey: state => _keyBy(state.reportStates, 'cur')
 }
 
