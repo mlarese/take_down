@@ -121,7 +121,6 @@
 
                   } else {
                     alert(message)
-                    this.setRecord({})
 
                   }
                 })

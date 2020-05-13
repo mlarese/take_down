@@ -42,7 +42,9 @@
     methods: {
       ...mapActions('users', ['changePassword']),
       onResetPassword () {
+
         this.$emit('reset-password', this.user)
+        this.user = null
       },
       onCancel () {
         this.$emit('cancel')
