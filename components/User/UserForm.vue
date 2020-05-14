@@ -46,7 +46,6 @@
                 <v-flex xs12 sm6>
                     <v-select
                             hide-details
-                            :="!isAdmin"
                             :items="roles"
                             item-value="value"
                             item-text="text"
@@ -91,6 +90,7 @@
             <v-layout rows wrap>
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :maxlength="255"
                             hide-details
                             :label="$vuetify.t('Company')"
                             v-model="$record.working_at_company"
@@ -158,6 +158,7 @@
             <v-layout rows wrap>
                 <v-flex xs12 >
                     <v-text-field
+                            :maxlength="200"
                             hide-details
                             :label="$vuetify.t('Address')"
                             v-model="$record.address"
