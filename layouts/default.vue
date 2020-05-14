@@ -155,13 +155,20 @@
     }
 
     .v-text-field .v-label--active {
-        -webkit-transform: translateY(-25px) scale(0.75);
-        transform: translateY(-25px) scale(0.75);
+        -webkit-transform: translateY(-25px) scale(0.90);
+        transform: translateY(-25px) scale(0.90);
+        font-weight: bold;
+    }
+
+    .error--text {
+        color: #ff5252 !important;
+        caret-color: #ff5252 !important;
     }
 
     .theme--light.v-label {
         color: rgba(0,0,0,1);
     }
+
 
 
     .v-tooltip__content{
@@ -174,6 +181,7 @@
         position: relative;
         top: -2px;
         left:5px;
+
     }
 
     .mx-input {

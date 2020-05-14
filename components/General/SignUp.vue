@@ -9,20 +9,20 @@
                             <div style="height:330px;overflow-y: auto">
                                 <v-form method="post" action="#" v-model="isFormValid" class="pb-5">
 
-                                    <v-text-field  hide-details    v-model="record.name " :rules="[rules.required]" label="Name*" required></v-text-field>
-                                    <v-text-field hide-details    v-model="record.surname" :rules="[rules.required]" label="Surname*" required></v-text-field>
-                                    <v-text-field hide-details  type="password"   v-model="record.password" :rules="[rules.required, rules.min]" label="Password* (min 8 characters)" password required></v-text-field>
-                                    <v-text-field hide-details   v-model="record.email" :rules="[rules.email, rules.required]" label="Email" required></v-text-field>
+                                    <v-text-field  hide-details   :maxlength="50"   v-model="record.name" :rules="[rules.required]" label="Name*" required></v-text-field>
+                                    <v-text-field hide-details    :maxlength="50"  v-model="record.surname" :rules="[rules.required]" label="Surname*" required></v-text-field>
+                                    <v-text-field hide-details  :maxlength="30"  type="password"   v-model="record.password" :rules="[rules.required, rules.min]" label="Password* (min 8 characters)" password required></v-text-field>
+                                    <v-text-field hide-details  :maxlength="200"   v-model="record.email" :rules="[rules.email, rules.required]" label="Email" required></v-text-field>
 
                                     <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.required]" label="Role*" counter="25" required></v-autocomplete>
                                     <v-text-field hide-details   v-model="record.working_at_company" :rules="[rules.required]" label="Company*" required></v-text-field>
-                                    <v-text-field hide-details    v-model="record.working_at_company_VAT"  :rules="[rules.required]"  label="Company VAT*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="15"   v-model="record.working_at_company_VAT"  :rules="[rules.required]"  label="Company VAT*"></v-text-field>
                                     <v-autocomplete hide-details :items="countries" label="Country*" v-model="record.country" :rules="[rules.required]"  required item-value="code" item-text="name" ></v-autocomplete>
-                                    <v-text-field hide-details   v-model="record.address" :rules="[rules.required]"  label="Address*"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.city" :rules="[rules.required]"  label="City*"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.region" :rules="[rules.required]"  label="Region*"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.zipcode" :rules="[rules.required]"  label="Postal Code*"></v-text-field>
-                                    <v-text-field hide-details   v-model="record.cell_phone" :rules="[rules.required]" label="Phone Number*" required></v-text-field>
+                                    <v-text-field hide-details  :maxlength="50"   v-model="record.address" :rules="[rules.required]"  label="Address*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="100"   v-model="record.city" :rules="[rules.required]"  label="City*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="50"  v-model="record.region" :rules="[rules.required]"  label="Region*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="10"   v-model="record.zipcode" :rules="[rules.required]"  label="Postal Code*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="50"   v-model="record.cell_phone" :rules="[rules.required]" label="Phone Number*" required></v-text-field>
 
                                     <v-text-field hide-details   v-model="record.web" label="Web"></v-text-field>
 
@@ -118,11 +118,13 @@
                     alert(message)
                     this.setRecord({})
                     this.setActiveLoginTab(0)
-
                   } else {
                     alert(message)
 
                   }
+                })
+                .catch(e => {
+                  alert('')
                 })
             },
         }
