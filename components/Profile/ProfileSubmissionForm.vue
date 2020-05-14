@@ -74,12 +74,9 @@
 
                 </v-layout>
 
-
-
                     <v-layout rows wrap class="mt-2 text-xs-center" >
 
                         <v-flex xs12 class="text-xs-center">
-
                             <vue-upload-multiple-image
                                 @before-remove="beforeRemove"
                                 @upload-success="uploadImageSuccess"
@@ -93,13 +90,8 @@
                                 markIsPrimaryText="Select image"
                                 v-model="$record.pictures"/>
                         </v-flex>
-
                     </v-layout>
-
-
             <v-layout row wrap class="mt-2">
-
-
                 <v-flex
                         xs12
                         sm12
@@ -108,7 +100,6 @@
                         layout
                         text-xs-center
                 >
-
                     <v-switch
                             style="position: relative; top:-11px"
                             height="33"
@@ -117,7 +108,7 @@
                             v-model="$record.send_coordinates"
                             :label="$vuetify.t('Send Geolocation')"
                     ></v-switch>
-
+                    
                     <v-spacer></v-spacer>
                     <v-btn :disabled="!canRegister" color="green darken-2" flat class="elevation-0"  @click="onAdd">
                         {{$vuetify.t('Save') }}
