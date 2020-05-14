@@ -41,14 +41,12 @@
                                 color="null"
                         ></v-text-field>
                         <v-autocomplete
-
+                            :maxlength="255"
                             class="only-menu left-float"
                             hide-details
                             dense
-
                             flat
                             :items="brandsList"
-
                             color="null"
                             v-model="$record.submission_brand" />
                     </v-flex>
@@ -56,6 +54,7 @@
                     <v-flex xs12 sm12>
                         <v-text-field
                                 hide-details
+                                :maxlength="1024"
                                 :label="$vuetify.t('Title')"
                                 v-model="$record.submission_title"
                                 color="null"
@@ -73,11 +72,12 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6 md6>
                         <v-text-field
-                                        dense
-                                        :label="$vuetify.t('Url')"
-                                        color="null"
-                                        hide-details
-                                        v-model="$record.submission_url" />
+                                :maxlength="1024"
+                                dense
+                                :label="$vuetify.t('Url')"
+                                color="null"
+                                hide-details
+                                v-model="$record.submission_url" />
                     </v-flex>
                     <v-flex xs12 sm6 >
                         <v-select
@@ -95,7 +95,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
-
+                                :maxlength="100"
                                 :label="$vuetify.t('Location Latitude')"
                                 v-model="$record.submission_geo_location_latitude"
                                 type="number"
@@ -106,7 +106,7 @@
 
                     <v-flex xs12 sm6>
                         <v-text-field
-
+                                :maxlength="100"
                                 :label="$vuetify.t('Location Longitude')"
                                 v-model="$record.submission_geo_location_longitude"
                                 type="number"
@@ -118,6 +118,7 @@
             <v-layout rows wrap>
                 <v-flex xs12 sm6 md6 d-flex>
                     <v-text-field
+                            :maxlength="1024"
                             hide-details
                             disabled
                             :label="$vuetify.t('HTTP User Agent')"
@@ -127,6 +128,7 @@
 
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :maxlength="15"
                             hide-details
                             :label="$vuetify.t('IP')"
                             v-model="$record.submission_ip"

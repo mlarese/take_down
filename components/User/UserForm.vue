@@ -13,21 +13,19 @@
                 <v-flex xs12 sm5>
                     <v-text-field
                             hide-details
-
+                            :maxlength="50"
                             dark
                             :label="$vuetify.t('Name')"
                             v-model="$record.name"
-
                             color="null"
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                     <v-text-field
-
+                            :maxlength="50"
                             hide-details
                             :label="$vuetify.t('Surname')"
                             v-model="$record.surname"
-
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -60,7 +58,7 @@
 
                 <v-flex xs12 sm6>
                     <v-text-field
-
+                            :maxlength="255"
                             hide-details
                             type="email"
                             :label="$vuetify.t('Email')"
@@ -73,9 +71,9 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
+                            :maxlength="1024"
                             :label="$vuetify.t('Web')"
                             v-model="$record.web"
-
                             color="null"
                     ></v-text-field>
                 </v-flex>
@@ -83,6 +81,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
+                            :maxlength="50"
                             label="Phone Number"
                             v-model="$record.cell_phone"
                             color="null"
@@ -102,6 +101,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
+                            :maxlength="15"
                             :label="$vuetify.t('Company VAT')"
                             v-model="$record.working_at_company_VAT"
                             readonly
@@ -114,6 +114,7 @@
                     <v-autocomplete
                             hide-details
                             dense
+                            :maxlength="100"
                             :items="countries"
                             item-value="name"
                             item-text="name"
@@ -126,6 +127,7 @@
                 <v-flex xs12 sm3>
                     <v-text-field
                             hide-details
+                            :maxlength="100"
                             :label="$vuetify.t('City')"
                             v-model="$record.city"
                             color="null"
@@ -136,6 +138,7 @@
                 <v-flex xs12 sm2>
                     <v-text-field
                             hide-details
+                            :maxlength="100"
                             :label="$vuetify.t('Region')"
                             v-model="$record.region"
                             color="null"
@@ -145,6 +148,7 @@
                     <v-text-field
                             hide-details
                             type="number"
+                            :maxlength="10"
                             :label="$vuetify.t('Zip/Code')"
                             v-model="$record.zipcode"
                             color="null"
@@ -176,7 +180,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
-
+                            :maxlength="15"
                             :label="$vuetify.t('Submission IP')"
                             v-model="$record.subscription_ip"
                             color="null"
@@ -188,6 +192,7 @@
                     <v-text-field
                             dark
                             hide-details
+                            :maxlength="1024"
                             :label="$vuetify.t('HTTP User Agent')"
                             v-model="$record.HTTP_USER_AGENT"
                             readonly
