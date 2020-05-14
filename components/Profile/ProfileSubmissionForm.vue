@@ -19,6 +19,7 @@
                                 class="left-float"
                                 style="width:90%"
                                 hide-details
+                                :maxlength="255"
                                 :label="$vuetify.t('Brand')+'*'"
                                 v-model="$record.submission_brand"
                                 color="null"
@@ -39,6 +40,7 @@
 
                     <v-flex xs12 sm6>
                         <v-text-field
+                                :maxlength="1024"
                                 :rules="[rules.required]"
                                 hide-details
                                 :label="$vuetify.t('Title')+'*'"
@@ -61,6 +63,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 >
                         <v-text-field
+                                :maxlength="1024"
                                 :rules="[rules.required, rules.url]"
                                 dense
                                 :label="$vuetify.t('Url')+'*'"

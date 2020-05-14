@@ -7,7 +7,7 @@
                     <v-flex xs12 sm6>
                         <v-text-field
                                 hide-details
-
+                                :maxlength="50"
                                 dark
                                 :label="$vuetify.t('Name')"
                                 v-model="$record.name"
@@ -16,7 +16,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
-
+                                :maxlength="50"
                                 hide-details
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
@@ -42,6 +42,7 @@
 
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :maxlength="200"
                             disabled
                             hide-details
                             type="email"
@@ -54,6 +55,7 @@
                 <v-layout rows wrap>
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :maxlength="254"
                             hide-details
                             :label="$vuetify.t('Web')"
                             v-model="$record.web"
@@ -64,6 +66,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
+                            :maxlength="50"
                             :label="$vuetify.t('Phone Number')"
                             v-model="$record.cell_phone"
                             mask="phone"
@@ -75,6 +78,7 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             hide-details
+                            :maxlength="250"
                             :label="$vuetify.t('Company')"
                             v-model="$record.working_at_company"
                             color="null"
@@ -83,6 +87,7 @@
 
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :maxlength="15"
                             hide-details
                             :label="$vuetify.t('Company VAT')"
                             v-model="$record.working_at_company_VAT"
@@ -107,6 +112,7 @@
                 <v-flex xs12 sm4>
                     <v-text-field
                             hide-details
+                            :maxlength="100"
                             :label="$vuetify.t('City')"
                             v-model="$record.city"
                             color="null"
@@ -117,6 +123,7 @@
                 <v-flex xs12 sm4>
                     <v-text-field
                             hide-details
+                            :maxlength="100"
                             :label="$vuetify.t('Region')"
                             v-model="$record.region"
                             color="null"
@@ -127,6 +134,7 @@
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
+                                :maxlength="100"
                                 :label="$vuetify.t('Zip/Code')"
                                 v-model="$record.zipcode"
                                 color="null"
