@@ -99,6 +99,10 @@ export const actions = {
       data.submission_geo_location_latitude = "0"
     }
 
+    if(data.submission_url === '') {
+      delete data.submission_url
+    }
+
     const url = `/api/customer/submissions`
     return dispatch('api/post', {url, data}, root)
       .then(res => {

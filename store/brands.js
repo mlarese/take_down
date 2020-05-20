@@ -1,5 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep'
 import Vue from 'vue'
+import _sortedUniq from 'lodash/tail'
+import _tail from 'lodash/sortedUniq'
 import _union from 'lodash/union'
 import csvparser from 'papaparse'
 
@@ -61,6 +63,7 @@ export const actions = {
         return dispatch('api/get', {url: `${origin}${pathname}resources/brands.csv?${n}`}, root)
             .then(res => {
               const jsondt = csvparser.parse(res.data, {header: false})
+
               commit('setList', _union(...jsondt.data))
               return res
 
@@ -70,6 +73,7 @@ export const actions = {
 }
 
 export const getters = {
+    brandsList: state => _tail(state.list).sort(),
     isEditMode: state => state.mode === 'edit',
     isAddMode: state => state.mode === 'add'
 }

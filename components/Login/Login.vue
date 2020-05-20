@@ -1,8 +1,7 @@
 <!--eslint-disable-->
 <template>
     <v-layout align-center justify-center class="login ">
-        <ResetP
-                assword
+        <ResetPassword
                 :show="showReset"
                 @on-cancel="showReset=false"
                 @reset-password="onResetPassword"
