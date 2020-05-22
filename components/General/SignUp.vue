@@ -99,7 +99,7 @@
         },
       watch: {
         'ui.activeLoginTab' () {
-          alert('')
+
         }
       },
         methods: {

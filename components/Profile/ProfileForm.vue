@@ -301,7 +301,8 @@
         },
         methods: {
             formatDate,
-            onSave () {
+            async onSave () {
+              await this.$auth.fetchUser().catch(() => {})
                 this.save()
                     .then(r => this.$router.go(-1))
             },

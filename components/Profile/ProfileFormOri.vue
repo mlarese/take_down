@@ -1,7 +1,6 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" title="Profile" >
-
         <v-form ref="form" class="" lazy-validation>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
@@ -43,7 +42,6 @@
                 <v-flex xs12 sm6>
                     <v-text-field
                             :maxlength="200"
-                            disabled
                             hide-details
                             type="email"
                             :label="$vuetify.t('Email')"
@@ -203,22 +201,36 @@
             }
         },
         computed: {
-            ...mapState('profiles', ['$record']),
+            ...mapState('profiles', ['$record', 'record']),
             ...mapState('users', ['countries', 'roles']),
             ...mapGetters('app', ['isAdmin'])
 
         },
         methods: {
             onSave () {
+                const oldEmail = this.record.email
+                const curEmail = this.$record.email
+
                 this.save()
                   .then(() => this.$router.push('/home'))
-                  .then(() => this.$notify({
-                    type: 'success',
-                    text: 'Profile updated'
-                  }))
+                  .then(() => {
+                    let doLogout = (oldEmail !== curEmail)
+                    if(doLogout) {
+                      alert( 'Please confirm yourself by clicking on verify user button sent to you on your email')
+
+                      this.verifyEmail(curEmail)
+                        .then(() => this.$auth.logout())
+
+                    } else {
+                      this.$notify({
+                        type: 'success',
+                        text: 'Profile updated'
+                      })
+                    }
+                  })
 
             },
-            ...mapActions('profiles', ['add', 'save','insert','deletes']),
+            ...mapActions('profiles', ['add', 'save','insert','deletes','verifyEmail']),
 
         }
 

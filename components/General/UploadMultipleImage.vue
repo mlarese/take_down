@@ -202,6 +202,12 @@ export default {
         return false
       }
       forEach(files, (value, index) => {
+        const ftype = value.type.split('/')[0]
+        if(ftype !== 'image') {
+          alert('You can drop only images')
+          return false
+        }
+
         this.createImage(value)
         if (!this.multiple) {
           return false

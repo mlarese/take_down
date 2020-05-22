@@ -27,17 +27,6 @@
                                 color="null"
                                 v-model="$record.submission_brand" />
 
-                        <!-- v-autocomplete
-
-                                class="only-menu left-float"
-                                hide-details
-                                dense
-
-                                flat
-                                :items="brandsList"
-
-                                color="null"
-                                v-model="$record.submission_brand" /-->
                     </v-flex>
 
                     <v-flex xs12 sm6>
@@ -80,14 +69,16 @@
 
                         <v-flex xs12 class="text-xs-center">
                             <vue-upload-multiple-image
+                                ref="imageUploader"
                                 @before-remove="beforeRemove"
                                 @upload-success="uploadImageSuccess"
                                 @edit-image="editImage"
                                 dragText="Drag File"
                                 browseText="Browse Files"
                                 label="images"
+                                dropText="Drop file"
                                 primaryText="Image Insert"
-                                popupText="This is image is been uploaded"
+                                popupText="Image"
                                 :maxImage="4"
                                 markIsPrimaryText="Select image"
                                 v-model="$record.pictures"/>
@@ -147,8 +138,6 @@
 
     const decimalTranslator = suid("0123456789")
 
-
-
     export default {
         components: {
           VueRecaptcha,
@@ -179,11 +168,14 @@
             ...mapState('profileReports', ['$record']),
             ...mapGetters('brands', ['brandsList']),
             ...mapGetters('app', ['isAdmin']),
-          canRegister () {
-            if (!this.isFormVerified) return false
-            if (!this.isFormValid)  return false
-            return true
-          }
+            canRegister () {
+                if (!this.isFormVerified) return false
+                if (!this.isFormValid)  return false
+                return true
+            },
+            uploader () {
+              return this.$refs['imageUploader']
+            }
         },
         methods: {
           onActvated() {
@@ -196,19 +188,21 @@
             this.images = fileList
           },
           beforeRemove (index, done, fileList) {
-            let r = confirm("remove image")
+            // let r = confirm("remove image")
+            let r = true
             if (r == true) {
               done()
               this.images = fileList
             }
           },
-          onAdd () {
+          async onAdd () {
+            await this.$auth.fetchUser().catch(() => {})
+
                 this.insert(this.images)
                     .then(r => this.$router.go(-1))
           },
           ...mapActions('profileReports', ['insert', 'save', 'reportList', 'uploadImage'])
-        },
-
+        }
     }
 </script>
 

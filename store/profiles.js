@@ -1,9 +1,11 @@
 import _cloneDeep from 'lodash/cloneDeep'
 import _keyBy from 'lodash/keyBy'
-
 import Vue from 'vue'
 import addDays from 'date-fns/addDays'
 import format from 'date-fns/format'
+import {getSchema} from "../assets/helpers";
+const scheme = getSchema()
+const getToken = () => Vue.localStorage.get(`auth._token.${scheme}`)
 
 let today = new Date()
 let fmtToday = format(today, 'yyyy-MM-dd')
@@ -312,10 +314,6 @@ export const actions = {
         const url = `/api/customer/customerrecord/${id}`
         return dispatch('api/put', {url, data}, root)
     },
-    insert ({dispatch, commit}, {data}) {
-        const url = `/api/profiles`
-        return dispatch('api/post', {url, data}, root)
-    },
     search ({dispatch, commit, state}) {
         let data = state.filter
         commit('setList', [])
@@ -327,20 +325,10 @@ export const actions = {
                 return res
             })
     },
-    reporting ({dispatch, commit, state}) {
-        let data = state.filter
-        commit('setList', [])
-        return dispatch('api/post', {url: `/profiles`, data}, root)
-            .then(res => {
-                commit('setList', res.data)
-                commit('setPagination')
-                commit('setSearchActive', true)
-                return res
-            })
-    },
-    saves ({dispatch, commit, state, getters}, item) {
-        return dispatch('update', {data:item, id:item.id})
-
+    verifyEmail ({dispatch, commit, state}, email) {
+      const token = getToken()
+      let data = {email, token}
+      return dispatch('api/post', {url: '/api/customer/verifyMail', data}, root)
     },
     deletes ({dispatch, commit, state}, id) {
         const url = `/api/profiles/${id}`
