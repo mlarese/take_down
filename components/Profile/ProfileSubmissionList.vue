@@ -43,7 +43,7 @@
 
         </v-data-table>
 
-        <template slot="fab">
+        <template slot="fab" v-if="user.is_user_enabled">
             <ButtonNew  title="New" @click.native="onAdd" />
         </template>
     </GridContainer>
@@ -79,6 +79,7 @@
       ...mapGetters('reports', ['reportStatesByKey']),
       ...mapState('profileReports', {'reportList': 'list', 'ui': 'ui'}),
       ...mapState('api', {'isAjax': 'isAjax'}),
+      ...mapState('auth', {'user': 'user'}),
     },
     methods: {
       ...mapActions('profileReports', ['delete', 'load']),

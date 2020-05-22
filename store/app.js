@@ -1,12 +1,12 @@
 import _has from 'lodash/has'
 
 const menuItems = {
-    home: {to: '', label: 'Home', icon: 'mdi-home'},
-    user: {to: 'user', label: 'Users', icon: 'account_circle'},
-    brand: {to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
-    report: {to: 'report', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'},
-    profile: {to: 'profile', label: 'Profile', icon: 'account_circle'},
-    profilereport: {to: 'profilereport', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'}
+    home: {alwaysActive: true, to: '', label: 'Home', icon: 'mdi-home'},
+    user: {alwaysActive: true, to: 'user', label: 'Users', icon: 'account_circle'},
+    brand: {alwaysActive: true, to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
+    report: {alwaysActive: true, to: 'report', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'},
+    profile: {alwaysActive: true, to: 'profile', label: 'Profile', icon: 'account_circle'},
+    profilereport: {alwaysActive: false, to: 'profilereport', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 
 

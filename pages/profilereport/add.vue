@@ -9,7 +9,11 @@
     components: {
         ProfileSubmissionForm
     },
-    fetch({store}) {
+    fetch({store, $auth, redirect}) {
+        if(!$auth.user.is_user_enabled) {
+          redirect('/home')
+          return
+        }
         store.commit('profileReports/setRecord',{send_coordinates: true},{root: true})
         store.commit('profileReports/setAddMode',null,{root: true})
     }

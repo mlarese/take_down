@@ -28,7 +28,8 @@
 
                 <v-bottom-nav absolute dark  >
                     <template v-if="item" v-for="(item, i) in menuItems">
-                        <v-btn  flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
+
+                        <v-btn __disabled="!item.alwaysActive && !user.is_user_active" flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
                             <span>{{item.label}}</span>
                             <v-icon>{{item.icon}}</v-icon>
                         </v-btn>
@@ -68,6 +69,7 @@
             }
         },
         computed: {
+            ...mapState('auth', ['user']),
             ...mapState('app', ['title', 'ui']),
             ...mapState('api', ['notification']),
             ...mapGetters('app', ['menuItems', 'role', 'userName'])
