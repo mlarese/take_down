@@ -1,7 +1,7 @@
 <template>
   <!--eslint-disable-->
     <v-app dark class="background pa-0" >
-        <notifications position="top right" style="margin-top:50px"/>
+        <notifications position="top right" style="margin-top:5px"/>
         <div v-if="loggingOut">
             <div class="pa-4 text-align-center mt-5">
 

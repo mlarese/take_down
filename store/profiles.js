@@ -331,7 +331,7 @@ export const actions = {
       return dispatch('api/post', {url: '/api/customer/verifyMail', data}, root)
     },
     deletes ({dispatch, commit, state}, id) {
-        const url = `/api/profiles/${id}`
+        const url = `/api/customer/${id}`
         return dispatch('api/delete', {url}, root)
     },
     save ({dispatch, commit, state, getters}) {

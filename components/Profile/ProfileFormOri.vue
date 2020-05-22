@@ -29,11 +29,10 @@
                 <v-flex xs12 sm6>
                     <v-select
                             hide-details
-                            disabled
-                            :items="roles"
+                            :items="rolesList"
                             item-value="value"
                             item-text="text"
-                            :label="$vuetify.t('Role')"
+                            :label="$vuetify.t('Role')+'*'"
                             v-model="$record.role"
                             color="null"
                     ></v-select>
@@ -80,6 +79,7 @@
                             :label="$vuetify.t('Company')"
                             v-model="$record.working_at_company"
                             color="null"
+                            readonly
                     ></v-text-field>
                 </v-flex>
 
@@ -180,10 +180,10 @@
 
                     <v-divider class="mt-2 mb-1"></v-divider>
                     <v-card-actions>
-                        <v-btn v-if="false" medium flat color="red darken-3" class="elevation-0" @click="deletes">Delete Profile</v-btn>
+                        <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
                         <v-spacer></v-spacer>
 
-                        <v-btn medium flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
+                        <v-btn medium :disabled="!dirty" flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
                     </v-card-actions>
 
             </v-form>
@@ -197,16 +197,36 @@
         components: {FormPanel},
         data () {
             return {
-                country: null
+                country: null,
+                dirty: false
             }
         },
         computed: {
             ...mapState('profiles', ['$record', 'record']),
-            ...mapState('users', ['countries', 'roles']),
-            ...mapGetters('app', ['isAdmin'])
+            ...mapState('users', ['countries', 'roles', 'usersRoles']),
+            ...mapGetters('app', ['isAdmin']),
+            rolesList () {
+              if(this.$record.role === 0) return this.roles
+              else return this.usersRoles
+            }
 
         },
+        watch: {
+            '$record': {
+              handler (value, oldValue) {
+                if(oldValue.id) {
+                  this.dirty = true
+                }
+              },
+              deep: true
+            }
+        },
         methods: {
+            onDelete () {
+              if(!confirm('Are you sure you want to delete your account?')) return
+              this.deletes(this.$record.id)
+                .then(() => this.$auth.logout())
+            },
             onSave () {
                 const oldEmail = this.record.email
                 const curEmail = this.$record.email
