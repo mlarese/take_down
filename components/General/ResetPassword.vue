@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
     <v-dialog v-model="show" max-width="300" persistent>
-        <v-toolbar dense dark v-if="false" >
+        <v-toolbar dense  v-if="false" >
             <v-toolbar-title class="subheading pl-3">
                 Password reset
             </v-toolbar-title>

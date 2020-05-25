@@ -1,8 +1,8 @@
 <!--eslint-disable-->
 <template>
-    <div class="grid-container ma-0">
+    <div class="grid-container ma-0 pa-0">
 
-        <v-toolbar dense class="elevation-0  mb-0 pl-2"   style="border-bottom: 1px solid #dddddd !important">
+        <v-toolbar dense class="elevation-0 mb-0 pl-2" card style="border: 1px solid #e3e3e3 !important;">
             <slot name="header-left">
                 <v-toolbar-title class="body-1">
                     {{ $vuetify.t(title) }}

@@ -3,7 +3,7 @@
     <v-layout align-center justify-center class="signup">
 
                         <v-card-text>
-                            <div class="deepshadow display-2 mb-1 mt-3 text-xs-center">Take Down</div>
+                            <div class="deepshadow display-1 mb-1 mt-3 text-xs-center">Take Down Website</div>
                             <div class="body-1 mb-2 mt-0 text-xs-center">Register</div>
 
                             <div style="height:330px;overflow-y: auto">
@@ -28,7 +28,7 @@
 
                                     <br>
                                     <div class="vue-recaptcha">
-                                     <VueRecaptcha  @verify="onActvated" language="en" :loadRecaptchaScript="true" theme="dark" sitekey="6LcLBvMUAAAAAPFVSfnKjo-XLGu7m4en0-SGe_k3" />
+                                     <VueRecaptcha  @verify="onActvated" language="en" :loadRecaptchaScript="true" _theme="dark" sitekey="6LcLBvMUAAAAAPFVSfnKjo-XLGu7m4en0-SGe_k3" />
                                     </div>
                                     <br>
                                 </v-form>

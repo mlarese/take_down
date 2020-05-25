@@ -7,7 +7,7 @@
                         <v-text-field
                                 hide-details
                                 :maxlength="50"
-                                dark
+
                                 :label="$vuetify.t('Name')"
                                 v-model="$record.name"
                                 color="null"

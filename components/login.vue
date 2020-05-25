@@ -4,7 +4,7 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm7 md3>
                 <v-card class="elevation-10">
-                    <v-tabs color="light-blue lighten-1" dark slider-color="green">
+                    <v-tabs color="light-blue lighten-1"  slider-color="green">
                         <v-tab style="width: 100%">Login</v-tab>
                         <v-tab style="width: 100%">Register</v-tab>
                         <v-tab-item>

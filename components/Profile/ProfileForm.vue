@@ -14,7 +14,7 @@
                     <v-text-field
                             hide-details
                             :maxlength="50"
-                            dark
+
                             :label="$vuetify.t('Name')"
                             v-model="$record.name"
 
@@ -190,7 +190,7 @@
             <v-layout rows wrap>
                 <v-flex xs12   >
                     <v-text-field
-                            dark
+
                             hide-details
                             :label="$vuetify.t('HTTP User Agent')"
                             v-model="$record.HTTP_USER_AGENT"

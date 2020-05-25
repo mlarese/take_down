@@ -9,22 +9,22 @@
 
         <v-flex xs12 sm8 md4>
 
-            <v-card dark class="elevation-20 grad" style="border-radius: 8px 8px 0 0;" ref="loginBox">
-                <v-tabs v-model="ui.activeLoginTab" color="grey darken-2" dark slider-color="white" style="height: 500px;">
+            <v-card class="elevation-20 grad" style="border-radius: 8px 8px 0 0;" ref="loginBox">
+                <v-tabs v-model="ui.activeLoginTab" color="grey lighten-2" slider-color="grey" style="height: 500px;">
 
                     <v-tab style="width: 100%" class="subheading">Login</v-tab>
                     <v-tab components="SignUp" style="width: 100%">Register</v-tab>
 
                     <v-tab-item>
 
-                        <div class="deepshadow display-2 mb-1 mt-4 text-xs-center">Take Down</div>
+                        <div class="deepshadow display-1 mb-1 mt-4 text-xs-center">Take Down Website</div>
                         <div class="body-1 mb-2 mt-0 text-xs-center">Member Login!</div>
 
 
                         <v-card-text>
                             <v-form method="post" action="#" @submit="login" novalidate="true">
-                                <v-text-field dark hide-details v-model="username" label="Login" type="text" /><br>
-                                <v-text-field dark hide-details @keyup.enter="login" v-model="password" label="Password" id="password" type="password" />
+                                <v-text-field hide-details v-model="username" label="Login" type="text" /><br>
+                                <v-text-field hide-details @keyup.enter="login" v-model="password" label="Password" id="password" type="password" />
                             </v-form>
                         </v-card-text>
 
@@ -142,7 +142,11 @@
 </script>
 <style lang="scss">
     .theme--light.v-sheet {
-        background-color: rgba(255,255,255,0.6);
+        background-color: rgba(250,250,250,1);
+    }
+
+    .v-footer .theme--light.v-sheet {
+        background-color: #e1e1e1;
     }
     .login {
         input{

@@ -1,6 +1,6 @@
 <template>
   <!--eslint-disable-->
-    <v-app dark class="background pa-0" >
+    <v-app  class="background pa-0" >
         <notifications position="top right" style="margin-top:5px"/>
         <div v-if="loggingOut">
             <div class="pa-4 text-align-center mt-5">
@@ -14,7 +14,7 @@
         </div>
 
         <div v-if="!loggingOut">
-            <v-toolbar style="border-radius:0px"  height="45" dark tabs class="background elevation-1 app-toolbar " fixed >
+            <v-toolbar style="border-radius:0px"  height="45"  tabs class="background elevation-1 app-toolbar " fixed >
                 <v-toolbar-title>
 
                     <span class="mt-1 ml-2 title">Take Down</span>
@@ -26,7 +26,7 @@
                     <v-icon >logout</v-icon>
                 </v-btn>
 
-                <v-bottom-nav absolute dark  >
+                <v-bottom-nav absolute   >
                     <template v-if="item" v-for="(item, i) in menuItems">
 
                         <v-btn __disabled="!item.alwaysActive && !user.is_user_active" flat small :to="'/'+item.to" :key="i" nuxt :title="item.label">
@@ -94,12 +94,12 @@
 
 <style>
     .v-input__slot {
-        border: 0px solid ;
+        border: 1px solid silver;
         border-radius:10px;
         padding-left: 8px;
         padding-right: 8px;
 
-        background-color: #393939;
+        background-color: #f1f1f1;
     }
 
     table.v-table thead tr {
@@ -217,7 +217,7 @@
     .hide-dropdown-icon .v-input__icon {display:none}
 
     .v-input--checkbox .v-input__slot {
-        border:0px;
+        border:1px;
     }
 
     .theme--dark.v-tabs__bar .v-tabs__div {

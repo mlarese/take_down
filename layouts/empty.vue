@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-  <v-app dark>
+  <v-app >
     <notifications position="top right" style="margin-top:50px"/>
     <v-content >
       <v-container fluid fill-height>
@@ -30,7 +30,7 @@
 
 <style>
   .back-city{
-    background-color: rgb(0,0,0,0.9) ;
+
     background-position: center bottom;
     background-repeat: no-repeat;
 

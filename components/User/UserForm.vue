@@ -14,7 +14,7 @@
                     <v-text-field
                             hide-details
                             :maxlength="50"
-                            dark
+
                             :label="$vuetify.t('Name')"
                             v-model="$record.name"
                             color="null"
@@ -191,7 +191,7 @@
             <v-layout rows wrap>
                 <v-flex xs12   >
                     <v-text-field
-                            dark
+
                             hide-details
                             :maxlength="1024"
                             :label="$vuetify.t('HTTP User Agent')"
@@ -266,7 +266,7 @@
                         layout
                         text-xs-center
                 >
-                    <v-btn  flat color="green darken-2" class="elevation-0"  @click="onSave">
+                    <v-btn  flat color="green   en-2" class="elevation-0"  @click="onSave">
                         {{$vuetify.t('Save') }}
                     </v-btn>
                 </v-flex>

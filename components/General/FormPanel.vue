@@ -18,7 +18,7 @@
             <slot name="header-right"></slot>
         </v-toolbar>
 
-        <v-card slot="container-top" class="elevation-0 pa-1" style="border:0px solid;background-color: #212121 ;border-bottom:0 !important">
+        <v-card slot="container-top" class="elevation-2 pa-1" _style="border:0px solid;background-color: #212121 ;border-bottom:0 !important">
             <v-container class="pt-1" fluid grid-list-md>
             <slot>
 

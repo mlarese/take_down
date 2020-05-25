@@ -10,7 +10,6 @@
                 :headers="headers"
                 :items="brandsList"
                 hide-details
-                dark
                 hide-actions
                 class="elevation-0"
                 slot="body-center">

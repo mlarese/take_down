@@ -20,7 +20,7 @@
                 :items="reportList"
                 :headers="headers"
                 :search="ui.filter"
-                class="elevation-4 fixed-header"
+                class="elevation-2 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
                 <td width="1" class="no-wrap pa-0 text-xs-center">
