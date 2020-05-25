@@ -1,28 +1,11 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" title="Profile" >
-        <v-tabs
-                disabled
-                centered
-        >
-
-            <v-tab>
-                <v-icon>message</v-icon>
-                <span v-model="$record.number_of_submissions"> {{ $vuetify.t('Submission' ) }}:</span>
-
-            </v-tab>
-            <v-tab>
-                <v-icon>check_circle_outline</v-icon>
-                <span v-model="$record.number_of_submissions_accepted"> {{ $vuetify.t('Accepted' ) }}:</span>
-            </v-tab>
-
-
-            <v-tab>
-                <v-icon>not_interested</v-icon>
-                <span v-model="$record.number_of_submissions_rejected"> {{ $vuetify.t('Rejected' ) }}: </span>
-            </v-tab>
-        </v-tabs>
-        <v-form ref="form" class="" lazy-validation>
+        <v-tabs centered slider-color="green">
+            <v-tab style="width: 100%">General Report</v-tab>
+            <v-tab style="width: 100%">Reports Abuse</v-tab>
+            <v-tab-item>
+            <v-form method="post" action="#" @submit="report" novalidate="true">
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
@@ -168,9 +151,14 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-
-                <!--<v-layout rows wrap>
-                    <v-flex xs12 sm3>
+        </v-form>
+        </v-tab-item>
+            <v-tab-item>
+                <v-card flat>
+                    <v-card-text>
+                        <v-form method="post" action="#" @submit="abuse" novalidate="true">
+                <v-layout rows wrap>
+                    <v-flex xs12 sm12>
                         <v-text-field
                                 hide-details
                                 :label="$vuetify.t('Submissions')"
@@ -179,7 +167,7 @@
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm3>
+                    <v-flex xs12 sm12>
                         <v-text-field
                                 hide-details
                                 :label="$vuetify.t('Accepted')"
@@ -188,7 +176,7 @@
                                 color="null"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm3>
+                    <v-flex xs12 sm12>
                         <v-text-field
                                 hide-details
                                 :label="$vuetify.t('Rejected')"
@@ -198,17 +186,25 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
+                </v-form>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
+        </v-tabs>
 
-                    <v-divider class="mt-2 mb-1"></v-divider> -->
-                    <v-card-actions>
-                        <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
-                        <v-spacer></v-spacer>
+        <v-card-actions>
+            <v-layout class="mt-4">
+            <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
+            <v-spacer></v-spacer>
 
-                        <v-btn medium :disabled="!dirty" flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
-                    </v-card-actions>
+            <v-btn medium :disabled="!dirty" flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
 
-            </v-form>
-        </FormPanel>
+            </v-layout>
+        </v-card-actions>
+
+    </FormPanel>
+
+
 </template>
 
 <script>
