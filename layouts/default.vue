@@ -17,7 +17,7 @@
             <v-toolbar style="border-radius:0px"  height="45"  tabs class="background elevation-1 app-toolbar " fixed >
                 <v-toolbar-title>
 
-                    <span class="mt-1 ml-2 title">Take Down</span>
+                    <span class="mt-1 ml-2 title">Take Down Website</span>
 
                 </v-toolbar-title>
                 <v-spacer />
@@ -65,7 +65,7 @@
         },
         head () {
             return {
-                title: 'Take Down',
+                title: 'TakeDown Website',
             }
         },
         computed: {

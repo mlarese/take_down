@@ -1,7 +1,7 @@
 <!--eslint-disable-->
 <template>
 
-    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Submission">
+    <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Report Abuse">
 
         <div slot="header-right" >
             <v-btn  flat small fab class="elevation-0"  @click="$router.go(-1)" >
@@ -13,7 +13,7 @@
                     <v-flex xs12 sm6 md6 d-flex>
                         <v-text-field
                                 hide-details
-                                disabled
+                                readonly
                                 :label="$vuetify.t('Name')"
                                 color="null"
                                 v-model="$record.name" />
@@ -24,7 +24,7 @@
                                 hide-details
                                 :label="$vuetify.t('Surname')"
                                 v-model="$record.surname"
-                                disabled
+                                readonly
                                 color="null"
 
                         ></v-text-field>
@@ -85,7 +85,7 @@
                                 v-model="$record.submission_status"
                                 :items="reportStates"
 
-                                disabled
+                                readonly
                                 color="null"
                                 hide-details
                         ></v-select>
@@ -120,7 +120,7 @@
                     <v-text-field
                             :maxlength="1024"
                             hide-details
-                            disabled
+                            readonly
                             :label="$vuetify.t('HTTP User Agent')"
                             color="null"
                             v-model="$record.submission_HTTP_USER_AGENT" />
@@ -132,7 +132,7 @@
                             hide-details
                             :label="$vuetify.t('IP')"
                             v-model="$record.submission_ip"
-                            disabled
+                            readonly
                             color="null"
 
                     ></v-text-field>
@@ -143,7 +143,7 @@
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+                                readonly
                                 hide-details
                                 :label="$vuetify.t('Submission Date')"
                                 color="null"
@@ -151,7 +151,7 @@
                     </v-flex>
                     <v-flex xs12 sm6>
                         <v-text-field
-                                disabled
+                                readonly
                                 hide-details
                                 :label="$vuetify.t('Status change date')"
                                 color="null"

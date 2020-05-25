@@ -27,6 +27,7 @@
                     <GridButton icon="edit" color="primary" @click="onEdit(item.id )"></GridButton>
                     <GridButton v-if="false" icon="delete" color="error" @click="onDelete(item.id)"></GridButton>
                 </td>
+                <td class="text-xs-left" >{{ item.user_id }}</td>
                 <td class="text-xs-left" style="white-space: nowrap;">{{ item.name }} {{ item.surname }}</td>
                 <td class="text-xs-left" >{{ item.role }}</td>
                 <td class="text-xs-left" >{{ item.email }}</td>
@@ -56,6 +57,7 @@
 
             const headers = [
                 { text: 'Action', value: 'action', sortable: false },
+                { text: this.$vuetify.t('ID'), value: 'user_id' },
                 { text: this.$vuetify.t('User'), value: 'name' },
                 { text: this.$vuetify.t('Role'), value: 'role' },
                 { text: this.$vuetify.t('Email'), value: 'email' },

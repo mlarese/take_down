@@ -1,6 +1,27 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" title="Profile" >
+        <v-tabs
+                disabled
+                centered
+        >
+
+            <v-tab>
+                <v-icon>message</v-icon>
+                <span v-model="$record.number_of_submissions"> {{ $vuetify.t('Submission' ) }}:</span>
+
+            </v-tab>
+            <v-tab>
+                <v-icon>check_circle_outline</v-icon>
+                <span v-model="$record.number_of_submissions_accepted"> {{ $vuetify.t('Accepted' ) }}:</span>
+            </v-tab>
+
+
+            <v-tab>
+                <v-icon>not_interested</v-icon>
+                <span v-model="$record.number_of_submissions_rejected"> {{ $vuetify.t('Rejected' ) }}: </span>
+            </v-tab>
+        </v-tabs>
         <v-form ref="form" class="" lazy-validation>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
@@ -148,7 +169,7 @@
                     </v-flex>
                 </v-layout>
 
-                <v-layout rows wrap>
+                <!--<v-layout rows wrap>
                     <v-flex xs12 sm3>
                         <v-text-field
                                 hide-details
@@ -178,7 +199,7 @@
                     </v-flex>
                 </v-layout>
 
-                    <v-divider class="mt-2 mb-1"></v-divider>
+                    <v-divider class="mt-2 mb-1"></v-divider> -->
                     <v-card-actions>
                         <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
                         <v-spacer></v-spacer>

@@ -2,13 +2,13 @@
 <template>
     <v-btn
            :color="color"
-           dark
-           small
+           medium
            absolute
            top
+           dark
            right
            fab class="elevation-2">
-        <v-icon>add</v-icon>
+        <v-icon style="size: 40px">add</v-icon>
     </v-btn>
 </template>
 <script>

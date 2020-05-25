@@ -4,9 +4,9 @@ const menuItems = {
     home: {alwaysActive: true, to: '', label: 'Home', icon: 'mdi-home'},
     user: {alwaysActive: true, to: 'user', label: 'Users', icon: 'account_circle'},
     brand: {alwaysActive: true, to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
-    report: {alwaysActive: true, to: 'report', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'},
+    report: {alwaysActive: true, to: 'report', label: 'Report Abuse', icon: 'mdi-clipboard-arrow-up-outline'},
     profile: {alwaysActive: true, to: 'profile', label: 'Profile', icon: 'account_circle'},
-    profilereport: {alwaysActive: false, to: 'profilereport', label: 'Submissions', icon: 'mdi-clipboard-arrow-up-outline'}
+    profilereport: {alwaysActive: false, to: 'profilereport', label: 'Report Abuse', icon: 'mdi-clipboard-arrow-up-outline'}
 }
 
 
@@ -29,7 +29,7 @@ const menus = {
 
 export const state = () => ({
   locale: 'it',
-  title: 'Take Down',
+  title: 'Take Down Website',
   debugMode: true,
   registrationRecord: {},
   ui: {currentMenuItem: 0, currentTab: 0, activeLoginTab: 0},

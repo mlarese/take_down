@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Submissions">
+    <GridContainer title="Report Abuse">
         <div slot="header-right" class="pt-3 pr-1">
 
             <v-text-field class=""
@@ -20,7 +20,7 @@
                 :items="reportList"
                 :headers="headers"
                 :search="ui.filter"
-                class="elevation-2 fixed-header"
+                class="elevation-1 fixed-header"
                 slot="body-center">
             <template slot="items" slot-scope="{item}" style="text-align: center">
                 <td width="1" class="no-wrap pa-0 text-xs-center">
@@ -28,9 +28,11 @@
                     <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
                 </td>
 
-                <td :title="reportStatesByKey[item.submission_status].text" class="text-xs-center">
+                <td  class="text-xs-center">
                     <v-icon>{{reportStatesByKey[item.submission_status].icon}}</v-icon>
+                    <span style="position:relative;top:-3px">{{reportStatesByKey[item.submission_status].text}}</span>
                 </td>
+                <td style="text-align: center">{{ item.submission_short_uuid}}</td>
                 <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
                 <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
                 <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
@@ -63,6 +65,7 @@
       const headers = [
         { text: 'Actions', value: 'action', sortable: false },
         { text: this.$vuetify.t('Status'), value: 'submission_status' },
+          { text: this.$vuetify.t('ID'), value: 'submission_short_uuid' },
         { text: this.$vuetify.t('Date'), value: 'submission_date' },
         { text: this.$vuetify.t('Title'), value: 'submission_title' },
         { text: this.$vuetify.t('Brand'), value: 'submission_brand' },

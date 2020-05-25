@@ -4,7 +4,7 @@
     <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Submission">
 
         <div slot="header-right" >
-            <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
+            <v-btn   flat small color="blue-grey darken-3" class="elevation-1"  @click="$router.go(-1)" >
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div>
