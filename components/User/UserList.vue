@@ -34,7 +34,7 @@
                 <td class="text-xs-left" >{{ item.cell_phone }}</td>
                 <td class="text-xs-left" >{{ item.working_at_company }}</td>
                 <td class="text-xs-left"  style="white-space: nowrap;">{{ item.subscription_datetime  | dmy}}</td>
-                <td class="text-xs-left" >{{ item.email_verified }}</td>
+                <td class="text-xs-left" style="white-space: nowrap;">{{ item.email_verified }}</td>
             </template>
             <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
                 {{$vuetify.t('From')}} {{ pageStart }} {{$vuetify.t('To')}} {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
@@ -63,7 +63,7 @@
                 { text: this.$vuetify.t('Email'), value: 'email' },
                 { text: this.$vuetify.t('Phone Number'), value: 'cell_phone' },
                 { text: this.$vuetify.t('Company'), value: 'working_at_company' },
-                { text: this.$vuetify.t('Submission Date'), value: 'subscription_datetime' },
+                { text: this.$vuetify.t('Report Abuse Date'), value: 'subscription_datetime' },
                 { text: this.$vuetify.t('Email Verified'), value: 'email_verified' }
                 //{ text: 'Edit', value: 'action', sortable: false },
                 //{ text: 'Delete', value: 'action', sortable: false }

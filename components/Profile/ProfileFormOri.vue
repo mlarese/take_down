@@ -1,11 +1,7 @@
 <!--eslint-disable-->
 <template>
     <FormPanel v-bind="$attrs" title="Profile" >
-        <v-tabs centered slider-color="green">
-            <v-tab style="width: 100%">General Report</v-tab>
-            <v-tab style="width: 100%">Reports Abuse</v-tab>
-            <v-tab-item>
-            <v-form method="post" action="#" @submit="report" novalidate="true">
+        <v-form ref="form" class="" lazy-validation>
                 <v-layout rows wrap>
                     <v-flex xs12 sm6>
                         <v-text-field
@@ -151,60 +147,17 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-        </v-form>
-        </v-tab-item>
-            <v-tab-item>
-                <v-card flat>
-                    <v-card-text>
-                        <v-form method="post" action="#" @submit="abuse" novalidate="true">
-                <v-layout rows wrap>
-                    <v-flex xs12 sm12>
-                        <v-text-field
-                                hide-details
-                                :label="$vuetify.t('Submissions')"
-                                v-model="$record.number_of_submissions"
-                                disabled
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm12>
-                        <v-text-field
-                                hide-details
-                                :label="$vuetify.t('Accepted')"
-                                v-model="$record.number_of_submissions_accepted"
-                                disabled
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm12>
-                        <v-text-field
-                                hide-details
-                                :label="$vuetify.t('Rejected')"
-                                v-model="$record.number_of_submissions_rejected"
-                                disabled
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
-                </v-form>
-                    </v-card-text>
-                </v-card>
-            </v-tab-item>
-        </v-tabs>
 
-        <v-card-actions>
-            <v-layout class="mt-4">
-            <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
-            <v-spacer></v-spacer>
+                    <v-divider class="mt-4 mb-1"></v-divider>
+                    <v-card-actions>
+                        <v-btn medium flat color="red darken-3" class="elevation-0" @click="onDelete">Delete Profile</v-btn>
+                        <v-spacer></v-spacer>
 
-            <v-btn medium :disabled="!dirty" flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
+                        <v-btn medium :disabled="!dirty" flat color="green darken-2" class="elevation-0" @click="onSave">Save Profile</v-btn>
+                    </v-card-actions>
 
-            </v-layout>
-        </v-card-actions>
-
-    </FormPanel>
-
-
+            </v-form>
+        </FormPanel>
 </template>
 
 <script>
