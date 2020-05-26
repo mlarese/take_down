@@ -1,6 +1,5 @@
 import _cloneDeep from 'lodash/cloneDeep'
 import _keyBy from 'lodash/keyBy'
-
 import Vue from 'vue'
 import addDays from 'date-fns/addDays'
 import format from 'date-fns/format'
@@ -305,6 +304,7 @@ export const state = () => {
         roles,
         usersRoles,
         countries,
+        stats: {},
         list: [],
         recordList: [],
         record: baseRecord,
@@ -321,6 +321,7 @@ export const state = () => {
 const root = {root: true}
 
 export const mutations = {
+    setStats (state, payload) { state.stats = payload },
     setSearchActive (state, payload) { state.searchActive = payload },
     setRecordList (state, payload) { state.recordList = payload },
     setList (state, payload) {
@@ -354,6 +355,13 @@ export const mutations = {
 
 }
 export const actions = {
+  stats ({dispatch, commit, state}) {
+    return dispatch('api/get', {url: `/api/customer/stats`}, root)
+      .then(res => {
+        commit('setStats', _keyBy(res.data, 'submission_status'))
+        return res
+      })
+  },
   update ({dispatch, commit, state}, {data, id}) {
     const url = `/api/customer/customerrecord/${id}`
     return dispatch('api/put', {url, data}, root)

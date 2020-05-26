@@ -4,7 +4,12 @@
 
                         <v-card-text>
                             <div class="deepshadow display-1 mb-1 mt-3 text-xs-center">Take Down Website</div>
-                            <div class="body-1 mb-2 mt-0 text-xs-center">Register</div>
+                            <div class="body-1 mt-0 text-xs-center font-weight-bold">Register</div>
+                            <div class="caption mb-0 mt-0 text-xs-center">
+                                We collect your data only to validate abuse reports. <br>
+                                We could share your data only with brand owners.<br>
+                                We will never send your data to other subjects.
+                            </div>
 
                             <div style="height:330px;overflow-y: auto">
                                 <v-form method="post" action="#" v-model="isFormValid" class="pb-5">
@@ -16,7 +21,7 @@
 
                                     <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.required]" label="Role*" counter="25" required></v-autocomplete>
                                     <v-text-field hide-details   v-model="record.working_at_company" :rules="[rules.required]" label="Company*" required></v-text-field>
-                                    <v-text-field hide-details :maxlength="15"   v-model="record.working_at_company_VAT"  :rules="[rules.required]"  label="Company VAT*"></v-text-field>
+                                    <v-text-field hide-details :maxlength="15"   v-model="record.working_at_company_VAT"  label="Company VAT"></v-text-field>
                                     <v-autocomplete hide-details :items="countries" label="Country*" v-model="record.country" :rules="[rules.required]"  required item-value="code" item-text="name" ></v-autocomplete>
                                     <v-text-field hide-details  :maxlength="50"   v-model="record.address" :rules="[rules.required]"  label="Address*"></v-text-field>
                                     <v-text-field hide-details :maxlength="100"   v-model="record.city" :rules="[rules.required]"  label="City*"></v-text-field>
@@ -24,7 +29,7 @@
                                     <v-text-field hide-details :maxlength="10"   v-model="record.zipcode" :rules="[rules.required]"  label="Postal Code*"></v-text-field>
                                     <v-text-field hide-details :maxlength="50"   v-model="record.cell_phone" :rules="[rules.required]" label="Phone Number*" required></v-text-field>
 
-                                    <v-text-field hide-details   v-model="record.web" label="Web"></v-text-field>
+                                    <v-text-field hide-details   v-model="record.web" :rules="[rules.url]"  label="Web"></v-text-field>
 
                                     <br>
                                     <div class="vue-recaptcha">
@@ -62,6 +67,11 @@
                 isFormVerified: false,
                 rules: {
                     required: value => !!value || 'Required.',
+                    url: value => {
+                        if(!value) return true
+                        const pattern = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/
+                        return pattern.test(value) || 'Invalid url.'
+                    },
                     min: v => (v && v.length >= 8) || 'Min 8 characters',
                     email: value => {
                       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -83,7 +93,6 @@
                 if (!this.record.password) return false
                 if (!this.record.role) return false
                 if (!this.record.working_at_company) return false
-                if (!this.record.working_at_company_VAT) return false
 
                 if (!this.record.country) return false
                 if (!this.record.address) return false

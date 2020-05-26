@@ -1,54 +1,58 @@
 <!--eslint-disable-->
 <template>
-    <GridContainer title="Report Abuse">
-        <div slot="header-right" class="pt-3 pr-1">
+    <div>
 
-            <v-text-field class=""
-                          single-line
-                          style="width:200px"
-                          label="Search"
-                          clearable
-                          height="28"
-                          v-model="ui.filter"
-                          autofocus
-                          append-icon="search"/>
-        </div>
+        <GridContainer title="Report Abuse">
+            <div slot="header-right" class="pt-3 pr-1">
 
-        <v-data-table
-                :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
-                :loading="isAjax" fixed
-                :items="reportList"
-                :headers="headers"
-                :search="ui.filter"
-                class="elevation-1 fixed-header"
-                slot="body-center">
-            <template slot="items" slot-scope="{item}" style="text-align: center">
-                <td width="1" class="no-wrap pa-0 text-xs-center">
-                    <GridButton  v-if="false" icon="edit" color="primary" @click="onEdit(item.id )" />
-                    <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
-                </td>
+                <v-text-field class=""
+                              single-line
+                              style="width:200px"
+                              label="Search"
+                              clearable
+                              height="28"
+                              v-model="ui.filter"
+                              autofocus
+                              append-icon="search"/>
+            </div>
 
-                <td  class="text-xs-center">
-                    <v-icon>{{reportStatesByKey[item.submission_status].icon}}</v-icon>
-                    <span style="position:relative;top:-3px">{{reportStatesByKey[item.submission_status].text}}</span>
-                </td>
-                <td style="text-align: center">{{ item.submission_short_uuid}}</td>
-                <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
-                <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
-                <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
-                <td class="no-wrap">{{ item.submission_url }}</td>
+            <v-data-table
+                    :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
+                    :loading="isAjax" fixed
+                    :items="reportList"
+                    :headers="headers"
+                    :search="ui.filter"
+                    class="elevation-1 fixed-header"
+                    slot="body-center">
+                <template slot="items" slot-scope="{item}" style="text-align: center">
+                    <td width="1" class="no-wrap pa-0 text-xs-center">
+                        <GridButton  v-if="false" icon="edit" color="primary" @click="onEdit(item.id )" />
+                        <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
+                    </td>
 
+                    <td  class="">
+                        <v-icon>{{reportStatesByKey[item.submission_status].icon}}</v-icon>
+                        <span style="position:relative;top:-3px">{{reportStatesByKey[item.submission_status].text}}</span>
+                    </td>
+                    <td style="text-align: center">{{ item.submission_short_uuid}}</td>
+                    <td style="text-align: center">{{ item.submission_date  | dmy }}</td>
+                    <td class="no-wrap">{{ item.submission_title |  truncate(20,'...')  }}</td>
+                    <td class="no-wrap">{{ item.submission_brand |  truncate(20,'...')}}</td>
+                    <td class="no-wrap">{{ item.submission_url }}</td>
+
+                </template>
+                <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
+                    {{ pageStart }} - {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
+                </template>
+
+            </v-data-table>
+
+            <template slot="fab" v-if="user.is_user_enabled">
+
+                <ButtonNew style="float: right;"  title="New" @click.native="onAdd" />
             </template>
-            <template slot="pageText" slot-scope="{ pageStart, pageStop, itemsLength }">
-                {{ pageStart }} - {{ pageStop }}  {{$vuetify.t('of')}} {{ itemsLength }}
-            </template>
-
-        </v-data-table>
-
-        <template slot="fab" v-if="user.is_user_enabled">
-            <ButtonNew  title="New" @click.native="onAdd" />
-        </template>
-    </GridContainer>
+        </GridContainer>
+    </div>
 </template>
 <script>
   import {mapState, mapActions, mapGetters} from 'vuex'

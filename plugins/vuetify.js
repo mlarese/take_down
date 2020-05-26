@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import 'babel-polyfill'
 import Notifications from 'vue-notification'
 import {dmy, time, truncate} from '../assets/filters'
 import numeral from 'numeral';

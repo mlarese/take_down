@@ -17,7 +17,8 @@
             <v-toolbar style="border-radius:0px"  height="45"  tabs class="background elevation-1 app-toolbar " fixed >
                 <v-toolbar-title>
 
-                    <span class="mt-1 ml-2 title">Take Down Website</span>
+                    <div class="mt-1 ml-2 title">Take Down Website</div>
+                    <div class="hidden-xs-only ml-2 subTitle">Making the world a safer place for brands and users.</div>
 
                 </v-toolbar-title>
                 <v-spacer />
@@ -93,6 +94,7 @@
 </script>
 
 <style>
+
     .v-input__slot {
         border: 1px solid silver;
         border-radius:10px;

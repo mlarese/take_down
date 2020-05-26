@@ -8,8 +8,12 @@
                 {{$vuetify.t('Back')}}
             </v-btn>
         </div>
-        <v-form ref="form" class="mt-2" v-model="isFormValid">
-
+        <v-form ref="form" class="mt-3" v-model="isFormValid">
+            <div class="caption text-xs-justify mb-0 pb-0">
+                Please only report abuse related to brands or products. Please do not report abuse regarding other matters such as bullism, terrorism, pornography,fake news.
+                You can report internet abuse or offline abuse. You will receive feedback about your abuse reports.
+                You can report abuse regarding an internet page, or just describe the abuse by words in case of offline matters. You can enrich your abuse report with images, if needed.
+            </div>
 
                 <v-layout rows wrap>
                     <v-flex xs12 sm6 md6>

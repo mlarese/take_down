@@ -1,7 +1,9 @@
 import axios from 'axios'
 import {mockApp, baseURL} from './api-properties'
 import Vue from 'vue'
-import {getSchema} from "../../assets/helpers";
+import {getSchema} from "../../assets/helpers"
+import _isObject from 'lodash/isObject'
+import _isString from 'lodash/isString'
 
 if (mockApp) require('./mocks')
 
@@ -9,12 +11,17 @@ const scheme = getSchema()
 const getToken = () => Vue.localStorage.get(`auth._token.${scheme}`)
 
 export const notifyError = (err, translate = null) => {
+    console.log('----------',err.response)
     let text = 'Error'
     let title = 'Error'
     let type = 'error'
 
-    if (err.response.data && err.response.data.error_message) {
-        text = err.response.data.error_message
+    if (err.response.data && _isObject(err.response.data)) {
+        text = ''
+        for(let k in err.response.data) {
+            if(_isString(err.response.data[k]))
+            text+= err.response.data[k] + '<br>'
+        }
     } else if (err.response.statusText) {
         text = err.response.statusText
     } else if (err.message) {
@@ -23,7 +30,7 @@ export const notifyError = (err, translate = null) => {
 
     if (translate) {
         title = translate(title)
-        text = translate(text)
+        text = '<b>' + translate(text) + '</b>'
     }
     return {title, text, type}
 }

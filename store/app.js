@@ -5,7 +5,7 @@ const menuItems = {
     user: {alwaysActive: true, to: 'user', label: 'Users', icon: 'account_circle'},
     brand: {alwaysActive: true, to: 'brand', label: 'Brands', icon: 'mdi-ballot'},
     report: {alwaysActive: true, to: 'report', label: 'Report Abuse', icon: 'mdi-clipboard-arrow-up-outline'},
-    stat: {alwaysActive: true, to: 'stat', label: 'Stats', icon: 'account_circle'},
+    stat: {alwaysActive: true, to: 'stat', label: 'Stats', icon: 'table_chart'},
     profile: {alwaysActive: true, to: 'profile', label: 'Profile', icon: 'account_circle'},
     profilereport: {alwaysActive: false, to: 'profilereport', label: 'Report Abuse', icon: 'mdi-clipboard-arrow-up-outline'}
 }
@@ -16,14 +16,14 @@ const menus = {
     menuItems.home,
     // menuItems.brand,
     menuItems.report,
-    menuItems.stats,
     menuItems.user
   ],
   'user': [
     menuItems.home,
     menuItems.profilereport,
+    menuItems.stat,
     menuItems.profile,
-    menuItems.stat
+
 
   ],
   guest: [
