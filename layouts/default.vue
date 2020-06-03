@@ -243,4 +243,5 @@
         white-space: nowrap;
         font-weight: bold;
     }
+
 </style>

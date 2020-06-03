@@ -56,11 +56,11 @@ export const mutations = {
 
 export const actions = {
   register ({commit, dispatch}, data) {
-    return dispatch('api/post', {url: '/api/customer/register', data}, {root: true})
+    return dispatch('api/post', {url: '/customer/register', data}, {root: true})
   },
   passwordReset ({commit, dispatch}, email) {
     const data = {email}
-    return dispatch('api/post', {url: '/api/customer/reset', data}, {root: true})
+    return dispatch('api/post', {url: '/customer/reset', data}, {root: true})
   },
   logOut ({commit}, $auth) {
     $auth.setUser({})

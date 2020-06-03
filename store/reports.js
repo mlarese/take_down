@@ -73,7 +73,7 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/api/customer/submissionrecord/${id}`
+        const url = `/customer/submissionrecord/${id}`
         return dispatch('api/put', {url, data}, root)
     },
 
@@ -99,13 +99,13 @@ export const actions = {
             return
         }
         if (id === null) {
-            return dispatch('api/get', {url: `/api/customer/submissions`, options, debug: false}, root)
+            return dispatch('api/get', {url: `/customer/submissions`, options, debug: false}, root)
                 .then(res => {
                     commit('setList', res.data)
                     return res
                 })
         } else {
-            const url = `/api/customer/submissions/${id}`
+            const url = `/customer/submissions/${id}`
             return dispatch('api/get', {url, options}, root)
                 .then(res => {
                     let data = res.data

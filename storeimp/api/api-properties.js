@@ -7,6 +7,6 @@ if (window.location.hostname === 'localhost') {
 
 }
 
-url = 'http://beta.takedownwebsite.com'
+url = 'https://api.takedownwebsite.com'
 export const baseURL = url
 export const mockApp = doMock

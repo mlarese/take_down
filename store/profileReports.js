@@ -82,11 +82,11 @@ export const actions = {
     data.append('submission_id', id)
     data.append('nonce','nncupldfrmdt')
 
-    const url = `/api/customer/pictures`
+    const url = `/customer/pictures`
     return dispatch('api/postmp', {url, data}, root)
   },
   update ({dispatch, commit, state}, {data, id}) {
-    const url = `/api/customer/submissionrecord/${id}`
+    const url = `/customer/submissionrecord/${id}`
     return dispatch('api/put', {url, data}, root)
   },
   insert ({dispatch, commit, state}, images) {
@@ -103,7 +103,7 @@ export const actions = {
       delete data.submission_url
     }
 
-    const url = `/api/customer/submissions`
+    const url = `/customer/submissions`
     return dispatch('api/post', {url, data}, root)
       .then(res => {
         const all = []
@@ -139,13 +139,13 @@ export const actions = {
       return
     }
     if (id === null) {
-      return dispatch('api/get', {url: `/api/customer/submissions`, options, debug: false}, root)
+      return dispatch('api/get', {url: `/customer/submissions`, options, debug: false}, root)
         .then(res => {
           commit('setList', res.data)
           return res
         })
     } else {
-      const url = `/api/customer/submissions/${id}`
+      const url = `/customer/submissions/${id}`
       return dispatch('api/get', {url, options}, root)
         .then(res => {
           let data = res.data
@@ -157,7 +157,7 @@ export const actions = {
     }
   },
   delete ({dispatch, commit, state}, id) {
-    const url = `/api/customer/submissions/cancel/${id}`
+    const url = `/customer/submissions/cancel/${id}`
     return dispatch('api/delete', {url}, root)
       .then(res => dispatch('load', {}))
   }

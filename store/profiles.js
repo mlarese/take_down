@@ -311,7 +311,7 @@ export const mutations = {
 }
 export const actions = {
     update ({dispatch, commit, state}, {data, id}) {
-        const url = `/api/customer/customerrecord/${id}`
+        const url = `/customer/customerrecord/${id}`
         return dispatch('api/put', {url, data}, root)
     },
     search ({dispatch, commit, state}) {
@@ -355,13 +355,13 @@ export const actions = {
             return
         }
         if (id === null) {
-            return dispatch('api/get', {url: `/api/customer/customers`, options, debug: false}, root)
+            return dispatch('api/get', {url: `/customer/customers`, options, debug: false}, root)
                 .then(res => {$
                     commit('setList', res.data)
                     return res
                 })
         } else {
-            return dispatch('api/get', {url: `/api/customer/customers/${id}`, options}, root)
+            return dispatch('api/get', {url: `/customer/customers/${id}`, options}, root)
                 .then(res => {
                     let data = res.data
                     if(data && data.length>0) data = data[0]

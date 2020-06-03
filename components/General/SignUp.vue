@@ -16,7 +16,7 @@
 
                                     <v-text-field  hide-details   :maxlength="50"   v-model="record.name" :rules="[rules.required]" label="Name*" required></v-text-field>
                                     <v-text-field hide-details    :maxlength="50"  v-model="record.surname" :rules="[rules.required]" label="Surname*" required></v-text-field>
-                                    <v-text-field hide-details  :maxlength="30"  type="password"   v-model="record.password" :rules="[rules.required, rules.min]" label="Password* (min 8 characters)" password required></v-text-field>
+                                    <v-text-field hide-details  :maxlength="12"  type="password"   v-model="record.password" :rules="[rules.required, rules.min]" label="Password* (min 8 characters)" password required></v-text-field>
                                     <v-text-field hide-details  :maxlength="200"   v-model="record.email" :rules="[rules.email, rules.required]" label="Email" required></v-text-field>
 
                                     <v-autocomplete :items="usersRoles" hide-details v-model="record.role" :rules="[rules.required]" label="Role*" counter="25" required></v-autocomplete>

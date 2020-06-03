@@ -3,7 +3,7 @@ require('dotenv').config()
 
 let routerBase = '/'
 if (process.env.NODE_ENV === 'production') {
-  routerBase = '/site/'
+  // routerBase = '/site/' spostato in root
 }
 
 module.exports = {
@@ -26,9 +26,9 @@ module.exports = {
       prod: {
         _scheme: 'local',
         endpoints: {
-          login: { baseURL: '/', url: '/api/customer/login', method: 'post', propertyName: 'token' },
-          logout: {baseURL: '/', url: '/api/customer/logout', method: 'post' },
-          user: {baseURL: '/', url: '/api/customer/user', method: 'get', propertyName: 'user' }
+          login: { baseURL: 'https://api.takedownwebsite.com', url: '/customer/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: 'https://api.takedownwebsite.com', url: '/customer/logout', method: 'post' },
+          user: {baseURL: 'https://api.takedownwebsite.com', url: '/customer/user', method: 'get', propertyName: 'user' }
         },
         tokenRequired: true,
         tokenType: 'bearer'
@@ -36,9 +36,9 @@ module.exports = {
       dev: {
         _scheme: 'local',
         endpoints: {
-          login: { baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/login', method: 'post', propertyName: 'token' },
-          logout: {baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/logout', method: 'post' },
-          user: {baseURL: 'http://beta.takedownwebsite.com/api', url: '/customer/user', method: 'get', propertyName: 'user' }
+          login: { baseURL: 'https://api.takedownwebsite.com', url: '/customer/login', method: 'post', propertyName: 'token' },
+          logout: {baseURL: 'http:/api./takedownwebsite.com', url: '/customer/logout', method: 'post' },
+          user: {baseURL: 'https://api.takedownwebsite.com', url: '/customer/user', method: 'get', propertyName: 'user' }
         },
         tokenRequired: true,
         tokenType: 'bearer'

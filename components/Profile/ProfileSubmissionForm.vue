@@ -21,13 +21,14 @@
                         <v-combobox
                                 :label="$vuetify.t('Brand')+'*'"
                                 :rules="[rules.required]"
-                                class=""
+                                :class="{'with-menu': withMenu}"
                                 hide-details
                                 dense
-
+                                :filter="brandFilter"
                                 flat
                                 :items="brandsList"
 
+                                :menu-props="brandMnuProps"
                                 color="null"
                                 v-model="$record.submission_brand" />
 
@@ -56,20 +57,31 @@
 
                 </v-layout>
                 <v-layout rows wrap>
-                    <v-flex xs12 >
-                        <v-text-field
-                                :maxlength="1024"
-                                :rules="[rules.url]"
-                                dense
-                                :label="$vuetify.t('Url')+'*'"
-                                color="null"
-                                hide-details
-                                v-model="$record.submission_url" />
-                    </v-flex>
+                  <v-flex v-if="isOnline" xs9 >
+                    <v-text-field
+                      :maxlength="1024"
+                      :rules="[rules.url]"
+                      dense
+                      :label="$vuetify.t('Url')+'*'"
+                      color="null"
+                      hide-details
+                      v-model="$record.submission_url" />
+                  </v-flex>
+                  <v-flex xs3>
+                    <v-switch
+                      style="position:relative; top:2px"
+                      height="34"
+                      color="green"
+                      hide-details
+                      v-model="isOnline"
+                      :label="$vuetify.t('Online')"
+                    ></v-switch>
+                  </v-flex>
+
 
                 </v-layout>
 
-                    <v-layout rows wrap class="mt-2 text-xs-center" >
+                    <v-layout rows wrap class="mt-3 text-xs-center" >
 
                         <v-flex xs12 class="text-xs-center">
                             <vue-upload-multiple-image
@@ -156,15 +168,19 @@
             return {
               rules: {
                 url: value => {
-                  if(!value) return true
-                  const pattern = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/
+                  if(!value && !this.isOnline) return true
+                  let pattern = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/
+                  pattern = /^(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/
                   return pattern.test(value) || 'Invalid url.'
                 },
                 required: value => !!value || 'Required.',
                 min: v => (v && v.length >= 8) || 'Min 8 characters'
               },
+              isOnline: false,
+              isSaving: false,
               isFormValid: false,
               isFormVerified: false,
+              mnuBrandMaxHeight: 0,
               images: []
             }
         },
@@ -172,7 +188,19 @@
             ...mapState('profileReports', ['$record']),
             ...mapGetters('brands', ['brandsList']),
             ...mapGetters('app', ['isAdmin']),
+            brandMnuProps () {
+              return {
+                auto: false,
+                openOnClick: false,
+                maxWidth: this.mnuBrandMaxHeight > 0?'auto':0,
+                maxHeight:this.mnuBrandMaxHeight
+              }
+            },
+            withMenu (){
+                return true
+            },
             canRegister () {
+                if (this.isSaving) return false
                 if (!this.isFormVerified) return false
                 if (!this.isFormValid)  return false
                 return true
@@ -181,7 +209,21 @@
               return this.$refs['imageUploader']
             }
         },
+        watch: {
+          isOnline () {
+            if(!this.online) {
+              this.$record.submission_url = ''
+            }
+          }
+        },
         methods: {
+          brandFilter (item, queryText, itemText) {
+            this.mnuBrandMaxHeight = 0
+            if(queryText.length < 5) return false
+            this.mnuBrandMaxHeight = 40
+            return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
+            return false
+          },
           onActvated() {
             this.isFormVerified = true
           },
@@ -201,8 +243,10 @@
           },
           async onAdd () {
             await this.$auth.fetchUser().catch(() => {})
-
-                this.insert(this.images)
+            this.isSaving = true
+            this.insert(this.images)
+                    .then(r => this.isSaving = false)
+                    .catch(e => this.isSaving = false)
                     .then(r => this.$router.go(-1))
           },
           ...mapActions('profileReports', ['insert', 'save', 'reportList', 'uploadImage'])
