@@ -1,8 +1,8 @@
 <!--eslint-disable-->
 <template>
 
-  <v-btn :disabled="disabled" flat :color="color" class="elevation-1 my-0 mr-1 mx-0"  fab dark small @click="$emit('click')">
-    <v-icon small style="font-size: 18px !important;">{{ icon }}</v-icon>
+  <v-btn :disabled="disabled" flat  class="elevation-0 my-0 mr-1 mx-0"  fab dark small @click="$emit('click')">
+    <v-icon small :color="color" style="font-size: 18px !important;">{{ icon }}</v-icon>
   </v-btn>
 </template>
 <script>

@@ -10,7 +10,7 @@
             </slot>
 
             <v-spacer/>
-            <slot name="header-right"></slot>
+            <slot name="header-right" ></slot>
         </v-toolbar>
 
 

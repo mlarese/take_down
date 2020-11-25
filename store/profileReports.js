@@ -76,6 +76,18 @@ export const mutations = {
 
 }
 export const actions = {
+  loadLinksFromExcel ({dispatch, commit, state}) {
+
+  },
+  relaunchScreenshots ({dispatch, commit, state}) {
+
+  },
+  doScreenShot ({dispatch, commit, state}, id) {
+
+  },
+  downloadAllScreenshots ({dispatch, commit, state}) {
+
+  },
   uploadImage ({dispatch, commit, state}, {picture, id}) {
     const data = new FormData();
     data.append('picture', picture)

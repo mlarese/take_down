@@ -3,9 +3,9 @@
     <div>
 
         <GridContainer title="Report Abuse">
-            <div slot="header-right" class="pt-3 pr-1">
+            <div slot="header-right" class="pt-3 pr-1" >
 
-                <v-text-field class=""
+                  <v-text-field class=""
                               single-line
                               style="width:200px"
                               label="Search"
@@ -14,8 +14,22 @@
                               v-model="ui.filter"
                               autofocus
                               append-icon="search"/>
-            </div>
 
+            </div>
+            <v-card elevation="1" slot="container-top" class="pa-2 text-align-center">
+              <v-btn flat title="Download screenshoots"  elevation="0" color="primary" @click="OnDownloadAllScreenshots">
+                Download screenshots
+              </v-btn>
+
+              <v-btn flat title="Load links from Excel"  elevation="0" color="primary" @click="OnLoadLinksFromExcel">
+                Load links from Excel
+              </v-btn>
+
+              <v-btn flat title="Relaunch"  elevation="0" color="primary" @click="onRelaunchScreenshots">
+                Relaunch
+              </v-btn>
+
+            </v-card>
             <v-data-table
                     :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
                     :loading="isAjax" fixed
@@ -26,6 +40,7 @@
                     slot="body-center">
                 <template slot="items" slot-scope="{item}" style="text-align: center">
                     <td width="1" class="no-wrap pa-0 text-xs-center">
+                        <GridButton title="Screen shoot" icon="camera_enhance" color="green" @click="onDoScreenShot(item.id)" />
                         <GridButton  v-if="false" icon="edit" color="primary" @click="onEdit(item.id )" />
                         <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
                     </td>
@@ -52,6 +67,52 @@
                 <ButtonNew style="float: right;"  title="New" @click.native="onAdd" />
             </template>
         </GridContainer>
+
+
+      <v-speed-dial
+        v-if="false"
+        v-model="fabActions"
+        bottom
+        left
+        direction="top"
+      >
+        <template v-slot:activator>
+          <v-btn
+            v-model="fabActions"
+            color="blue darken-2"
+            dark
+            fab
+          >
+            <v-icon>account_circle</v-icon>
+            <v-icon>close</v-icon>
+          </v-btn>
+        </template>
+        <v-btn
+          fab
+          dark
+          small
+          color="green"
+        >
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="indigo"
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="red"
+        >
+          <v-icon>delete</v-icon>
+        </v-btn>
+      </v-speed-dial>
+
     </div>
 </template>
 <script>
@@ -76,6 +137,7 @@
         { text: this.$vuetify.t('URL'), value: 'submission_url' }
       ]
       return {
+        fabActions: false,
         sms_mo_date: null,
         click_date: null,
         gridFilter: '',
@@ -89,9 +151,32 @@
       ...mapState('auth', {'user': 'user'}),
     },
     methods: {
-      ...mapActions('profileReports', ['delete', 'load']),
+      ...mapActions('profileReports', [
+        'delete',
+        'load',
+        'doScreenShot',
+        'relaunchScreenshots',
+        'downloadAllScreenshots',
+        'loadLinksFromExcel'
+      ]),
       onAdd () {
         this.$router.push('/profilereport/add')
+      },
+      onDoScreenShot (id) {
+        if(!confirm('Do you confirm')) return
+        this.doScreenShot(id)
+      },
+      onRelaunchScreenshots () {
+        if(!confirm('Do you confirm')) return
+        this.relaunchScreenshots()
+      },
+      OnLoadLinksFromExcel () {
+        if(!confirm('Do you confirm')) return
+        this.loadLinksFromExcel()
+      },
+      OnDownloadAllScreenshots () {
+        if(!confirm('Do you confirm')) return
+        this.downloadAllScreenshots()
       },
       onDelete (id) {
         if(!confirm('Do you confirm the row deletion ?')) return
@@ -106,3 +191,13 @@
     }
   }
 </script>
+
+<style>
+#create .v-speed-dial {
+  position: absolute;
+}
+
+#create .v-btn--floating {
+  position: relative;
+}
+</style>
