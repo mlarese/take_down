@@ -124,13 +124,10 @@
                     </v-btn>
                 </v-flex>
             </v-layout>
-            <v-layout>
+            <v-layout style="margin:auto;width:304px;">
 
-                <v-flex xs6 class="vue-recaptcha text-xs-center">
-                    <div class="vue-recaptcha text-xs-center">
                         <VueRecaptcha  @verify="onActvated" language="en" :loadRecaptchaScript="true" _theme="dark" sitekey="6LcLBvMUAAAAAPFVSfnKjo-XLGu7m4en0-SGe_k3" />
-                    </div>
-                </v-flex>
+
             </v-layout>
 
 
@@ -179,7 +176,7 @@
                 required: value => !!value || 'Required.',
                 min: v => (v && v.length >= 8) || 'Min 8 characters'
               },
-              isOnline: false,
+              isOnline: true,
               isSaving: false,
               isFormValid: false,
               isFormVerified: false,

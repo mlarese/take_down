@@ -106,12 +106,12 @@
                 return true
             }
         },
-      watch: {
-        'ui.activeLoginTab' () {
+        watch: {
+          'ui.activeLoginTab' () {
 
         }
       },
-        methods: {
+      methods: {
             ...mapActions('app', ['register']),
             ...mapMutations('users', ['setRecord']),
             ...mapMutations('app', ['setActiveLoginTab']),
@@ -124,12 +124,17 @@
                 .then(res => {
                   const {success, message} = res.data
                   if(success) {
-                    alert(message)
                     this.setRecord({})
                     this.setActiveLoginTab(0)
+                    this.$notify({
+                      type: 'success',
+                      text: message
+                    })
                   } else {
-                    alert(message)
-
+                    this.$notify({
+                      type: 'error',
+                      text: message
+                    })
                   }
                 })
                 .catch(e => {

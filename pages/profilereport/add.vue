@@ -10,6 +10,7 @@
         ProfileSubmissionForm
     },
     fetch({store, $auth, redirect}) {
+
         if(!$auth.user.is_user_enabled) {
           redirect('/home')
           return

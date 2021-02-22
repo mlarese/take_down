@@ -108,7 +108,12 @@
       onResetPassword (user) {
         this.showReset = false
         return this.passwordReset(user)
-          .then(r => { alert('Password resetted')})
+          .then(r => {
+            this.$notify({
+              type: 'success',
+              text: 'Password resetted'
+            })
+          })
       },
       async login () {
         if (!this.canLogin) {

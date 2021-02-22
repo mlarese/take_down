@@ -82,8 +82,16 @@ export const actions = {
   relaunchScreenshots ({dispatch, commit, state}) {
 
   },
-  doScreenShot ({dispatch, commit, state}, id) {
-
+  doScreenShot ({dispatch, commit, state}, item) {
+    const url = item.submission_url
+    const body =  {
+      url,
+      fullpage: 0,
+      offset:1200, // offset
+      length:768, // altezza finestera
+      time:40
+    }
+    console.dir(item)
   },
   downloadAllScreenshots ({dispatch, commit, state}) {
 

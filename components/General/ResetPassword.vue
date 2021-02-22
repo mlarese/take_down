@@ -15,7 +15,7 @@
                 <v-flex xs12>
                     <v-form v-model="formValid">
                         <v-flex>
-                            <v-text-field label="Email"  v-model="user" required :rules="[rules.email]"/>
+                            <v-text-field label="Email" hide-details _validate-on-blur v-model="user" required :rules="[rules.email]"/>
                         </v-flex>
                     </v-form>
 
