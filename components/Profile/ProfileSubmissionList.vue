@@ -16,20 +16,7 @@
                               append-icon="search"/>
 
             </div>
-            <v-card elevation="1" slot="container-top" class="pa-2 text-align-center">
-              <v-btn flat title="Download screenshoots"  elevation="0" color="primary" @click="OnDownloadAllScreenshots">
-                Download screenshots
-              </v-btn>
 
-              <v-btn flat title="Load links from Excel"  elevation="0" color="primary" @click="OnLoadLinksFromExcel">
-                Load links from Excel
-              </v-btn>
-
-              <v-btn flat title="Relaunch"  elevation="0" color="primary" @click="onRelaunchScreenshots">
-                Relaunch
-              </v-btn>
-
-            </v-card>
             <v-data-table
                     :rows-per-page-items="[7,20,50,{'text':'All','value':-1}]"
                     :loading="isAjax" fixed
@@ -40,8 +27,7 @@
                     slot="body-center">
                 <template slot="items" slot-scope="{item}" style="text-align: center">
                     <td width="1" class="no-wrap pa-0 text-xs-center">
-                        <GridButton title="Screen shoot" icon="camera_enhance" color="green" @click="onDoScreenShot(item.id)" />
-                        <GridButton  v-if="false" icon="edit" color="primary" @click="onEdit(item.id )" />
+                        <GridButton _v-if="false && item.submission_status_id==0" icon="edit" color="primary" @click="onEdit(item.submission_internal_progressive_primary_key )" />
                         <GridButton v-if="item.submission_status_id==0" title="Cancel" icon="cancel" color="error" @click="onDelete(item.submission_internal_progressive_primary_key)" />
                     </td>
 
@@ -130,7 +116,7 @@
       const headers = [
         { text: 'Actions', value: 'action', sortable: false },
         { text: this.$vuetify.t('Status'), value: 'submission_status' },
-          { text: this.$vuetify.t('ID'), value: 'submission_short_uuid' },
+        { text: this.$vuetify.t('ID'), value: 'submission_short_uuid' },
         { text: this.$vuetify.t('Date'), value: 'submission_date' },
         { text: this.$vuetify.t('Title'), value: 'submission_title' },
         { text: this.$vuetify.t('Brand'), value: 'submission_brand' },

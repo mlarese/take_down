@@ -3,7 +3,7 @@
     <FormPanel v-bind="$attrs" title="Stats" >
         <v-form ref="form" class="" lazy-validation>
                 <v-layout rows wrap>
-                    <v-flex   xs6   >
+                    <v-flex   xs12   >
                         <v-text-field
                                 prepend-icon="report"
                                 hide-details
@@ -14,18 +14,9 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex   xs6>
-                        <v-text-field
-                                :prepend-icon="reportStates[0].icon"
-                                hide-details
-                                :label="$vuetify.t('New Abuses')"
-                                v-model="subNew"
-                                readonly
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
 
-                    <v-flex   xs6>
+
+                    <v-flex   xs12>
                         <v-text-field
                                 :prepend-icon="reportStates[1].icon"
                                 hide-details
@@ -36,7 +27,7 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex   xs6>
+                    <v-flex   xs12>
                         <v-text-field
                                 :prepend-icon="reportStates[2].icon"
                                 hide-details
@@ -47,7 +38,29 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex   xs6>
+                  <v-flex   xs12>
+                    <v-text-field
+                      :prepend-icon="reportStates[4].icon"
+                      hide-details
+                      :label="$vuetify.t('Accepted Abuses')"
+                      v-model="subAccepted"
+                      readonly
+                      color="null"
+                    ></v-text-field>
+                  </v-flex>
+
+                  <v-flex   xs12>
+                    <v-text-field
+                      :prepend-icon="reportStates[5].icon"
+                      hide-details
+                      :label="$vuetify.t('Rejected Abuses')"
+                      v-model="subRejected"
+                      readonly
+                      color="null"
+                    ></v-text-field>
+                  </v-flex>
+
+                    <v-flex   xs12>
                         <v-text-field
                                 :prepend-icon="reportStates[3].icon"
                                 hide-details
@@ -58,29 +71,11 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex   xs6>
-                        <v-text-field
-                                :prepend-icon="reportStates[4].icon"
-                                hide-details
-                                :label="$vuetify.t('Accepted Abuses')"
-                                v-model="subAccepted"
-                                readonly
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
 
-                    <v-flex   xs6>
-                        <v-text-field
-                                :prepend-icon="reportStates[5].icon"
-                                hide-details
-                                :label="$vuetify.t('Rejected Abuses')"
-                                v-model="subRejected"
-                                readonly
-                                color="null"
-                        ></v-text-field>
-                    </v-flex>
 
-                    <v-flex   xs6>
+
+
+                    <v-flex   xs12>
                         <v-text-field
                                 :prepend-icon="reportStates[6].icon"
                                 hide-details
@@ -91,7 +86,7 @@
                         ></v-text-field>
                     </v-flex>
 
-                    <v-flex   xs6>
+                    <v-flex   xs12>
                         <v-text-field
                                 :prepend-icon="reportStates[7].icon"
                                 hide-details

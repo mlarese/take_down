@@ -4,11 +4,11 @@
     <FormPanel v-bind="$attrs" class="ma-0 pa-0" title="Submission">
 
         <div slot="header-right" >
-            <v-btn   flat small color="blue-grey darken-3" class="elevation-0"  @click="$router.go(-1)" >
-                {{$vuetify.t('Back')}}
+            <v-btn dark small color="primary" class="elevation-0"  @click="$router.go(-1)" >
+                <v-icon class="mr-2">mdi-door</v-icon> {{$vuetify.t('Back')}}
             </v-btn>
         </div>
-        <v-form ref="form" class="mt-3" v-model="isFormValid">
+        <v-form ref="form" class="mt-3" v-model="isFormValid"  >
             <div class="caption text-xs-justify mb-0 pb-0">
                 Please only report abuse related to brands or products. Please do not report abuse regarding other matters such as bullism, terrorism, pornography,fake news.
                 You can report internet abuse or offline abuse. You will receive feedback about your abuse reports.
@@ -19,7 +19,8 @@
                     <v-flex xs12 sm6 md6>
 
                         <v-combobox
-                                :label="$vuetify.t('Brand')+'*'"
+                                :readonly="readonly"
+                                :label="$vuetify.t('Brand Name Abused')+'*'"
                                 :rules="[rules.required]"
                                 :class="{'with-menu': withMenu}"
                                 hide-details
@@ -36,10 +37,11 @@
 
                     <v-flex xs12 sm6>
                         <v-text-field
+                                :readonly="readonly"
                                 :maxlength="1024"
                                 :rules="[rules.required]"
                                 hide-details
-                                :label="$vuetify.t('Title')+'*'"
+                                :label="$vuetify.t('Title Of The Report')+'*'"
                                 v-model="$record.submission_title"
                                 color="null"
 
@@ -48,17 +50,27 @@
 
                     <v-flex xs12 sm12 >
                         <v-textarea
+                          :readonly="readonly"
                                 :rules="[rules.required]"
                                 hide-details
                                 color="null"
-                                label="Description*"
+                                label="Abuse Description*"
                                 v-model="$record.submission_description"/>
                     </v-flex>
 
                 </v-layout>
                 <v-layout rows wrap>
-                  <v-flex v-if="isOnline" xs9 >
-                    <v-text-field
+
+                  <v-flex v-if="isOnline" xs12 class="mt-4 mb-0 pb-0">
+                    <div class="caption text-xs-justify mb-0 pb-0">
+                      Please enter the exact link to the page the abuse is on. Links to generic pages will be discarded. To report multiple links, enter a new report for each link.
+                      It is also possible to insert reports without internet links concerning abuses in the physical world (eg: photos of counterfeit products on shop windows), by deactivating the url field using the ONLINE button next to it.
+                    </div>
+                  </v-flex>
+
+                  <v-flex v-if="isOnline" xs12 sm9 md10 class="pt-0 mt-0" >
+                    <v-text-field class="py-0"
+                      :readonly="readonly"
                       :maxlength="1024"
                       :rules="[rules.url]"
                       dense
@@ -67,9 +79,10 @@
                       hide-details
                       v-model="$record.submission_url" />
                   </v-flex>
-                  <v-flex xs3>
+                  <v-flex xs12 sm3 md2 class="py-0">
                     <v-switch
-                      style="position:relative; top:2px"
+                      :readonly="readonly"
+                      style="position:relative; top:2px; float:right"
                       height="34"
                       color="green"
                       hide-details
@@ -79,27 +92,34 @@
                   </v-flex>
 
 
+                </v-layout class>
+
+                <v-layout rows wrap class="mt-0 text-xs-center" v-if="!readonly">
+
+                  <v-flex xs12 class="mt-4 mb-0 pb-0">
+                    <div class="caption text-xs-justify mb-2 pb-0">
+                      Please include any images that describe the abuse.
+                    </div>
+                  </v-flex>
+
+                    <v-flex xs12 class="text-xs-center">
+                        <vue-upload-multiple-image
+                            ref="imageUploader"
+                            @before-remove="beforeRemove"
+                            @upload-success="uploadImageSuccess"
+                            @edit-image="editImage"
+                            dragText="Drag File"
+                            browseText="Browse Files"
+                            label="images"
+                            dropText="Drop file"
+                            primaryText="Image Insert"
+                            popupText="Image"
+                            :maxImage="4"
+                            markIsPrimaryText="Select image"
+                            v-model="$record.pictures"/>
+                    </v-flex>
                 </v-layout>
 
-                    <v-layout rows wrap class="mt-3 text-xs-center" >
-
-                        <v-flex xs12 class="text-xs-center">
-                            <vue-upload-multiple-image
-                                ref="imageUploader"
-                                @before-remove="beforeRemove"
-                                @upload-success="uploadImageSuccess"
-                                @edit-image="editImage"
-                                dragText="Drag File"
-                                browseText="Browse Files"
-                                label="images"
-                                dropText="Drop file"
-                                primaryText="Image Insert"
-                                popupText="Image"
-                                :maxImage="4"
-                                markIsPrimaryText="Select image"
-                                v-model="$record.pictures"/>
-                        </v-flex>
-                    </v-layout>
             <v-layout row wrap class="mt-2">
                 <v-flex
                         xs12
@@ -110,6 +130,7 @@
                         text-xs-center
                 >
                     <v-switch
+                      :readonly="readonly"
                             style="position: relative; top:-11px"
                             height="33"
                             color="green"
@@ -119,12 +140,12 @@
                     ></v-switch>
 
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!canRegister" color="green darken-2" flat class="elevation-0"  @click="onAdd">
-                        {{$vuetify.t('Save') }}
+                    <v-btn :disabled="!canRegister" color="green " dark class="elevation-0"  @click="onAdd" v-if="!readonly">
+                       <v-icon>mdi-send</v-icon> <span class="ml-2">{{$vuetify.t('Send') }}</span>
                     </v-btn>
                 </v-flex>
             </v-layout>
-            <v-layout style="margin:auto;width:304px;">
+            <v-layout style="margin:auto;width:304px;" v-if="!readonly">
 
                         <VueRecaptcha  @verify="onActvated" language="en" :loadRecaptchaScript="true" _theme="dark" sitekey="6LcLBvMUAAAAAPFVSfnKjo-XLGu7m4en0-SGe_k3" />
 
@@ -160,6 +181,9 @@
           VueCtkDateTimePicker,
           CookieConsent,
           ButtonNew
+        },
+        props: {
+          readonly: {default: false, type: Boolean}
         },
         data() {
             return {

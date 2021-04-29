@@ -1,6 +1,6 @@
 <!--eslint-disable-->
 <template>
-    <profile-submission-form title="Edit Report" />
+    <profile-submission-form title="Edit Report" :readonly="true" />
 </template>
 
 <script>
